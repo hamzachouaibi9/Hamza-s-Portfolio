@@ -32,7 +32,7 @@ export default function ProjectsSection() {
   const [ref, isIntersecting] = useIntersectionObserver();
 
   return (
-    <section id="projects" className="py-20 bg-secondary" ref={ref}>
+    <section id="projects" className="py-20 bg-gradient-to-br from-background to-muted relative overflow-hidden" ref={ref}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"

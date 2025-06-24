@@ -51,7 +51,7 @@ export default function Navigation() {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <h1 className="text-xl font-bold text-primary cursor-pointer" onClick={() => scrollToSection("hero")}>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent cursor-pointer" onClick={() => scrollToSection("hero")}>
               Hamza Chouaibi
             </h1>
           </motion.div>
@@ -63,11 +63,15 @@ export default function Navigation() {
                 <motion.button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-300"
-                  whileHover={{ scale: 1.05 }}
+                  className="relative text-muted-foreground hover:text-primary transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-primary/10"
+                  whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {item.label}
+                  <span className="relative z-10">{item.label}</span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300"
+                    whileHover={{ opacity: 1 }}
+                  />
                 </motion.button>
               ))}
             </div>
