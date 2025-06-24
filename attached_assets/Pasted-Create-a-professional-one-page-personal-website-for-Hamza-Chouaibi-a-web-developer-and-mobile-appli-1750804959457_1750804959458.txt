@@ -1,0 +1,79 @@
+Create a professional one-page personal website for Hamza Chouaibi, a web developer and mobile application developer. The website should be built using React and TypeScript with a focus on clean design, animations, and responsiveness. The website should follow a dark theme for the overall design, ensuring that the content remains legible and visually appealing.
+
+Wireframe Layout:
+Header (Top Navigation Bar)
+
+Logo/Name: Display "Hamza Chouaibi" prominently at the top.
+
+Navigation Links: Smooth scrolling links to the sections: About, Skills, Projects, Contact.
+
+Sticky Navigation: The navbar should stick to the top when scrolling.
+
+Animation: Navigation items should have a hover animation (e.g., scale or underline effect).
+
+Hero Section
+
+Background: A professional background image or a clean gradient with darker tones (to match the dark theme).
+
+Text Animation: The text "Hi, my name is Hamza Chouaibi" should appear one letter at a time, simulating a typing effect.
+
+The typing effect should use a cursor-like line (|) that blinks next to the text, as if it’s moving with the typing.
+
+Animation Speed: Customize the typing speed using JavaScript/React state to simulate the typewriter effect, with a blinking cursor styled using CSS animations.
+
+Subheading: "Web & Mobile App Developer."
+
+Button: "View My Work" that scrolls to the Projects section.
+
+Animation: Fade-in effect for the text, with slight movement on hover for the button.
+
+About Section
+
+Title: "About Me"
+
+Content: Create a beautiful and engaging about section with a clean design and smooth animations. This should introduce yourself, your background, and your professional goals.
+
+Image: A professional headshot or abstract image, designed to fit well with the dark theme.
+
+Animations: As the user scrolls to this section, the content should fade in with a smooth sliding effect from the left or right. The text can appear first, followed by the image.
+
+Style: Use soft, subtle animations like fading or sliding to create a professional and polished feel. You can animate elements like the introduction text, your image, and any key details in this section.
+
+Skills Section
+
+Title: "Skills"
+
+Content: List your technical skills (e.g., JavaScript, React, TypeScript, etc.), displayed with icons or progress bars.
+
+Animation: Progress bars or icons should animate in from the left/right when the user scrolls into the section.
+
+Projects Section
+
+Title: "My Projects"
+
+Content: Showcase 3-4 of your best projects with images, descriptions, and links to their GitHub or live demos.
+
+Animation: Each project card should animate in with a slight scale-up effect when in view.
+
+Contact Section
+
+Title: "Get in Touch"
+
+Content: A contact form (name, email, message).
+
+Additional Info: Links to social media or a downloadable resume.
+
+Animation: Input fields should have a subtle focus animation when clicked, and the submit button should animate on hover.
+
+Footer
+
+Content: Copyright information and any important links like terms and privacy policy (if applicable).
+
+Additional Features:
+Dark Theme: Use a dark color palette (e.g., dark grays, blacks, and subtle accent colors like blue or green) to give the website a sleek, professional look.
+
+Responsive Design: Ensure the website is fully responsive, especially for mobile devices.
+
+Animations: Use CSS animations for smooth scrolling, hover effects, and fade-ins on section load.
+
+Color Scheme: Ensure text and icons stand out against the dark background, using light-colored text (e.g., white, light gray, or blue accents).
