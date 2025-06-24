@@ -3,52 +3,54 @@
 @tailwind utilities;
 
 :root {
-  --background: hsl(240, 10%, 3.9%);
-  --foreground: hsl(0, 0%, 98%);
-  --muted: hsl(240, 3.7%, 15.9%);
-  --muted-foreground: hsl(240, 5%, 64.9%);
-  --popover: hsl(240, 10%, 3.9%);
-  --popover-foreground: hsl(0, 0%, 98%);
-  --card: hsl(240, 3.7%, 15.9%);
-  --card-foreground: hsl(0, 0%, 98%);
-  --border: hsl(240, 3.7%, 15.9%);
-  --input: hsl(240, 3.7%, 15.9%);
-  --primary: hsl(207, 90%, 54%);
+  --background: hsl(0, 0%, 18%); /* Charcoal Gray #2F2F2F */
+  --foreground: hsl(0, 0%, 96%); /* Off-White #F5F5F5 */
+  --muted: hsl(0, 0%, 0%); /* Deep Black */
+  --muted-foreground: hsl(0, 0%, 75%); /* Soft Silver #C0C0C0 */
+  --popover: hsl(0, 0%, 18%);
+  --popover-foreground: hsl(0, 0%, 96%);
+  --card: hsl(0, 0%, 12%); /* Darker for cards */
+  --card-foreground: hsl(0, 0%, 96%);
+  --border: hsl(0, 0%, 88%); /* Light Gray #E0E0E0 */
+  --input: hsl(0, 0%, 12%);
+  --primary: hsl(210, 100%, 56%); /* Electric Blue #1E90FF */
   --primary-foreground: hsl(0, 0%, 98%);
-  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary: hsl(187, 100%, 36%); /* Vibrant Teal #00B8D4 */
   --secondary-foreground: hsl(0, 0%, 98%);
-  --accent: hsl(207, 90%, 54%);
+  --accent: hsl(304, 36%, 46%); /* Light Purple #9B4F96 */
   --accent-foreground: hsl(0, 0%, 98%);
   --destructive: hsl(0, 62.8%, 30.6%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(240, 4.9%, 83.9%);
+  --ring: hsl(210, 100%, 56%);
   --success: hsl(142, 71%, 45%);
   --success-foreground: hsl(0, 0%, 98%);
+  --neon-pink: hsl(328, 100%, 54%); /* Neon Pink #FF1493 */
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: hsl(240, 10%, 3.9%);
-  --foreground: hsl(0, 0%, 98%);
-  --muted: hsl(240, 3.7%, 15.9%);
-  --muted-foreground: hsl(240, 5%, 64.9%);
-  --popover: hsl(240, 10%, 3.9%);
-  --popover-foreground: hsl(0, 0%, 98%);
-  --card: hsl(240, 3.7%, 15.9%);
-  --card-foreground: hsl(0, 0%, 98%);
-  --border: hsl(240, 3.7%, 15.9%);
-  --input: hsl(240, 3.7%, 15.9%);
-  --primary: hsl(207, 90%, 54%);
+  --background: hsl(0, 0%, 18%); /* Charcoal Gray #2F2F2F */
+  --foreground: hsl(0, 0%, 96%); /* Off-White #F5F5F5 */
+  --muted: hsl(0, 0%, 0%); /* Deep Black */
+  --muted-foreground: hsl(0, 0%, 75%); /* Soft Silver #C0C0C0 */
+  --popover: hsl(0, 0%, 18%);
+  --popover-foreground: hsl(0, 0%, 96%);
+  --card: hsl(0, 0%, 12%); /* Darker for cards */
+  --card-foreground: hsl(0, 0%, 96%);
+  --border: hsl(0, 0%, 88%); /* Light Gray #E0E0E0 */
+  --input: hsl(0, 0%, 12%);
+  --primary: hsl(210, 100%, 56%); /* Electric Blue #1E90FF */
   --primary-foreground: hsl(0, 0%, 98%);
-  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary: hsl(187, 100%, 36%); /* Vibrant Teal #00B8D4 */
   --secondary-foreground: hsl(0, 0%, 98%);
-  --accent: hsl(207, 90%, 54%);
+  --accent: hsl(304, 36%, 46%); /* Light Purple #9B4F96 */
   --accent-foreground: hsl(0, 0%, 98%);
   --destructive: hsl(0, 62.8%, 30.6%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(240, 4.9%, 83.9%);
+  --ring: hsl(210, 100%, 56%);
   --success: hsl(142, 71%, 45%);
   --success-foreground: hsl(0, 0%, 98%);
+  --neon-pink: hsl(328, 100%, 54%); /* Neon Pink #FF1493 */
   --radius: 0.5rem;
 }
 
@@ -74,7 +76,39 @@
   }
 
   .hero-bg {
-    background: linear-gradient(135deg, hsl(240, 10%, 3.9%) 0%, hsl(240, 3.7%, 15.9%) 50%, hsl(240, 3.7%, 20%) 100%);
+    background: linear-gradient(135deg, hsl(0, 0%, 0%) 0%, hsl(0, 0%, 18%) 50%, hsl(210, 100%, 56%) 100%);
+    animation: gradientShift 8s ease-in-out infinite;
+  }
+
+  .project-card-glow {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .project-card-glow:hover {
+    box-shadow: 0 0 30px hsl(210, 100%, 56% / 0.4), 0 0 60px hsl(210, 100%, 56% / 0.2);
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  .skill-icon-pulse:hover {
+    animation: pulse 2s infinite;
+  }
+
+  .floating-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .floating-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px hsl(210, 100%, 56% / 0.3);
+  }
+
+  .input-focus {
+    transition: all 0.3s ease;
+  }
+
+  .input-focus:focus {
+    border-color: hsl(210, 100%, 56%);
+    box-shadow: 0 0 0 3px hsl(210, 100%, 56% / 0.1);
   }
 
   .skill-bar {
@@ -85,6 +119,53 @@
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
+}
+
+@keyframes gradientShift {
+  0%, 100% { 
+    background: linear-gradient(135deg, hsl(0, 0%, 0%) 0%, hsl(0, 0%, 18%) 50%, hsl(210, 100%, 56%) 100%);
+  }
+  50% { 
+    background: linear-gradient(135deg, hsl(0, 0%, 18%) 0%, hsl(187, 100%, 36%) 30%, hsl(304, 36%, 46%) 100%);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @layer utilities {

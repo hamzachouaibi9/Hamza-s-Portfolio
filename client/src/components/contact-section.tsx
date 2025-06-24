@@ -76,12 +76,12 @@ export default function ContactSection() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-4xl font-bold text-primary">Get in Touch</h2>
-          <p className="text-muted-foreground mt-4 text-lg">
+          <h2 className="text-5xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mb-4">Get in Touch</h2>
+          <p className="text-muted-foreground text-xl font-medium">
             Let's discuss your next project
           </p>
         </motion.div>
@@ -135,8 +135,8 @@ export default function ContactSection() {
               </div>
             </div>
             
-            <Button className="bg-success hover:bg-success/90 text-success-foreground">
-              <Download className="mr-2 h-4 w-4" />
+            <Button className="floating-button bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all duration-300">
+              <Download className="mr-2 h-5 w-5" />
               Download Resume
             </Button>
           </motion.div>
@@ -146,8 +146,8 @@ export default function ContactSection() {
             animate={isIntersecting ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <Card className="bg-secondary border-border">
-              <CardContent className="p-6">
+            <Card className="bg-card/50 backdrop-blur-sm border-primary/20 shadow-2xl hover:border-primary/40 transition-all duration-500 rounded-xl">
+              <CardContent className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <Label htmlFor="name" className="text-foreground">Name</Label>
@@ -157,7 +157,7 @@ export default function ContactSection() {
                       value={formData.name}
                       onChange={(e) => handleInputChange("name", e.target.value)}
                       placeholder="Your Name"
-                      className="mt-2 bg-background border-border text-foreground placeholder:text-muted-foreground focus:ring-primary focus:border-primary"
+                      className="mt-2 input-focus bg-input border-primary/30 text-foreground placeholder:text-muted-foreground rounded-lg transition-all duration-300"
                     />
                   </div>
                   <div>
@@ -168,7 +168,7 @@ export default function ContactSection() {
                       value={formData.email}
                       onChange={(e) => handleInputChange("email", e.target.value)}
                       placeholder="your.email@example.com"
-                      className="mt-2 bg-background border-border text-foreground placeholder:text-muted-foreground focus:ring-primary focus:border-primary"
+                      className="mt-2 input-focus bg-input border-primary/30 text-foreground placeholder:text-muted-foreground rounded-lg transition-all duration-300"
                     />
                   </div>
                   <div>
@@ -179,12 +179,12 @@ export default function ContactSection() {
                       value={formData.message}
                       onChange={(e) => handleInputChange("message", e.target.value)}
                       placeholder="Tell me about your project..."
-                      className="mt-2 bg-background border-border text-foreground placeholder:text-muted-foreground focus:ring-primary focus:border-primary resize-none"
+                      className="mt-2 input-focus bg-input border-primary/30 text-foreground placeholder:text-muted-foreground rounded-lg resize-none transition-all duration-300"
                     />
                   </div>
                   <Button
                     type="submit"
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                    className="w-full floating-button bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white font-semibold py-3 rounded-lg shadow-lg transition-all duration-300"
                     disabled={contactMutation.isPending}
                   >
                     {contactMutation.isPending ? "Sending..." : "Send Message"}

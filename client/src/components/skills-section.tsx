@@ -11,12 +11,12 @@ import {
 } from "react-icons/fa";
 
 const skills = [
-  { name: "JavaScript/TypeScript", level: 95, icon: FaJs, color: "text-yellow-400" },
-  { name: "React/React Native", level: 90, icon: FaReact, color: "text-blue-400" },
-  { name: "Node.js/Express", level: 85, icon: FaNodeJs, color: "text-green-400" },
-  { name: "Database Design", level: 80, icon: FaDatabase, color: "text-blue-300" },
-  { name: "Cloud Services", level: 75, icon: FaAws, color: "text-orange-400" },
-  { name: "UI/UX Design", level: 70, icon: FaFigma, color: "text-purple-400" },
+  { name: "JavaScript/TypeScript", level: 95, icon: FaJs, color: "text-primary" },
+  { name: "React/React Native", level: 90, icon: FaReact, color: "text-secondary" },
+  { name: "Node.js/Express", level: 85, icon: FaNodeJs, color: "text-accent" },
+  { name: "Database Design", level: 80, icon: FaDatabase, color: "text-primary" },
+  { name: "Cloud Services", level: 75, icon: FaAws, color: "text-secondary" },
+  { name: "UI/UX Design", level: 70, icon: FaFigma, color: "text-accent" },
 ];
 
 export default function SkillsSection() {
@@ -27,12 +27,12 @@ export default function SkillsSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-4xl font-bold text-primary">Skills</h2>
-          <p className="text-muted-foreground mt-4 text-lg">
+          <h2 className="text-5xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mb-4">Skills</h2>
+          <p className="text-muted-foreground text-xl font-medium">
             Technologies and tools I work with
           </p>
         </motion.div>
@@ -50,10 +50,10 @@ export default function SkillsSection() {
               >
                 <div className="flex justify-between items-center">
                   <span className="text-foreground font-medium flex items-center">
-                    <Icon className={`${skill.color} text-xl mr-3`} />
+                    <Icon className={`${skill.color} text-2xl mr-3 skill-icon-pulse transition-all duration-300`} />
                     {skill.name}
                   </span>
-                  <span className="text-primary font-medium">{skill.level}%</span>
+                  <span className="text-primary font-bold text-lg">{skill.level}%</span>
                 </div>
                 <Progress
                   value={isIntersecting ? skill.level : 0}

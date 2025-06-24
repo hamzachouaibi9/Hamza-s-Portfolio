@@ -36,12 +36,12 @@ export default function ProjectsSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-4xl font-bold text-primary">My Projects</h2>
-          <p className="text-muted-foreground mt-4 text-lg">
+          <h2 className="text-5xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mb-4">My Projects</h2>
+          <p className="text-muted-foreground text-xl font-medium">
             A showcase of my recent work
           </p>
         </motion.div>
@@ -50,13 +50,13 @@ export default function ProjectsSection() {
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={isIntersecting ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              className="transition-transform duration-300"
+              initial={{ opacity: 0, scale: 0.9, y: 50 }}
+              animate={isIntersecting ? { opacity: 1, scale: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: index * 0.2, ease: "easeOut" }}
+              whileHover={{ y: -8 }}
+              className="project-card-glow"
             >
-              <Card className="bg-background border-border overflow-hidden shadow-lg hover:shadow-xl hover:shadow-primary/20 transition-all duration-300">
+              <Card className="bg-card border-primary/20 overflow-hidden shadow-2xl hover:border-primary/40 transition-all duration-500 rounded-xl">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -73,7 +73,7 @@ export default function ProjectsSection() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="text-primary border-primary hover:bg-primary hover:text-primary-foreground"
+                      className="floating-button text-primary border-primary/50 hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white hover:border-transparent transition-all duration-300"
                       asChild
                     >
                       <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
@@ -84,7 +84,7 @@ export default function ProjectsSection() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="text-primary border-primary hover:bg-primary hover:text-primary-foreground"
+                      className="floating-button text-secondary border-secondary/50 hover:bg-gradient-to-r hover:from-secondary hover:to-accent hover:text-white hover:border-transparent transition-all duration-300"
                       asChild
                     >
                       <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">

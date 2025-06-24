@@ -26,23 +26,23 @@ export default function HeroSection() {
           </h1>
           
           <motion.p
-            className="text-xl sm:text-2xl text-muted-foreground mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 2.5 }}
+            className="text-xl sm:text-2xl text-secondary mb-8 font-medium"
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 2.5, ease: "easeOut" }}
           >
             Web & Mobile App Developer
           </motion.p>
           
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 3 }}
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 3, ease: "easeOut" }}
           >
             <Button
               onClick={scrollToProjects}
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-medium transition-all duration-300 hover:scale-105"
+              className="floating-button bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-primary-foreground px-10 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-2xl"
             >
               View My Work
             </Button>

@@ -5,36 +5,38 @@ export default function AboutSection() {
   const [ref, isIntersecting] = useIntersectionObserver();
 
   return (
-    <section id="about" className="py-20 bg-secondary" ref={ref}>
+    <section id="about" className="py-20 bg-muted relative overflow-hidden" ref={ref}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isIntersecting ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-4xl font-bold text-primary">About Me</h2>
+          <h2 className="text-5xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">About Me</h2>
         </motion.div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isIntersecting ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0, x: -50, scale: 0.9 }}
+            animate={isIntersecting ? { opacity: 1, x: 0, scale: 1 } : {}}
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+            className="relative"
           >
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-xl blur-xl"></div>
             <img
               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
               alt="Professional developer portrait"
-              className="rounded-xl shadow-2xl w-full h-auto"
+              className="relative rounded-xl shadow-2xl w-full h-auto border-2 border-primary/30 hover:border-primary/60 transition-all duration-300"
             />
           </motion.div>
           
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isIntersecting ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={{ opacity: 0, x: 50, y: 30 }}
+            animate={isIntersecting ? { opacity: 1, x: 0, y: 0 } : {}}
+            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
           >
-            <h3 className="text-2xl font-semibold mb-6 text-foreground">
+            <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
               Passionate Developer & Problem Solver
             </h3>
             <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
