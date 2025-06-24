@@ -13,11 +13,36 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-16 md:py-24 bg-muted relative overflow-hidden" ref={ref}>
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
-      <div className="absolute top-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl"></div>
+    <section id="about" className="py-16 md:py-24 bg-gradient-to-br from-black via-background to-muted relative overflow-hidden" ref={ref}>
+      {/* Background Elements - Same as Hero */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-background to-muted">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--primary)_0%,_transparent_50%)] opacity-20"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,_var(--secondary)_0%,_transparent_50%)] opacity-20"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,_var(--accent)_0%,_transparent_50%)] opacity-20"></div>
+      </div>
+
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(12)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-secondary/30 rounded-full"
+            initial={{ 
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), 
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000) 
+            }}
+            animate={{
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
+            }}
+            transition={{
+              duration: Math.random() * 25 + 35,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        ))}
+      </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}

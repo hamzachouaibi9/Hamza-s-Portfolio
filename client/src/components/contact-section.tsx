@@ -72,11 +72,36 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-background relative overflow-hidden" ref={ref}>
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
-      <div className="absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-10 w-80 h-80 bg-secondary/5 rounded-full blur-3xl"></div>
+    <section id="contact" className="py-16 md:py-24 bg-gradient-to-br from-black via-background to-muted relative overflow-hidden" ref={ref}>
+      {/* Background Elements - Same as Hero */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-background to-muted">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--primary)_0%,_transparent_50%)] opacity-20"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,_var(--secondary)_0%,_transparent_50%)] opacity-20"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,_var(--accent)_0%,_transparent_50%)] opacity-20"></div>
+      </div>
+
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-primary/40 rounded-full"
+            initial={{ 
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), 
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000) 
+            }}
+            animate={{
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
+            }}
+            transition={{
+              duration: Math.random() * 35 + 25,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        ))}
+      </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
