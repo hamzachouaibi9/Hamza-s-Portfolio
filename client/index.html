@@ -3,16 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Hamza Chouaibi - Web & Mobile App Developer</title>
-    <meta name="description" content="Professional web and mobile app developer specializing in React, TypeScript, and modern JavaScript technologies. View my portfolio and get in touch for your next project." />
-    <meta property="og:title" content="Hamza Chouaibi - Web & Mobile App Developer" />
-    <meta property="og:description" content="Professional web and mobile app developer specializing in React, TypeScript, and modern JavaScript technologies." />
+    <title>LUXE - Premium Digital Experience</title>
+    <meta name="description" content="Experience the pinnacle of digital craftsmanship with revolutionary luxury design and unparalleled user experience. Premium solutions worth $50,000." />
+    <meta property="og:title" content="LUXE - Premium Digital Experience" />
+    <meta property="og:description" content="Experience the pinnacle of digital craftsmanship with revolutionary luxury design and unparalleled user experience." />
     <meta property="og:type" content="website" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+      body { 
+        margin: 0; 
+        background: #000; 
+        overflow-x: hidden;
+        cursor: none;
+      }
+      #loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      .loader {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(59, 130, 246, 0.3);
+        border-top: 3px solid #3b82f6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
   </head>
   <body>
+    <div id="loading">
+      <div class="loader"></div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Hide loading screen after page loads
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          document.getElementById('loading').style.display = 'none';
+        }, 1000);
+      });
+    </script>
     <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
     <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
   </body>
