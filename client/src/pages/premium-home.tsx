@@ -1067,9 +1067,13 @@ export default function PremiumHome() {
                   {/* Content */}
                   <div className={`${index % 2 === 1 ? 'md:col-start-1' : ''}`}>
                     <motion.div
-                      className="bg-white/5 border border-white/10 p-8"
+                      className="bg-white/5 border border-white/10 p-8 transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-white/5"
                       style={{ borderRadius: '2px' }}
-                      whileHover={{ bg: "rgba(255,255,255,0.08)" }}
+                      whileHover={{ 
+                        scale: 1.02,
+                        backgroundColor: "rgba(255,255,255,0.1)",
+                        borderColor: "rgba(255,255,255,0.25)"
+                      }}
                       transition={{ duration: 0.2 }}
                     >
                       <h3 className="text-2xl font-light text-white mb-4">
