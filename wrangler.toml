@@ -1,0 +1,17 @@
+name = "hamza-chouaibi-portfolio"
+compatibility_date = "2024-01-01"
+
+[build]
+command = "npm run build"
+cwd = "."
+
+[build.upload]
+format = "modules"
+dir = "./dist/public"
+
+[[build.upload.rules]]
+type = "ESModule"
+globs = ["**/*.js"]
+
+[env.production.vars]
+NODE_ENV = "production"

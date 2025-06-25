@@ -47,6 +47,19 @@ This portfolio represents a $50,000 luxury website concept with:
 3. Start development server: `npm run dev`
 4. Build for production: `npm run build`
 
+## 🌐 Deployment
+
+### Cloudflare Pages
+1. Connect your GitHub repository to Cloudflare Pages
+2. Build command: `npm run build`
+3. Build output directory: `dist/public`
+4. Node.js version: 20
+
+### Netlify
+1. Connect your GitHub repository to Netlify
+2. Build settings are configured in `netlify.toml`
+3. Auto-deploys on every push to main branch
+
 ## 📄 License
 
 © 2024 Hamza Chouaibi. All rights reserved.
