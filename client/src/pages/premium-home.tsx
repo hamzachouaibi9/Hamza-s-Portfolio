@@ -84,80 +84,93 @@ export default function PremiumHome() {
         }}
       />
 
-      {/* Enhanced Navigation */}
+      {/* Premium Navigation */}
       <motion.nav
-        className="fixed top-0 left-0 right-0 z-40 bg-black/90 backdrop-blur-xl border-b border-white/10"
+        className="fixed top-0 left-0 right-0 z-40 bg-black/95 backdrop-blur-2xl border-b border-white/10"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            {/* Professional Logo/Brand */}
+          <div className="flex justify-between items-center h-24">
+            {/* Premium Brand Identity */}
             <motion.div
-              className="flex items-center space-x-3"
-              whileHover={{ scale: 1.02 }}
+              className="flex items-center space-x-4"
+              whileHover={{ scale: 1.01 }}
             >
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">HC</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 rounded-sm flex items-center justify-center">
+                <span className="text-white font-light text-xl tracking-wider">HC</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                <span className="text-xl font-light tracking-wider text-white">
                   Hamza Chouaibi
                 </span>
-                <span className="text-xs text-white/60 -mt-1">Full-Stack Developer</span>
+                <span className="text-xs text-white/50 tracking-widest uppercase font-medium">
+                  Full-Stack Developer
+                </span>
               </div>
             </motion.div>
             
-            {/* Enhanced Navigation Menu */}
-            <div className="hidden md:flex items-center space-x-1">
+            {/* Premium Navigation Menu */}
+            <div className="hidden md:flex items-center space-x-8">
               {[
-                { label: 'Home', section: 0, icon: '🏠' },
-                { label: 'About', section: 1, icon: '👨‍💻' },
-                { label: 'Skills', section: 2, icon: '⚡' },
-                { label: 'Projects', section: 3, icon: '🚀' },
-                { label: 'Contact', section: 4, icon: '📧' }
+                { label: 'Home', section: 0 },
+                { label: 'About', section: 1 },
+                { label: 'Expertise', section: 2 },
+                { label: 'Portfolio', section: 3 },
+                { label: 'Contact', section: 4 }
               ].map((item, index) => (
                 <motion.button
                   key={item.label}
                   onClick={() => scrollToSection(item.section)}
-                  className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
+                  className={`relative font-medium text-sm tracking-wider uppercase transition-all duration-500 ${
                     activeSection === item.section 
-                      ? 'text-white bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30' 
-                      : 'text-white/70 hover:text-white hover:bg-white/5'
+                      ? 'text-white' 
+                      : 'text-white/60 hover:text-white/90'
                   }`}
-                  whileHover={{ y: -2, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <span className="flex items-center space-x-2">
-                    <span className="text-sm">{item.icon}</span>
-                    <span>{item.label}</span>
-                  </span>
+                  {item.label}
                   {activeSection === item.section && (
                     <motion.div
-                      className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"
+                      className="absolute -bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white to-transparent"
                       layoutId="activeIndicator"
+                      initial={false}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />
                   )}
+                  <motion.div
+                    className="absolute -bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0"
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
                 </motion.button>
               ))}
             </div>
 
-            {/* Professional CTA Button */}
-            <div className="flex items-center space-x-4">
-              <motion.a
-                href="mailto:hamza@example.com"
-                className="hidden sm:block text-white/70 hover:text-white transition-colors"
-                whileHover={{ scale: 1.1 }}
-              >
-                <Mail className="w-5 h-5" />
-              </motion.a>
-              <Button 
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 border-0 px-6 py-2 rounded-xl font-semibold"
+            {/* Premium CTA */}
+            <div className="flex items-center space-x-6">
+              <motion.button
                 onClick={() => scrollToSection(4)}
+                className="hidden sm:block text-white/70 hover:text-white transition-all duration-300 text-sm tracking-wider uppercase font-medium"
+                whileHover={{ y: -1 }}
               >
-                Hire Me
-              </Button>
+                Let's Talk
+              </motion.button>
+              <motion.button 
+                onClick={() => scrollToSection(4)}
+                className="relative px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-sm text-white font-medium text-sm tracking-wider uppercase transition-all duration-500 hover:bg-white/10 hover:border-white/40"
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="relative z-10">Work With Me</span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-sm opacity-0"
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
             </div>
 
             {/* Mobile Menu Button */}
