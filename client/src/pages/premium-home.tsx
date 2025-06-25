@@ -1158,68 +1158,141 @@ export default function PremiumHome() {
       )}
 
       {/* Contact Section */}
-      <section id="section-4" className="py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-gray-900 to-black" />
+      <section id="section-4" className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
+        {/* Starry Background - Same as Hero */}
+        <div className="absolute inset-0 bg-black">
+          {/* Stars */}
+          {[...Array(100)].map((_, i) => (
+            <motion.div
+              key={`contact-star-${i}`}
+              className="absolute bg-white rounded-full"
+              style={{
+                width: `${Math.random() * 2 + 0.5}px`,
+                height: `${Math.random() * 2 + 0.5}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                opacity: [0.2, 1, 0.2],
+                scale: [1, 1.5, 1],
+              }}
+              transition={{
+                duration: Math.random() * 3 + 2,
+                repeat: Infinity,
+                delay: Math.random() * 4,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
         
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="relative z-10 container mx-auto px-6">
           <motion.div
             className="text-center mb-20"
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-6xl font-light mb-6 text-white tracking-tight">
               Let's Work Together
             </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Ready to bring your digital vision to life? Let's connect and create something amazing.
+            <div className="w-16 h-0.5 bg-white/30 mx-auto mb-8"></div>
+            <p className="text-xl text-white/70 max-w-2xl mx-auto font-light">
+              Ready to bring your digital vision to life? Let's connect and create something extraordinary.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {[
-              { icon: Mail, title: "Email Me", info: "hamza.chouaibi@example.com", color: "from-blue-400 to-cyan-500" },
-              { icon: Phone, title: "Call Me", info: "+1 (555) 123-4567", color: "from-purple-400 to-pink-500" },
-              { icon: MapPin, title: "Location", info: "Available Worldwide", color: "from-green-400 to-emerald-500" },
-            ].map((contact, index) => (
-              <motion.div
-                key={contact.title}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10, scale: 1.05 }}
-              >
-                <Card className="bg-white/5 border-white/10 backdrop-blur-xl h-full hover:bg-white/10 transition-all duration-500">
-                  <CardContent className="p-8 text-center">
-                    <div className={`w-20 h-20 rounded-full bg-gradient-to-r ${contact.color} flex items-center justify-center mx-auto mb-6`}>
-                      <contact.icon className="w-10 h-10 text-white" />
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              {[
+                { 
+                  icon: Mail, 
+                  title: "Email", 
+                  info: "hamza.chouaibi@example.com",
+                  action: () => window.open('mailto:hamza.chouaibi@example.com', '_blank')
+                },
+                { 
+                  icon: Phone, 
+                  title: "Phone", 
+                  info: "+1 (555) 123-4567",
+                  action: () => window.open('tel:+15551234567', '_blank')
+                },
+                { 
+                  icon: MapPin, 
+                  title: "Location", 
+                  info: "Available Worldwide",
+                  action: null
+                },
+              ].map((contact, index) => (
+                <motion.div
+                  key={contact.title}
+                  className="group text-center"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5 }}
+                  onClick={contact.action}
+                  style={{ cursor: contact.action ? 'pointer' : 'default' }}
+                >
+                  <div 
+                    className="bg-white/5 border border-white/10 p-8 transition-all duration-300 group-hover:bg-white/10"
+                    style={{ borderRadius: '2px' }}
+                  >
+                    <div className="w-12 h-12 bg-white/10 border border-white/20 flex items-center justify-center mx-auto mb-4" style={{ borderRadius: '2px' }}>
+                      <contact.icon className="w-6 h-6 text-white/70" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4">{contact.title}</h3>
-                    <p className="text-white/70 text-lg">{contact.info}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+                    <h3 className="text-lg font-light text-white mb-3 group-hover:text-white/90 transition-colors">
+                      {contact.title}
+                    </h3>
+                    <p className="text-white/60 text-sm font-light">
+                      {contact.info}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
 
-          <motion.div
-            className="text-center mt-16"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 px-16 py-6 text-xl font-semibold rounded-full border-0 shadow-2xl shadow-purple-500/25"
-              onClick={() => window.open('mailto:hamza.chouaibi@example.com', '_blank')}
+            {/* Call-to-Action */}
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
             >
-              <Mail className="w-6 h-6 mr-3" />
-              Start a Project
-            </Button>
-          </motion.div>
+              <motion.button
+                className="px-8 py-4 bg-white text-black font-medium text-base tracking-wide uppercase overflow-hidden group"
+                style={{ borderRadius: '2px' }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ 
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 17
+                }}
+                onClick={() => window.open('mailto:hamza.chouaibi@example.com', '_blank')}
+              >
+                <span className="relative z-10 flex items-center">
+                  Start a Project
+                  <Mail className="w-4 h-4 ml-3" />
+                </span>
+                <motion.div
+                  className="absolute inset-0 bg-gray-100"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ 
+                    opacity: 1,
+                    transition: { duration: 0.2 }
+                  }}
+                />
+              </motion.button>
+              
+              <p className="mt-6 text-white/50 text-sm font-light">
+                Typically responds within 24 hours
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
