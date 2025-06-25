@@ -711,6 +711,119 @@ export default function PremiumHome() {
         </div>
       </section>
 
+      {/* Expertise Section */}
+      <section className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
+        {/* Starry Background - Same as Hero */}
+        <div className="absolute inset-0 bg-black">
+          {/* Stars */}
+          {[...Array(100)].map((_, i) => (
+            <motion.div
+              key={`expertise-star-${i}`}
+              className="absolute bg-white rounded-full"
+              style={{
+                width: `${Math.random() * 2 + 0.5}px`,
+                height: `${Math.random() * 2 + 0.5}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                opacity: [0.2, 1, 0.2],
+                scale: [1, 1.5, 1],
+              }}
+              transition={{
+                duration: Math.random() * 3 + 2,
+                repeat: Infinity,
+                delay: Math.random() * 4,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 container mx-auto px-6">
+          <motion.div
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-5xl md:text-6xl font-light mb-6 text-white tracking-tight">
+              Professional Expertise
+            </h2>
+            <div className="w-16 h-0.5 bg-white/30 mx-auto"></div>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {[
+              {
+                title: "Full-Stack Development",
+                description: "End-to-end web application development using modern frameworks and technologies.",
+                skills: ["React", "Node.js", "TypeScript", "PostgreSQL"]
+              },
+              {
+                title: "Mobile Development",
+                description: "Cross-platform mobile applications with native performance and user experience.",
+                skills: ["React Native", "Flutter", "iOS", "Android"]
+              },
+              {
+                title: "Cloud Architecture",
+                description: "Scalable cloud solutions and infrastructure design for enterprise applications.",
+                skills: ["AWS", "Docker", "Kubernetes", "Microservices"]
+              },
+              {
+                title: "API Design",
+                description: "RESTful and GraphQL APIs with comprehensive documentation and testing.",
+                skills: ["REST", "GraphQL", "OpenAPI", "Testing"]
+              },
+              {
+                title: "Database Design",
+                description: "Efficient database schemas and optimization for high-performance applications.",
+                skills: ["PostgreSQL", "MongoDB", "Redis", "Optimization"]
+              },
+              {
+                title: "DevOps & CI/CD",
+                description: "Automated deployment pipelines and infrastructure as code implementation.",
+                skills: ["GitHub Actions", "Terraform", "Monitoring", "Automation"]
+              }
+            ].map((expertise, index) => (
+              <motion.div
+                key={expertise.title}
+                className="group"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -10 }}
+              >
+                <div 
+                  className="bg-white/5 border border-white/10 p-8 h-full transition-all duration-300 group-hover:bg-white/10"
+                  style={{ borderRadius: '2px' }}
+                >
+                  <h3 className="text-xl font-light text-white mb-4 group-hover:text-white/90 transition-colors">
+                    {expertise.title}
+                  </h3>
+                  <p className="text-white/70 text-sm leading-relaxed mb-6 font-light">
+                    {expertise.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {expertise.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-1 bg-white/10 border border-white/20 text-white/80 text-xs font-light tracking-wide uppercase"
+                        style={{ borderRadius: '2px' }}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Skills Section */}
       <section id="section-2" className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-black" />
