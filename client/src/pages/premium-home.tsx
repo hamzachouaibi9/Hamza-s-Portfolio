@@ -396,14 +396,10 @@ export default function PremiumHome() {
               }}
             >
               <div 
-                className="px-3 py-1.5 backdrop-blur-xl rounded-lg text-white/40 text-xs font-light shadow-2xl border border-white/5"
+                className="px-3 py-1.5 rounded-lg text-white/40 text-xs font-light shadow-2xl border border-white/10"
                 style={{
-                  background: `linear-gradient(135deg, 
-                    rgba(255,255,255,0.08) 0%, 
-                    rgba(255,255,255,0.03) 50%, 
-                    rgba(255,255,255,0.01) 100%)`,
-                  backdropFilter: 'blur(20px) saturate(180%)',
-                  boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.05)',
+                  background: `rgba(255,255,255,0.05)`,
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.08)',
                 }}
               >
                 {tech.label}
