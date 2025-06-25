@@ -1385,10 +1385,9 @@ export default function PremiumHome() {
 
       {/* Contact Section */}
       <section id="section-4" className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
-        {/* Starry Background - Same as Hero */}
+        {/* Starry Background */}
         <div className="absolute inset-0 bg-black">
-          {/* Stars */}
-          {[...Array(100)].map((_, i) => (
+          {[...Array(80)].map((_, i) => (
             <motion.div
               key={`contact-star-${i}`}
               className="absolute bg-white rounded-full"
@@ -1399,13 +1398,13 @@ export default function PremiumHome() {
                 top: `${Math.random() * 100}%`,
               }}
               animate={{
-                opacity: [0.2, 1, 0.2],
-                scale: [1, 1.5, 1],
+                opacity: [0.3, 1, 0.3],
+                scale: [1, 1.2, 1],
               }}
               transition={{
-                duration: Math.random() * 3 + 2,
+                duration: Math.random() * 4 + 3,
                 repeat: Infinity,
-                delay: Math.random() * 4,
+                delay: Math.random() * 2,
                 ease: "easeInOut",
               }}
             />
@@ -1413,11 +1412,12 @@ export default function PremiumHome() {
         </div>
         
         <div className="relative z-10 container mx-auto px-6">
+          {/* Section Header */}
           <motion.div
             className="text-center mb-20"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
             viewport={{ once: true }}
           >
             <h2 className="text-5xl md:text-6xl font-light mb-6 text-white tracking-tight">
@@ -1430,7 +1430,8 @@ export default function PremiumHome() {
           </motion.div>
 
           <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
+            {/* Contact Cards */}
+            <div className="grid md:grid-cols-3 gap-6 mb-16">
               {[
                 { 
                   icon: Mail, 
@@ -1454,32 +1455,33 @@ export default function PremiumHome() {
                 <motion.div
                   key={contact.title}
                   className="group text-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ 
-                    duration: 0.2, 
-                    delay: index * 0.03,
+                    duration: 0.4,
+                    delay: index * 0.1,
                     ease: [0.23, 1, 0.32, 1]
                   }}
                   viewport={{ once: true }}
                   whileHover={{ 
-                    y: -8,
-                    transition: { duration: 0.15, ease: "easeOut" }
+                    y: -5,
+                    scale: 1.02,
+                    transition: { duration: 0.2, ease: "easeOut" }
                   }}
                   onClick={contact.action}
                   style={{ cursor: contact.action ? 'pointer' : 'default' }}
                 >
                   <div 
-                    className="bg-white/5 border border-white/10 p-8 transition-all duration-300 group-hover:bg-white/10"
+                    className="bg-white/5 border border-white/10 p-8 h-full transition-all duration-300 group-hover:bg-white/8 group-hover:border-white/20"
                     style={{ borderRadius: '2px' }}
                   >
-                    <div className="w-12 h-12 bg-white/10 border border-white/20 flex items-center justify-center mx-auto mb-4" style={{ borderRadius: '2px' }}>
-                      <contact.icon className="w-6 h-6 text-white/70" />
+                    <div className="w-12 h-12 bg-white/10 border border-white/20 flex items-center justify-center mx-auto mb-6 group-hover:bg-white/15 transition-all duration-300" style={{ borderRadius: '2px' }}>
+                      <contact.icon className="w-6 h-6 text-white/70 group-hover:text-white/90 transition-colors duration-300" />
                     </div>
-                    <h3 className="text-lg font-light text-white mb-3 group-hover:text-white/90 transition-colors">
+                    <h3 className="text-lg font-light text-white mb-3 group-hover:text-white transition-colors duration-300">
                       {contact.title}
                     </h3>
-                    <p className="text-white/60 text-sm font-light">
+                    <p className="text-white/60 text-sm font-light group-hover:text-white/80 transition-colors duration-300">
                       {contact.info}
                     </p>
                   </div>
@@ -1490,45 +1492,52 @@ export default function PremiumHome() {
             {/* Call-to-Action */}
             <motion.div
               className="text-center"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ 
-                duration: 0.3, 
-                delay: 0.15,
+                duration: 0.5,
+                delay: 0.3,
                 ease: [0.23, 1, 0.32, 1]
               }}
               viewport={{ once: true }}
             >
               <motion.button
-                className="px-8 py-4 bg-white text-black font-medium text-base tracking-wide uppercase overflow-hidden group"
+                className="relative px-10 py-4 bg-white text-black font-medium text-base tracking-wide uppercase overflow-hidden group"
                 style={{ borderRadius: '2px' }}
                 whileHover={{ 
-                  scale: 1.03,
-                  transition: { duration: 0.15, ease: "easeOut" }
+                  scale: 1.05,
+                  transition: { duration: 0.2, ease: "easeOut" }
                 }}
                 whileTap={{ 
-                  scale: 0.97,
+                  scale: 0.95,
                   transition: { duration: 0.1 }
                 }}
                 onClick={() => window.open('mailto:hamza.chouaibi9@hotmail.com', '_blank')}
               >
-                <span className="relative z-10 flex items-center">
+                <span className="relative z-10 flex items-center justify-center">
                   Start a Project
                   <Mail className="w-4 h-4 ml-3" />
                 </span>
                 <motion.div
                   className="absolute inset-0 bg-gray-100"
-                  initial={{ opacity: 0 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
                   whileHover={{ 
                     opacity: 1,
-                    transition: { duration: 0.2 }
+                    scale: 1,
+                    transition: { duration: 0.3, ease: "easeOut" }
                   }}
                 />
               </motion.button>
               
-              <p className="mt-6 text-white/50 text-sm font-light">
+              <motion.p 
+                className="mt-8 text-white/50 text-sm font-light"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                viewport={{ once: true }}
+              >
                 Typically responds within 24 hours
-              </p>
+              </motion.p>
             </motion.div>
           </div>
         </div>
