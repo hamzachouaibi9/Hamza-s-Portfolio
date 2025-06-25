@@ -323,34 +323,28 @@ export default function PremiumHome() {
         {/* Deep Space Background */}
         <div className="absolute inset-0 bg-black">
           {/* Stars */}
-          {[...Array(150)].map((_, i) => (
+          {[...Array(200)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute bg-white rounded-full blur-sm"
+              className="absolute bg-white rounded-full"
               style={{
-                width: `${Math.random() * 3 + 1}px`,
-                height: `${Math.random() * 3 + 1}px`,
+                width: `${Math.random() * 2 + 0.5}px`,
+                height: `${Math.random() * 2 + 0.5}px`,
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                filter: `blur(${Math.random() * 2 + 0.5}px)`,
               }}
               animate={{
-                opacity: [0, 1, 0],
-                scale: [0.5, 1.5, 0.5],
+                opacity: [0.2, 1, 0.2],
+                scale: [1, 1.5, 1],
               }}
               transition={{
-                duration: Math.random() * 2 + 1,
+                duration: Math.random() * 3 + 2,
                 repeat: Infinity,
-                delay: Math.random() * 3,
+                delay: Math.random() * 4,
                 ease: "easeInOut",
               }}
             />
           ))}
-          
-          {/* Deeper Nebula Effect */}
-          <div className="absolute inset-0 bg-gradient-radial from-gray-900/40 via-black to-black" />
-          <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-gradient-radial from-purple-900/10 to-transparent rounded-full blur-3xl" />
-          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-radial from-blue-900/10 to-transparent rounded-full blur-3xl" />
         </div>
 
         {/* Floating Tech Elements Background */}
