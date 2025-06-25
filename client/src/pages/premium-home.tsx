@@ -1028,40 +1028,6 @@ export default function PremiumHome() {
               </motion.div>
             ))}
           </div>
-          
-          {/* View All Projects Button */}
-          <motion.div
-            className="text-center mt-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <motion.button
-              className="px-8 py-4 bg-transparent border border-white/30 text-white font-medium text-base tracking-wide uppercase overflow-hidden group"
-              style={{ borderRadius: '2px' }}
-              whileHover={{ 
-                scale: 1.02,
-                borderColor: "rgba(255,255,255,0.6)"
-              }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ 
-                type: "spring",
-                stiffness: 400,
-                damping: 17
-              }}
-            >
-              <span className="relative z-10">View All Projects</span>
-              <motion.div
-                className="absolute inset-0 bg-white/10"
-                initial={{ opacity: 0 }}
-                whileHover={{ 
-                  opacity: 1,
-                  transition: { duration: 0.2 }
-                }}
-              />
-            </motion.button>
-          </motion.div>
         </div>
       </section>
 
