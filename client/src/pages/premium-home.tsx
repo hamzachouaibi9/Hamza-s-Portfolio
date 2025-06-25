@@ -1105,15 +1105,16 @@ export default function PremiumHome() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <motion.button
-              className="bg-white/10 border border-white/20 text-white px-8 py-4 font-light tracking-wide uppercase transition-all duration-300 hover:bg-white/20 hover:border-white/40"
-              style={{ borderRadius: '2px' }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection(4)}
-            >
-              Start Your Project
-            </motion.button>
+            <a href="/start-project">
+              <motion.button
+                className="bg-white/10 border border-white/20 text-white px-8 py-4 font-light tracking-wide uppercase transition-all duration-300 hover:bg-white/20 hover:border-white/40"
+                style={{ borderRadius: '2px' }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Start Your Project
+              </motion.button>
+            </a>
           </motion.div>
         </div>
       </section>
