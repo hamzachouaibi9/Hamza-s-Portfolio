@@ -89,6 +89,7 @@ Logo preferences: Animated glass square with rotating border, floating particles
 Animation preferences: Fast, smooth animations - no slow transitions.
 Mobile preferences: Working hamburger menu with proper icon transitions.
 Contact preferences: Real contact information with professional styling.
+Process preferences: Step-by-step client journey showing consultation to website delivery timeline.
 
 ## Changelog
 
@@ -98,7 +99,7 @@ Contact preferences: Real contact information with professional styling.
   - Sophisticated navigation with working mobile hamburger menu
   - Hero: Massive typography with smooth floating animations
   - About: Personal story with professional image and stats grid
-  - Expertise: 6 professional skill areas with clean card design
+  - Process: 5-step client journey from consultation to launch
   - Projects: 3 featured projects with detailed modal popups
   - Contact: Real contact information with smooth animations
   - Mobile-first responsive design with touch-friendly interactions
