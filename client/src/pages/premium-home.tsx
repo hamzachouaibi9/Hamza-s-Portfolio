@@ -1454,11 +1454,18 @@ export default function PremiumHome() {
                 <motion.div
                   key={contact.title}
                   className="group text-center"
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  transition={{ 
+                    duration: 0.2, 
+                    delay: index * 0.03,
+                    ease: [0.23, 1, 0.32, 1]
+                  }}
                   viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
+                  whileHover={{ 
+                    y: -8,
+                    transition: { duration: 0.15, ease: "easeOut" }
+                  }}
                   onClick={contact.action}
                   style={{ cursor: contact.action ? 'pointer' : 'default' }}
                 >
@@ -1483,20 +1490,25 @@ export default function PremiumHome() {
             {/* Call-to-Action */}
             <motion.div
               className="text-center"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              transition={{ 
+                duration: 0.3, 
+                delay: 0.15,
+                ease: [0.23, 1, 0.32, 1]
+              }}
               viewport={{ once: true }}
             >
               <motion.button
                 className="px-8 py-4 bg-white text-black font-medium text-base tracking-wide uppercase overflow-hidden group"
                 style={{ borderRadius: '2px' }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ 
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 17
+                whileHover={{ 
+                  scale: 1.03,
+                  transition: { duration: 0.15, ease: "easeOut" }
+                }}
+                whileTap={{ 
+                  scale: 0.97,
+                  transition: { duration: 0.1 }
                 }}
                 onClick={() => window.open('mailto:hamza.chouaibi9@hotmail.com', '_blank')}
               >
