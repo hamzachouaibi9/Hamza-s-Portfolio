@@ -790,11 +790,11 @@ export default function PremiumHome() {
               <motion.div
                 key={expertise.title}
                 className="group"
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
               >
                 <div 
                   className="bg-white/5 border border-white/10 p-8 h-full transition-all duration-300 group-hover:bg-white/10"
