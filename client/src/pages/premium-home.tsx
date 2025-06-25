@@ -320,35 +320,34 @@ export default function PremiumHome() {
 
       {/* Hero Section */}
       <section id="section-0" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28">
-        {/* Animated Background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20" />
-          {/* Floating Orbs */}
-          {[...Array(6)].map((_, i) => (
+        {/* Deep Space Background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black">
+          {/* Stars */}
+          {[...Array(100)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute rounded-full mix-blend-screen filter blur-xl"
+              className="absolute w-1 h-1 bg-white rounded-full"
               style={{
-                background: `linear-gradient(45deg, ${['#3B82F6', '#8B5CF6', '#EC4899'][i % 3]}, transparent)`,
-                width: `${200 + i * 50}px`,
-                height: `${200 + i * 50}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: Math.random() * 0.8 + 0.2,
               }}
               animate={{
-                x: [0, 100, 0, -100, 0],
-                y: [0, -100, 0, 100, 0],
-                scale: [1, 1.2, 1, 0.8, 1],
+                opacity: [0.2, 1, 0.2],
+                scale: [1, 1.5, 1],
               }}
               transition={{
-                duration: 20 + i * 5,
+                duration: Math.random() * 3 + 2,
                 repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
+                delay: Math.random() * 2,
               }}
             />
           ))}
+          
+          {/* Nebula Effect */}
+          <div className="absolute inset-0 bg-gradient-radial from-purple-900/30 via-blue-900/20 to-transparent" />
+          <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-gradient-radial from-blue-600/20 to-transparent rounded-full blur-3xl" />
+          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-radial from-purple-600/20 to-transparent rounded-full blur-3xl" />
         </div>
 
         <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-8">
@@ -360,16 +359,7 @@ export default function PremiumHome() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <Badge variant="secondary" className="mb-8 bg-white/10 text-white border-white/20 px-4 py-2">
-                  <Zap className="w-4 h-4 mr-2" />
-                  Available for Hire
-                </Badge>
-              </motion.div>
+
               
               <motion.h1 
                 className="text-5xl md:text-6xl lg:text-7xl font-extralight mb-8 leading-tight"
@@ -446,61 +436,57 @@ export default function PremiumHome() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
             >
-              <div className="relative w-full max-w-lg mx-auto">
-                {/* Main Visual Container */}
-                <div className="relative aspect-square">
-                  {/* Background Glow */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse-glow" />
-                  
-                  {/* Tech Stack Orbiting Elements */}
-                  {[
-                    { label: 'React', angle: 0, radius: 140, color: 'from-blue-400 to-cyan-400' },
-                    { label: 'Node.js', angle: 60, radius: 160, color: 'from-green-400 to-emerald-400' },
-                    { label: 'TypeScript', angle: 120, radius: 150, color: 'from-blue-600 to-blue-400' },
-                    { label: 'Python', angle: 180, radius: 170, color: 'from-yellow-400 to-orange-400' },
-                    { label: 'PostgreSQL', angle: 240, radius: 145, color: 'from-indigo-400 to-purple-400' },
-                    { label: 'AWS', angle: 300, radius: 155, color: 'from-orange-400 to-red-400' },
-                  ].map((tech, index) => (
-                    <motion.div
-                      key={tech.label}
-                      className="absolute"
-                      style={{
-                        left: '50%',
-                        top: '50%',
-                        transform: `translate(-50%, -50%) rotate(${tech.angle}deg) translateY(-${tech.radius}px) rotate(-${tech.angle}deg)`
-                      }}
-                      animate={{
-                        rotate: [0, 360],
-                      }}
-                      transition={{
-                        duration: 20 + index * 5,
+              <div className="relative w-full h-96">
+                {/* Floating Tech Stack Elements */}
+                {[
+                  { label: 'React', x: '20%', y: '15%', color: 'from-blue-400 to-cyan-400', delay: 0 },
+                  { label: 'Node.js', x: '70%', y: '25%', color: 'from-green-400 to-emerald-400', delay: 0.5 },
+                  { label: 'TypeScript', x: '15%', y: '60%', color: 'from-blue-600 to-blue-400', delay: 1 },
+                  { label: 'Python', x: '80%', y: '70%', color: 'from-yellow-400 to-orange-400', delay: 1.5 },
+                  { label: 'PostgreSQL', x: '50%', y: '20%', color: 'from-indigo-400 to-purple-400', delay: 2 },
+                  { label: 'AWS', x: '60%', y: '85%', color: 'from-orange-400 to-red-400', delay: 2.5 },
+                  { label: 'Docker', x: '25%', y: '85%', color: 'from-blue-500 to-indigo-500', delay: 3 },
+                  { label: 'GraphQL', x: '85%', y: '45%', color: 'from-pink-400 to-purple-400', delay: 3.5 },
+                ].map((tech, index) => (
+                  <motion.div
+                    key={tech.label}
+                    className="absolute"
+                    style={{
+                      left: tech.x,
+                      top: tech.y,
+                      transform: 'translate(-50%, -50%)'
+                    }}
+                    initial={{ 
+                      opacity: 0, 
+                      scale: 0.5,
+                      y: 50
+                    }}
+                    animate={{ 
+                      opacity: 1, 
+                      scale: 1,
+                      y: [0, -20, 0],
+                    }}
+                    transition={{
+                      opacity: { duration: 0.8, delay: tech.delay },
+                      scale: { duration: 0.8, delay: tech.delay },
+                      y: {
+                        duration: 3 + index * 0.5,
                         repeat: Infinity,
-                        ease: "linear"
-                      }}
-                    >
-                      <div className={`px-4 py-2 bg-gradient-to-r ${tech.color} rounded-lg text-white text-sm font-medium shadow-lg backdrop-blur-sm`}>
-                        {tech.label}
-                      </div>
-                    </motion.div>
-                  ))}
-                  
-                  {/* Center Avatar/Logo */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      className="w-32 h-32 bg-gradient-to-br from-white/15 via-white/8 to-white/5 backdrop-blur-xl border border-white/30 rounded-full flex items-center justify-center"
-                      animate={{
-                        scale: [1, 1.05, 1],
-                      }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    >
-                      <span className="text-4xl font-extralight text-white tracking-wider">HC</span>
-                    </motion.div>
-                  </div>
-                </div>
+                        ease: "easeInOut",
+                        delay: tech.delay
+                      }
+                    }}
+                    whileHover={{ 
+                      scale: 1.1,
+                      z: 10,
+                      transition: { duration: 0.2 }
+                    }}
+                  >
+                    <div className={`px-4 py-2 bg-gradient-to-r ${tech.color} rounded-lg text-white text-sm font-medium shadow-lg backdrop-blur-sm border border-white/20`}>
+                      {tech.label}
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           </div>
