@@ -84,35 +84,51 @@ export default function PremiumHome() {
         }}
       />
 
-      {/* Premium Navigation */}
+      {/* Ultra-Premium Navigation */}
       <motion.nav
-        className="fixed top-0 left-0 right-0 z-40 bg-black/95 backdrop-blur-2xl border-b border-white/10"
+        className="fixed top-0 left-0 right-0 z-40"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between items-center h-24">
-            {/* Premium Brand Identity */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/98 via-black/95 to-black/90 backdrop-blur-3xl" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        
+        <div className="relative max-w-7xl mx-auto px-8 lg:px-12">
+          <div className="flex justify-between items-center h-28">
+            {/* Luxury Brand Identity */}
             <motion.div
-              className="flex items-center space-x-4"
-              whileHover={{ scale: 1.01 }}
+              className="flex items-center space-x-5"
+              whileHover={{ scale: 1.005 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 rounded-sm flex items-center justify-center">
-                <span className="text-white font-light text-xl tracking-wider">HC</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-light tracking-wider text-white">
+              <motion.div 
+                className="relative w-14 h-14"
+                whileHover={{ rotate: 1 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/8 to-white/5 backdrop-blur-xl border border-white/30 rounded-[2px]" />
+                <div className="absolute inset-[1px] bg-gradient-to-br from-white/5 to-transparent rounded-[1px]" />
+                <div className="w-full h-full flex items-center justify-center">
+                  <span className="text-white font-extralight text-2xl tracking-[0.2em]">HC</span>
+                </div>
+              </motion.div>
+              <div className="flex flex-col space-y-1">
+                <motion.span 
+                  className="text-2xl font-extralight tracking-[0.15em] text-white"
+                  whileHover={{ letterSpacing: "0.2em" }}
+                  transition={{ duration: 0.3 }}
+                >
                   Hamza Chouaibi
-                </span>
-                <span className="text-xs text-white/50 tracking-widest uppercase font-medium">
-                  Full-Stack Developer
+                </motion.span>
+                <span className="text-[10px] text-white/40 tracking-[0.3em] uppercase font-light">
+                  Digital Craftsman
                 </span>
               </div>
             </motion.div>
             
-            {/* Premium Navigation Menu */}
-            <div className="hidden md:flex items-center space-x-8">
+            {/* Luxury Navigation Menu */}
+            <div className="hidden lg:flex items-center space-x-12">
               {[
                 { label: 'Home', section: 0 },
                 { label: 'About', section: 1 },
@@ -123,54 +139,87 @@ export default function PremiumHome() {
                 <motion.button
                   key={item.label}
                   onClick={() => scrollToSection(item.section)}
-                  className={`relative font-medium text-sm tracking-wider uppercase transition-all duration-500 ${
+                  className={`relative group font-light text-[13px] tracking-[0.2em] uppercase transition-all duration-700 ${
                     activeSection === item.section 
                       ? 'text-white' 
-                      : 'text-white/60 hover:text-white/90'
+                      : 'text-white/50 hover:text-white/80'
                   }`}
-                  whileHover={{ y: -1 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: index * 0.1, 
+                    ease: [0.25, 0.1, 0.25, 1] 
+                  }}
                 >
-                  {item.label}
+                  <span className="relative z-10">{item.label}</span>
+                  
+                  {/* Active state indicator */}
                   {activeSection === item.section && (
                     <motion.div
-                      className="absolute -bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white to-transparent"
-                      layoutId="activeIndicator"
+                      className="absolute -bottom-3 left-1/2 transform -translate-x-1/2"
+                      layoutId="luxuryActiveIndicator"
                       initial={false}
-                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                    />
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    >
+                      <div className="w-1 h-1 bg-white rounded-full" />
+                    </motion.div>
                   )}
+                  
+                  {/* Hover indicator */}
                   <motion.div
-                    className="absolute -bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0"
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
+                    className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white/40 rounded-full opacity-0 group-hover:opacity-100"
+                    transition={{ duration: 0.4 }}
+                  />
+                  
+                  {/* Subtle background on hover */}
+                  <motion.div
+                    className="absolute inset-x-0 -inset-y-2 bg-white/5 rounded-sm opacity-0 group-hover:opacity-100"
+                    transition={{ duration: 0.4 }}
                   />
                 </motion.button>
               ))}
             </div>
 
-            {/* Premium CTA */}
-            <div className="flex items-center space-x-6">
+            {/* Luxury CTA */}
+            <div className="flex items-center space-x-8">
               <motion.button
                 onClick={() => scrollToSection(4)}
-                className="hidden sm:block text-white/70 hover:text-white transition-all duration-300 text-sm tracking-wider uppercase font-medium"
-                whileHover={{ y: -1 }}
+                className="hidden xl:block text-white/40 hover:text-white/70 transition-all duration-500 text-[11px] tracking-[0.3em] uppercase font-light"
+                whileHover={{ y: -1, letterSpacing: "0.4em" }}
+                transition={{ duration: 0.3 }}
               >
                 Let's Talk
               </motion.button>
-              <motion.button 
-                onClick={() => scrollToSection(4)}
-                className="relative px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-sm text-white font-medium text-sm tracking-wider uppercase transition-all duration-500 hover:bg-white/10 hover:border-white/40"
-                whileHover={{ y: -2, scale: 1.02 }}
+              
+              <motion.div
+                className="relative group"
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               >
-                <span className="relative z-10">Work With Me</span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-sm opacity-0"
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.button>
+                <motion.button 
+                  onClick={() => scrollToSection(4)}
+                  className="relative px-8 py-4 bg-gradient-to-r from-white/8 via-white/5 to-white/8 backdrop-blur-xl border border-white/20 text-white font-light text-[11px] tracking-[0.25em] uppercase overflow-hidden"
+                  style={{ borderRadius: "1px" }}
+                >
+                  <span className="relative z-10">Work With Me</span>
+                  
+                  {/* Animated background */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100"
+                    transition={{ duration: 0.6 }}
+                  />
+                  
+                  {/* Shimmer effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full"
+                    transition={{ duration: 1.2, ease: "easeInOut" }}
+                  />
+                </motion.button>
+              </motion.div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -190,7 +239,7 @@ export default function PremiumHome() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section id="section-0" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section id="section-0" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28">
         {/* Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20" />
