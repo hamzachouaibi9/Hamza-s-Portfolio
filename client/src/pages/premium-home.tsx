@@ -825,74 +825,180 @@ export default function PremiumHome() {
       </section>
 
       {/* Projects Section */}
-      <section id="section-3" className="py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black" />
-        
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+      <section id="section-3" className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
+        {/* Starry Background - Same as Hero */}
+        <div className="absolute inset-0 bg-black">
+          {/* Stars */}
+          {[...Array(100)].map((_, i) => (
+            <motion.div
+              key={`projects-star-${i}`}
+              className="absolute bg-white rounded-full"
+              style={{
+                width: `${Math.random() * 2 + 0.5}px`,
+                height: `${Math.random() * 2 + 0.5}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                opacity: [0.2, 1, 0.2],
+                scale: [1, 1.5, 1],
+              }}
+              transition={{
+                duration: Math.random() * 3 + 2,
+                repeat: Infinity,
+                delay: Math.random() * 4,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 container mx-auto px-6">
           <motion.div
             className="text-center mb-20"
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-6xl font-light mb-6 text-white tracking-tight">
               Featured Projects
             </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Showcasing innovative solutions and cutting-edge development work
-            </p>
+            <div className="w-16 h-0.5 bg-white/30 mx-auto"></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="max-w-5xl mx-auto space-y-16">
             {[
-              { 
-                title: "E-Commerce Platform", 
-                desc: "Full-stack Next.js application with Stripe integration",
-                tech: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
-                image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
+              {
+                title: "Enterprise E-Commerce Platform",
+                category: "Full-Stack Development",
+                description: "Comprehensive e-commerce solution with advanced inventory management, real-time analytics, and seamless payment processing. Built for scalability and performance.",
+                tech: ["Next.js", "TypeScript", "PostgreSQL", "Stripe", "Redis"],
+                highlights: ["99.9% Uptime", "1M+ Users", "Real-time Analytics", "Multi-vendor Support"],
+                link: "#"
               },
-              { 
-                title: "Real-Time Chat App", 
-                desc: "WebSocket-based messaging with React and Node.js",
-                tech: ["React", "Socket.io", "Node.js", "MongoDB"],
-                image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
+              {
+                title: "Real-Time Collaboration Platform",
+                category: "WebSocket Application",
+                description: "Professional collaboration tool featuring live document editing, video conferencing, and project management capabilities for distributed teams.",
+                tech: ["React", "Socket.io", "Node.js", "MongoDB", "WebRTC"],
+                highlights: ["Live Collaboration", "Video Integration", "Role Management", "API Documentation"],
+                link: "#"
               },
-              { 
-                title: "AI Dashboard", 
-                desc: "Analytics platform with machine learning insights",
-                tech: ["Python", "React", "TensorFlow", "AWS"],
-                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400"
-              },
+              {
+                title: "AI-Powered Analytics Dashboard",
+                category: "Machine Learning",
+                description: "Advanced data visualization platform with predictive analytics, automated reporting, and machine learning insights for business intelligence.",
+                tech: ["Python", "React", "TensorFlow", "AWS", "D3.js"],
+                highlights: ["Predictive Models", "Real-time Data", "Custom Reports", "Cloud Infrastructure"],
+                link: "#"
+              }
             ].map((project, index) => (
               <motion.div
                 key={project.title}
+                className="group"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl overflow-hidden"
+                transition={{ duration: 0.4, delay: index * 0.1 }}
               >
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
-                  <p className="text-white/70 mb-4">{project.desc}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech) => (
-                      <span key={tech} className="px-3 py-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg text-sm text-blue-300">
-                        {tech}
-                      </span>
-                    ))}
+                <div 
+                  className="bg-white/5 border border-white/10 p-8 md:p-12 transition-all duration-300 group-hover:bg-white/10"
+                  style={{ borderRadius: '2px' }}
+                >
+                  <div className="grid md:grid-cols-3 gap-8 items-start">
+                    {/* Project Info */}
+                    <div className="md:col-span-2 space-y-6">
+                      <div>
+                        <span className="text-white/50 text-sm uppercase tracking-wider font-light">
+                          {project.category}
+                        </span>
+                        <h3 className="text-2xl md:text-3xl font-light text-white mt-2 group-hover:text-white/90 transition-colors">
+                          {project.title}
+                        </h3>
+                      </div>
+                      
+                      <p className="text-white/70 text-lg leading-relaxed font-light">
+                        {project.description}
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-2">
+                        {project.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1 bg-white/10 border border-white/20 text-white/80 text-xs font-light tracking-wide uppercase"
+                            style={{ borderRadius: '2px' }}
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                      
+                      <motion.button
+                        className="inline-flex items-center text-white/60 hover:text-white transition-colors font-light tracking-wide uppercase text-sm"
+                        whileHover={{ x: 5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        View Project
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </motion.button>
+                    </div>
+                    
+                    {/* Project Highlights */}
+                    <div className="space-y-4">
+                      <h4 className="text-white/60 text-sm uppercase tracking-wider font-light">
+                        Key Features
+                      </h4>
+                      <div className="space-y-3">
+                        {project.highlights.map((highlight, idx) => (
+                          <div key={idx} className="flex items-center">
+                            <div className="w-1 h-1 bg-white/40 rounded-full mr-3"></div>
+                            <span className="text-white/70 text-sm font-light">
+                              {highlight}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+          
+          {/* View All Projects Button */}
+          <motion.div
+            className="text-center mt-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <motion.button
+              className="px-8 py-4 bg-transparent border border-white/30 text-white font-medium text-base tracking-wide uppercase overflow-hidden group"
+              style={{ borderRadius: '2px' }}
+              whileHover={{ 
+                scale: 1.02,
+                borderColor: "rgba(255,255,255,0.6)"
+              }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ 
+                type: "spring",
+                stiffness: 400,
+                damping: 17
+              }}
+            >
+              <span className="relative z-10">View All Projects</span>
+              <motion.div
+                className="absolute inset-0 bg-white/10"
+                initial={{ opacity: 0 }}
+                whileHover={{ 
+                  opacity: 1,
+                  transition: { duration: 0.2 }
+                }}
+              />
+            </motion.button>
+          </motion.div>
         </div>
       </section>
 
