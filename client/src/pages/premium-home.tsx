@@ -25,11 +25,24 @@ export default function PremiumHome() {
   const [activeSection, setActiveSection] = useState(0);
 
   useEffect(() => {
+    let animationFrameId: number;
+    
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      // Cancel any pending animation frame to avoid lag
+      cancelAnimationFrame(animationFrameId);
+      
+      // Use requestAnimationFrame for smooth, optimized updates
+      animationFrameId = requestAnimationFrame(() => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+      });
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   const scrollToSection = (index: number) => {
@@ -46,12 +59,35 @@ export default function PremiumHome() {
       <motion.div
         className="fixed pointer-events-none z-50 mix-blend-difference"
         animate={{
-          x: mousePosition.x - 16,
-          y: mousePosition.y - 16,
+          x: mousePosition.x - 12,
+          y: mousePosition.y - 12,
         }}
-        transition={{ type: "spring", damping: 50, stiffness: 1000 }}
+        transition={{ 
+          type: "spring", 
+          damping: 30, 
+          stiffness: 800,
+          mass: 0.5,
+          restDelta: 0.01
+        }}
       >
-        <div className="w-8 h-8 bg-white rounded-full opacity-80" />
+        <div className="w-6 h-6 bg-white rounded-full opacity-90 shadow-lg" />
+      </motion.div>
+
+      {/* Cursor Trail Effect */}
+      <motion.div
+        className="fixed pointer-events-none z-40 mix-blend-screen"
+        animate={{
+          x: mousePosition.x - 20,
+          y: mousePosition.y - 20,
+        }}
+        transition={{ 
+          type: "spring", 
+          damping: 20, 
+          stiffness: 300,
+          mass: 0.8
+        }}
+      >
+        <div className="w-10 h-10 bg-gradient-to-r from-blue-400/30 to-purple-500/30 rounded-full blur-sm" />
       </motion.div>
 
       {/* Navigation */}
