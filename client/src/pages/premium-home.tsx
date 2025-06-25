@@ -321,33 +321,91 @@ export default function PremiumHome() {
       {/* Hero Section */}
       <section id="section-0" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28">
         {/* Deep Space Background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black">
+        <div className="absolute inset-0 bg-black">
           {/* Stars */}
-          {[...Array(100)].map((_, i) => (
+          {[...Array(150)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
+              className="absolute bg-white rounded-full blur-sm"
               style={{
+                width: `${Math.random() * 3 + 1}px`,
+                height: `${Math.random() * 3 + 1}px`,
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                opacity: Math.random() * 0.8 + 0.2,
+                filter: `blur(${Math.random() * 2 + 0.5}px)`,
               }}
               animate={{
-                opacity: [0.2, 1, 0.2],
-                scale: [1, 1.5, 1],
+                opacity: [0, 1, 0],
+                scale: [0.5, 1.5, 0.5],
               }}
               transition={{
-                duration: Math.random() * 3 + 2,
+                duration: Math.random() * 2 + 1,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: Math.random() * 3,
+                ease: "easeInOut",
               }}
             />
           ))}
           
-          {/* Nebula Effect */}
-          <div className="absolute inset-0 bg-gradient-radial from-purple-900/30 via-blue-900/20 to-transparent" />
-          <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-gradient-radial from-blue-600/20 to-transparent rounded-full blur-3xl" />
-          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-radial from-purple-600/20 to-transparent rounded-full blur-3xl" />
+          {/* Deeper Nebula Effect */}
+          <div className="absolute inset-0 bg-gradient-radial from-gray-900/40 via-black to-black" />
+          <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-gradient-radial from-purple-900/10 to-transparent rounded-full blur-3xl" />
+          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-radial from-blue-900/10 to-transparent rounded-full blur-3xl" />
+        </div>
+
+        {/* Floating Tech Elements Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[
+            { label: 'React', x: '10%', y: '20%', color: 'from-blue-400/40 to-cyan-400/40' },
+            { label: 'Node.js', x: '85%', y: '15%', color: 'from-green-400/40 to-emerald-400/40' },
+            { label: 'TypeScript', x: '15%', y: '70%', color: 'from-blue-600/40 to-blue-400/40' },
+            { label: 'Python', x: '90%', y: '60%', color: 'from-yellow-400/40 to-orange-400/40' },
+            { label: 'PostgreSQL', x: '5%', y: '45%', color: 'from-indigo-400/40 to-purple-400/40' },
+            { label: 'AWS', x: '80%', y: '85%', color: 'from-orange-400/40 to-red-400/40' },
+            { label: 'Docker', x: '20%', y: '90%', color: 'from-blue-500/40 to-indigo-500/40' },
+            { label: 'GraphQL', x: '95%', y: '40%', color: 'from-pink-400/40 to-purple-400/40' },
+            { label: 'Next.js', x: '12%', y: '5%', color: 'from-gray-400/40 to-slate-400/40' },
+            { label: 'MongoDB', x: '88%', y: '30%', color: 'from-green-600/40 to-green-400/40' },
+            { label: 'Redis', x: '25%', y: '25%', color: 'from-red-500/40 to-red-400/40' },
+            { label: 'Kubernetes', x: '75%', y: '75%', color: 'from-blue-600/40 to-purple-600/40' },
+          ].map((tech, index) => (
+            <motion.div
+              key={tech.label}
+              className="absolute"
+              style={{
+                left: tech.x,
+                top: tech.y,
+                transform: 'translate(-50%, -50%)'
+              }}
+              initial={{ 
+                opacity: 0, 
+                scale: 0.3,
+                rotate: Math.random() * 360
+              }}
+              animate={{ 
+                opacity: [0.3, 0.7, 0.3], 
+                scale: [0.8, 1.2, 0.8],
+                y: [0, -30, 0],
+                rotate: [0, 180, 360],
+              }}
+              transition={{
+                opacity: { duration: 4 + index * 0.3, repeat: Infinity, ease: "easeInOut" },
+                scale: { duration: 3 + index * 0.2, repeat: Infinity, ease: "easeInOut" },
+                y: { duration: 6 + index * 0.4, repeat: Infinity, ease: "easeInOut" },
+                rotate: { duration: 20 + index * 2, repeat: Infinity, ease: "linear" },
+              }}
+            >
+              <div className={`px-3 py-1.5 bg-gradient-to-r ${tech.color} backdrop-blur-xl rounded-lg text-white/60 text-xs font-light shadow-2xl border border-white/10`}
+                style={{
+                  background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))`,
+                  backdropFilter: 'blur(20px)',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1)',
+                }}
+              >
+                {tech.label}
+              </div>
+            </motion.div>
+          ))}
         </div>
 
         <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-8">
@@ -436,57 +494,16 @@ export default function PremiumHome() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
             >
-              <div className="relative w-full h-96">
-                {/* Floating Tech Stack Elements */}
-                {[
-                  { label: 'React', x: '20%', y: '15%', color: 'from-blue-400 to-cyan-400', delay: 0 },
-                  { label: 'Node.js', x: '70%', y: '25%', color: 'from-green-400 to-emerald-400', delay: 0.5 },
-                  { label: 'TypeScript', x: '15%', y: '60%', color: 'from-blue-600 to-blue-400', delay: 1 },
-                  { label: 'Python', x: '80%', y: '70%', color: 'from-yellow-400 to-orange-400', delay: 1.5 },
-                  { label: 'PostgreSQL', x: '50%', y: '20%', color: 'from-indigo-400 to-purple-400', delay: 2 },
-                  { label: 'AWS', x: '60%', y: '85%', color: 'from-orange-400 to-red-400', delay: 2.5 },
-                  { label: 'Docker', x: '25%', y: '85%', color: 'from-blue-500 to-indigo-500', delay: 3 },
-                  { label: 'GraphQL', x: '85%', y: '45%', color: 'from-pink-400 to-purple-400', delay: 3.5 },
-                ].map((tech, index) => (
-                  <motion.div
-                    key={tech.label}
-                    className="absolute"
-                    style={{
-                      left: tech.x,
-                      top: tech.y,
-                      transform: 'translate(-50%, -50%)'
-                    }}
-                    initial={{ 
-                      opacity: 0, 
-                      scale: 0.5,
-                      y: 50
-                    }}
-                    animate={{ 
-                      opacity: 1, 
-                      scale: 1,
-                      y: [0, -20, 0],
-                    }}
-                    transition={{
-                      opacity: { duration: 0.8, delay: tech.delay },
-                      scale: { duration: 0.8, delay: tech.delay },
-                      y: {
-                        duration: 3 + index * 0.5,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: tech.delay
-                      }
-                    }}
-                    whileHover={{ 
-                      scale: 1.1,
-                      z: 10,
-                      transition: { duration: 0.2 }
-                    }}
-                  >
-                    <div className={`px-4 py-2 bg-gradient-to-r ${tech.color} rounded-lg text-white text-sm font-medium shadow-lg backdrop-blur-sm border border-white/20`}>
-                      {tech.label}
-                    </div>
-                  </motion.div>
-                ))}
+              <div className="relative w-full h-96 flex items-center justify-center">
+                <motion.div
+                  className="text-center"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1, delay: 1 }}
+                >
+                  <div className="text-6xl md:text-8xl font-extralight text-white/20 mb-4">{'</>'}</div>
+                  <p className="text-white/50 text-lg font-light">Code meets creativity</p>
+                </motion.div>
               </div>
             </motion.div>
           </div>
