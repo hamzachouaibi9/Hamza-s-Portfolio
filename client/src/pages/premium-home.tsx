@@ -87,43 +87,90 @@ export default function PremiumHome() {
       {/* Ultra-Premium Navigation */}
       <motion.nav
         className="fixed top-0 left-0 right-0 z-40"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ 
+          duration: 0.8, 
+          ease: [0.25, 0.1, 0.25, 1],
+          delay: 0.2
+        }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/98 via-black/95 to-black/90 backdrop-blur-3xl" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-b from-black/98 via-black/95 to-black/90 backdrop-blur-3xl"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        />
+        <motion.div 
+          className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1, delay: 0.8 }}
+        />
         
         <div className="relative max-w-7xl mx-auto px-8 lg:px-12">
           <div className="flex justify-between items-center h-28">
             {/* Luxury Brand Identity */}
             <motion.div
               className="flex items-center space-x-5"
-              whileHover={{ scale: 1.005 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ 
+                type: "spring",
+                stiffness: 400,
+                damping: 17
+              }}
             >
               <motion.div 
-                className="relative w-14 h-14"
-                whileHover={{ rotate: 1 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="relative w-14 h-14 cursor-pointer"
+                whileHover={{ 
+                  rotate: [0, 2, -1, 0],
+                  transition: { duration: 0.6 }
+                }}
+                whileTap={{ scale: 0.95 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/8 to-white/5 backdrop-blur-xl border border-white/30 rounded-[2px]" />
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/8 to-white/5 backdrop-blur-xl border border-white/30 rounded-[2px]"
+                  whileHover={{
+                    borderColor: "rgba(255,255,255,0.5)",
+                    transition: { duration: 0.3 }
+                  }}
+                />
                 <div className="absolute inset-[1px] bg-gradient-to-br from-white/5 to-transparent rounded-[1px]" />
                 <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-white font-extralight text-2xl tracking-[0.2em]">HC</span>
+                  <motion.span 
+                    className="text-white font-extralight text-2xl tracking-[0.2em]"
+                    whileHover={{
+                      textShadow: "0 0 8px rgba(255,255,255,0.5)",
+                      transition: { duration: 0.3 }
+                    }}
+                  >
+                    HC
+                  </motion.span>
                 </div>
               </motion.div>
               <div className="flex flex-col space-y-1">
                 <motion.span 
-                  className="text-2xl font-extralight tracking-[0.15em] text-white"
-                  whileHover={{ letterSpacing: "0.2em" }}
-                  transition={{ duration: 0.3 }}
+                  className="text-2xl font-extralight tracking-[0.15em] text-white cursor-pointer"
+                  whileHover={{ 
+                    letterSpacing: "0.18em",
+                    transition: { duration: 0.3 }
+                  }}
                 >
                   Hamza Chouaibi
                 </motion.span>
-                <span className="text-[10px] text-white/40 tracking-[0.3em] uppercase font-light">
+                <motion.span 
+                  className="text-[10px] text-white/40 tracking-[0.3em] uppercase font-light"
+                  animate={{
+                    opacity: [0.4, 0.7, 0.4],
+                    transition: {
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
+                >
                   Digital Craftsman
-                </span>
+                </motion.span>
               </div>
             </motion.div>
             
@@ -139,19 +186,17 @@ export default function PremiumHome() {
                 <motion.button
                   key={item.label}
                   onClick={() => scrollToSection(item.section)}
-                  className={`relative group font-light text-[13px] tracking-[0.2em] uppercase transition-all duration-700 ${
+                  className={`relative group font-light text-[13px] tracking-[0.2em] uppercase transition-colors duration-500 ${
                     activeSection === item.section 
                       ? 'text-white' 
                       : 'text-white/50 hover:text-white/80'
                   }`}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.98 }}
                   transition={{ 
-                    duration: 0.8, 
-                    delay: index * 0.1, 
-                    ease: [0.25, 0.1, 0.25, 1] 
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 17
                   }}
                 >
                   <span className="relative z-10">{item.label}</span>
@@ -159,25 +204,27 @@ export default function PremiumHome() {
                   {/* Active state indicator */}
                   {activeSection === item.section && (
                     <motion.div
-                      className="absolute -bottom-3 left-1/2 transform -translate-x-1/2"
+                      className="absolute -bottom-3 left-1/2 w-1 h-1 bg-white rounded-full"
+                      style={{ x: '-50%' }}
                       layoutId="luxuryActiveIndicator"
-                      initial={false}
-                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    >
-                      <div className="w-1 h-1 bg-white rounded-full" />
-                    </motion.div>
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 500, 
+                        damping: 30,
+                        duration: 0.6
+                      }}
+                    />
                   )}
                   
-                  {/* Hover indicator */}
+                  {/* Hover glow effect */}
                   <motion.div
-                    className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white/40 rounded-full opacity-0 group-hover:opacity-100"
-                    transition={{ duration: 0.4 }}
-                  />
-                  
-                  {/* Subtle background on hover */}
-                  <motion.div
-                    className="absolute inset-x-0 -inset-y-2 bg-white/5 rounded-sm opacity-0 group-hover:opacity-100"
-                    transition={{ duration: 0.4 }}
+                    className="absolute inset-0 -m-2 bg-white/5 rounded-lg"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileHover={{ 
+                      opacity: 1, 
+                      scale: 1,
+                      transition: { duration: 0.3 }
+                    }}
                   />
                 </motion.button>
               ))}
@@ -187,39 +234,60 @@ export default function PremiumHome() {
             <div className="flex items-center space-x-8">
               <motion.button
                 onClick={() => scrollToSection(4)}
-                className="hidden xl:block text-white/40 hover:text-white/70 transition-all duration-500 text-[11px] tracking-[0.3em] uppercase font-light"
-                whileHover={{ y: -1, letterSpacing: "0.4em" }}
-                transition={{ duration: 0.3 }}
+                className="hidden xl:block text-white/40 hover:text-white/70 transition-all duration-300 text-[11px] tracking-[0.3em] uppercase font-light"
+                whileHover={{ 
+                  y: -1,
+                  transition: { 
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 17
+                  }
+                }}
+                whileTap={{ scale: 0.95 }}
               >
                 Let's Talk
               </motion.button>
               
-              <motion.div
-                className="relative group"
-                whileHover={{ scale: 1.02 }}
+              <motion.button 
+                onClick={() => scrollToSection(4)}
+                className="relative px-8 py-4 bg-gradient-to-r from-white/8 via-white/5 to-white/8 backdrop-blur-xl border border-white/20 text-white font-light text-[11px] tracking-[0.25em] uppercase overflow-hidden group"
+                style={{ borderRadius: "1px" }}
+                whileHover={{ 
+                  scale: 1.02,
+                  borderColor: "rgba(255,255,255,0.4)",
+                  transition: { 
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 17
+                  }
+                }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
               >
-                <motion.button 
-                  onClick={() => scrollToSection(4)}
-                  className="relative px-8 py-4 bg-gradient-to-r from-white/8 via-white/5 to-white/8 backdrop-blur-xl border border-white/20 text-white font-light text-[11px] tracking-[0.25em] uppercase overflow-hidden"
-                  style={{ borderRadius: "1px" }}
-                >
-                  <span className="relative z-10">Work With Me</span>
-                  
-                  {/* Animated background */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100"
-                    transition={{ duration: 0.6 }}
-                  />
-                  
-                  {/* Shimmer effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full"
-                    transition={{ duration: 1.2, ease: "easeInOut" }}
-                  />
-                </motion.button>
-              </motion.div>
+                <span className="relative z-10">Work With Me</span>
+                
+                {/* Animated background */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ 
+                    opacity: 1,
+                    transition: { duration: 0.3 }
+                  }}
+                />
+                
+                {/* Continuous subtle glow */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/10 to-white/5"
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                    transition: {
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
+                />
+              </motion.button>
             </div>
 
             {/* Mobile Menu Button */}
