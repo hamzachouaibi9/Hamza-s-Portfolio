@@ -21,27 +21,25 @@ import {
 import { useState, useEffect } from "react";
 
 export default function PremiumHome() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeSection, setActiveSection] = useState(0);
 
   useEffect(() => {
-    let animationFrameId: number;
+    const cursor = document.getElementById('custom-cursor');
+    const cursorTrail = document.getElementById('cursor-trail');
     
     const handleMouseMove = (e: MouseEvent) => {
-      // Cancel any pending animation frame to avoid lag
-      cancelAnimationFrame(animationFrameId);
-      
-      // Use requestAnimationFrame for smooth, optimized updates
-      animationFrameId = requestAnimationFrame(() => {
-        setMousePosition({ x: e.clientX, y: e.clientY });
-      });
+      if (cursor) {
+        cursor.style.transform = `translate3d(${e.clientX - 12}px, ${e.clientY - 12}px, 0)`;
+      }
+      if (cursorTrail) {
+        cursorTrail.style.transform = `translate3d(${e.clientX - 20}px, ${e.clientY - 20}px, 0)`;
+      }
     };
 
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.addEventListener("mousemove", handleMouseMove, { passive: true });
     
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
+      document.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
@@ -55,40 +53,36 @@ export default function PremiumHome() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Interactive Cursor */}
-      <motion.div
+      {/* Ultra-Fast Interactive Cursor */}
+      <div
+        id="custom-cursor"
         className="fixed pointer-events-none z-50 mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 12,
-          y: mousePosition.y - 12,
+        style={{
+          width: '24px',
+          height: '24px',
+          borderRadius: '50%',
+          backgroundColor: 'white',
+          opacity: '0.9',
+          boxShadow: '0 0 10px rgba(255,255,255,0.5)',
+          transition: 'transform 0.05s ease-out',
+          willChange: 'transform'
         }}
-        transition={{ 
-          type: "spring", 
-          damping: 30, 
-          stiffness: 800,
-          mass: 0.5,
-          restDelta: 0.01
-        }}
-      >
-        <div className="w-6 h-6 bg-white rounded-full opacity-90 shadow-lg" />
-      </motion.div>
+      />
 
-      {/* Cursor Trail Effect */}
-      <motion.div
+      {/* Smooth Cursor Trail */}
+      <div
+        id="cursor-trail"
         className="fixed pointer-events-none z-40 mix-blend-screen"
-        animate={{
-          x: mousePosition.x - 20,
-          y: mousePosition.y - 20,
+        style={{
+          width: '40px',
+          height: '40px',
+          borderRadius: '50%',
+          background: 'linear-gradient(45deg, rgba(59,130,246,0.3), rgba(139,92,246,0.3))',
+          filter: 'blur(4px)',
+          transition: 'transform 0.15s ease-out',
+          willChange: 'transform'
         }}
-        transition={{ 
-          type: "spring", 
-          damping: 20, 
-          stiffness: 300,
-          mass: 0.8
-        }}
-      >
-        <div className="w-10 h-10 bg-gradient-to-r from-blue-400/30 to-purple-500/30 rounded-full blur-sm" />
-      </motion.div>
+      />
 
       {/* Navigation */}
       <motion.nav
