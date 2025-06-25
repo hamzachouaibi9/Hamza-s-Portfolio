@@ -501,27 +501,6 @@ export default function PremiumHome() {
                   />
                 </motion.button>
               </motion.div>
-              
-              {/* Stats */}
-              <motion.div 
-                className="grid grid-cols-3 gap-8 mt-16 pt-8 border-t border-white/10"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.9 }}
-              >
-                <div className="text-center lg:text-left">
-                  <div className="text-3xl font-light text-white mb-2">50+</div>
-                  <div className="text-sm text-white/60 uppercase tracking-wider">Projects</div>
-                </div>
-                <div className="text-center lg:text-left">
-                  <div className="text-3xl font-light text-white mb-2">5+</div>
-                  <div className="text-sm text-white/60 uppercase tracking-wider">Years</div>
-                </div>
-                <div className="text-center lg:text-left">
-                  <div className="text-3xl font-light text-white mb-2">100%</div>
-                  <div className="text-sm text-white/60 uppercase tracking-wider">Satisfaction</div>
-                </div>
-              </motion.div>
             </motion.div>
 
             {/* Right Visual */}
