@@ -669,7 +669,7 @@ export default function PremiumHome() {
             >
               <div className="relative w-full max-w-md mx-auto">
                 <div 
-                  className="aspect-square bg-white/5 border border-white/10 overflow-hidden"
+                  className="aspect-square bg-white/5 border border-white/10 overflow-hidden relative"
                   style={{ borderRadius: '2px' }}
                 >
                   <motion.img
@@ -681,6 +681,10 @@ export default function PremiumHome() {
                     transition={{ duration: 1, ease: "easeOut" }}
                     whileHover={{ scale: 1.05 }}
                   />
+                  {/* Glass Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 pointer-events-none" />
+                  <div className="absolute inset-0 bg-white/5 backdrop-blur-[0.5px] pointer-events-none" />
+                  <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-white/15 to-transparent pointer-events-none" />
                 </div>
                 
                 {/* Floating Code Elements */}
