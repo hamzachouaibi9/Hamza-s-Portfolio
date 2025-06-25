@@ -943,14 +943,14 @@ export default function PremiumHome() {
         </div>
       </section>
 
-      {/* Expertise Section */}
+      {/* Process Section */}
       <section id="section-2" className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
         {/* Starry Background - Same as Hero */}
         <div className="absolute inset-0 bg-black">
           {/* Stars */}
           {[...Array(100)].map((_, i) => (
             <motion.div
-              key={`expertise-star-${i}`}
+              key={`process-star-${i}`}
               className="absolute bg-white rounded-full"
               style={{
                 width: `${Math.random() * 2 + 0.5}px`,
@@ -981,78 +981,136 @@ export default function PremiumHome() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-5xl md:text-6xl font-light mb-6 text-white tracking-tight">
-              Professional Expertise
+              How We Work Together
             </h2>
-            <div className="w-16 h-0.5 bg-white/30 mx-auto"></div>
+            <div className="w-16 h-0.5 bg-white/30 mx-auto mb-6"></div>
+            <p className="text-white/70 text-lg max-w-2xl mx-auto font-light leading-relaxed">
+              From initial consultation to final launch, here's the proven process that transforms your vision into reality
+            </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             {[
               {
-                title: "Full-Stack Development",
-                description: "End-to-end web application development using modern frameworks and technologies.",
-                skills: ["React", "Node.js", "TypeScript", "PostgreSQL"]
+                step: "01",
+                title: "Initial Consultation",
+                duration: "30-60 minutes",
+                description: "We discuss your vision, goals, and requirements. I'll analyze your business needs and provide expert recommendations on the best technical approach.",
+                details: ["Project scope & timeline", "Technical requirements", "Budget discussion", "Success metrics"],
+                icon: "💬"
               },
               {
-                title: "Mobile Development",
-                description: "Cross-platform mobile applications with native performance and user experience.",
-                skills: ["React Native", "Flutter", "iOS", "Android"]
+                step: "02", 
+                title: "Strategy & Planning",
+                duration: "1-2 days",
+                description: "I create a detailed project roadmap with wireframes, technical architecture, and development phases. You'll see exactly how your website will look and function.",
+                details: ["Wireframes & mockups", "Technical architecture", "Development timeline", "Feature prioritization"],
+                icon: "📋"
               },
               {
-                title: "Cloud Architecture",
-                description: "Scalable cloud solutions and infrastructure design for enterprise applications.",
-                skills: ["AWS", "Docker", "Kubernetes", "Microservices"]
+                step: "03",
+                title: "Design & Development",
+                duration: "1-4 weeks",
+                description: "Your website comes to life with modern design and cutting-edge technology. I provide regular updates and gather your feedback throughout the process.",
+                details: ["Responsive design", "Modern development", "Regular check-ins", "Quality assurance"],
+                icon: "⚡"
               },
               {
-                title: "API Design",
-                description: "RESTful and GraphQL APIs with comprehensive documentation and testing.",
-                skills: ["REST", "GraphQL", "OpenAPI", "Testing"]
+                step: "04",
+                title: "Testing & Optimization",
+                duration: "3-5 days",
+                description: "Comprehensive testing across all devices and browsers. Performance optimization ensures your site loads fast and ranks well on search engines.",
+                details: ["Cross-browser testing", "Mobile optimization", "Performance tuning", "SEO optimization"],
+                icon: "🔍"
               },
               {
-                title: "Database Design",
-                description: "Efficient database schemas and optimization for high-performance applications.",
-                skills: ["PostgreSQL", "MongoDB", "Redis", "Optimization"]
-              },
-              {
-                title: "DevOps & CI/CD",
-                description: "Automated deployment pipelines and infrastructure as code implementation.",
-                skills: ["GitHub Actions", "Terraform", "Monitoring", "Automation"]
+                step: "05",
+                title: "Launch & Support",
+                duration: "1 day + ongoing",
+                description: "Your website goes live with professional deployment. I provide training and ongoing support to ensure your continued success.",
+                details: ["Professional deployment", "Training session", "Documentation", "30-day support"],
+                icon: "🚀"
               }
-            ].map((expertise, index) => (
+            ].map((process, index) => (
               <motion.div
-                key={expertise.title}
-                className="group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                key={process.step}
+                className="relative mb-12 last:mb-0"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <div 
-                  className="bg-white/5 border border-white/10 p-8 h-full transition-all duration-300 group-hover:bg-white/10"
-                  style={{ borderRadius: '2px' }}
-                >
-                  <h3 className="text-xl font-light text-white mb-4 group-hover:text-white/90 transition-colors">
-                    {expertise.title}
-                  </h3>
-                  <p className="text-white/70 text-sm leading-relaxed mb-6 font-light">
-                    {expertise.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {expertise.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-3 py-1 bg-white/10 border border-white/20 text-white/80 text-xs font-light tracking-wide uppercase"
-                        style={{ borderRadius: '2px' }}
-                      >
-                        {skill}
-                      </span>
-                    ))}
+                {/* Connection Line */}
+                {index !== 4 && (
+                  <div className="absolute left-1/2 top-32 w-0.5 h-16 bg-white/20 transform -translate-x-1/2 z-0" />
+                )}
+
+                <div className={`grid md:grid-cols-2 gap-8 items-start ${index % 2 === 1 ? 'md:grid-flow-col-dense' : ''}`}>
+                  {/* Step Number & Icon */}
+                  <div className={`text-center md:text-${index % 2 === 0 ? 'right' : 'left'} ${index % 2 === 1 ? 'md:col-start-2' : ''}`}>
+                    <motion.div
+                      className="inline-flex items-center justify-center w-20 h-20 bg-white/5 border border-white/20 mb-4 relative"
+                      style={{ borderRadius: '2px' }}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <span className="text-2xl">{process.icon}</span>
+                      <div className="absolute -top-2 -right-2 bg-white/10 border border-white/30 w-8 h-8 flex items-center justify-center text-xs text-white/80 font-light" style={{ borderRadius: '2px' }}>
+                        {process.step}
+                      </div>
+                    </motion.div>
+                    <div className="text-white/50 text-sm font-light uppercase tracking-wider">
+                      {process.duration}
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className={`${index % 2 === 1 ? 'md:col-start-1' : ''}`}>
+                    <motion.div
+                      className="bg-white/5 border border-white/10 p-8"
+                      style={{ borderRadius: '2px' }}
+                      whileHover={{ bg: "rgba(255,255,255,0.08)" }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <h3 className="text-2xl font-light text-white mb-4">
+                        {process.title}
+                      </h3>
+                      <p className="text-white/70 mb-6 leading-relaxed font-light">
+                        {process.description}
+                      </p>
+                      <div className="grid grid-cols-2 gap-3">
+                        {process.details.map((detail) => (
+                          <div key={detail} className="flex items-center text-sm text-white/60">
+                            <div className="w-1 h-1 bg-white/40 mr-3" style={{ borderRadius: '1px' }} />
+                            {detail}
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+
+          {/* CTA */}
+          <motion.div
+            className="text-center mt-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            <motion.button
+              className="bg-white/10 border border-white/20 text-white px-8 py-4 font-light tracking-wide uppercase transition-all duration-300 hover:bg-white/20 hover:border-white/40"
+              style={{ borderRadius: '2px' }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => scrollToSection(4)}
+            >
+              Start Your Project
+            </motion.button>
+          </motion.div>
         </div>
       </section>
 
