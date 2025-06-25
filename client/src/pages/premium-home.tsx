@@ -351,58 +351,169 @@ export default function PremiumHome() {
           ))}
         </div>
 
-        <div className="relative z-20 max-w-6xl mx-auto px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-          >
-            <Badge variant="secondary" className="mb-6 bg-white/10 text-white border-white/20">
-              <Sparkles className="w-4 h-4 mr-2" />
-              Premium Experience
-            </Badge>
-            
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-8 leading-none">
-              <span className="bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
-                DIGITAL
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                CRAFTSMAN
-              </span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-white/80 mb-12 max-w-3xl mx-auto">
-              Full-Stack Developer specializing in cutting-edge web and mobile applications.
-              I transform ideas into extraordinary digital experiences.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-12 py-6 text-lg font-semibold rounded-full border-0 shadow-2xl shadow-blue-500/25"
+        <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-[80vh]">
+            {/* Left Content */}
+            <motion.div
+              className="text-center lg:text-left"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <Play className="w-5 h-5 mr-3" />
-                Watch Demo
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-white/30 text-white hover:bg-white/10 px-12 py-6 text-lg font-semibold rounded-full"
+                <Badge variant="secondary" className="mb-8 bg-white/10 text-white border-white/20 px-4 py-2">
+                  <Zap className="w-4 h-4 mr-2" />
+                  Available for Hire
+                </Badge>
+              </motion.div>
+              
+              <motion.h1 
+                className="text-5xl md:text-6xl lg:text-7xl font-extralight mb-8 leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.3 }}
               >
-                Explore Features
-                <ArrowRight className="w-5 h-5 ml-3" />
-              </Button>
-            </div>
-          </motion.div>
+                <span className="text-white/90 block mb-2">Building</span>
+                <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent font-light">
+                  Digital Excellence
+                </span>
+              </motion.h1>
+              
+              <motion.p 
+                className="text-xl md:text-2xl text-white/70 mb-10 leading-relaxed max-w-2xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                Full-Stack Developer with 5+ years crafting scalable web applications, 
+                mobile solutions, and digital experiences that drive business growth.
+              </motion.p>
+              
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start items-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+              >
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-8 py-4 text-base font-medium rounded-sm border-0 shadow-2xl shadow-blue-500/25"
+                  onClick={() => scrollToSection(4)}
+                >
+                  Start a Project
+                  <ArrowRight className="w-5 h-5 ml-3" />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-base font-medium rounded-sm"
+                  onClick={() => scrollToSection(3)}
+                >
+                  View Portfolio
+                </Button>
+              </motion.div>
+              
+              {/* Stats */}
+              <motion.div 
+                className="grid grid-cols-3 gap-8 mt-16 pt-8 border-t border-white/10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.9 }}
+              >
+                <div className="text-center lg:text-left">
+                  <div className="text-3xl font-light text-white mb-2">50+</div>
+                  <div className="text-sm text-white/60 uppercase tracking-wider">Projects</div>
+                </div>
+                <div className="text-center lg:text-left">
+                  <div className="text-3xl font-light text-white mb-2">5+</div>
+                  <div className="text-sm text-white/60 uppercase tracking-wider">Years</div>
+                </div>
+                <div className="text-center lg:text-left">
+                  <div className="text-3xl font-light text-white mb-2">100%</div>
+                  <div className="text-sm text-white/60 uppercase tracking-wider">Satisfaction</div>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Visual */}
+            <motion.div
+              className="relative lg:ml-auto"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+            >
+              <div className="relative w-full max-w-lg mx-auto">
+                {/* Main Visual Container */}
+                <div className="relative aspect-square">
+                  {/* Background Glow */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse-glow" />
+                  
+                  {/* Tech Stack Orbiting Elements */}
+                  {[
+                    { label: 'React', angle: 0, radius: 140, color: 'from-blue-400 to-cyan-400' },
+                    { label: 'Node.js', angle: 60, radius: 160, color: 'from-green-400 to-emerald-400' },
+                    { label: 'TypeScript', angle: 120, radius: 150, color: 'from-blue-600 to-blue-400' },
+                    { label: 'Python', angle: 180, radius: 170, color: 'from-yellow-400 to-orange-400' },
+                    { label: 'PostgreSQL', angle: 240, radius: 145, color: 'from-indigo-400 to-purple-400' },
+                    { label: 'AWS', angle: 300, radius: 155, color: 'from-orange-400 to-red-400' },
+                  ].map((tech, index) => (
+                    <motion.div
+                      key={tech.label}
+                      className="absolute"
+                      style={{
+                        left: '50%',
+                        top: '50%',
+                        transform: `translate(-50%, -50%) rotate(${tech.angle}deg) translateY(-${tech.radius}px) rotate(-${tech.angle}deg)`
+                      }}
+                      animate={{
+                        rotate: [0, 360],
+                      }}
+                      transition={{
+                        duration: 20 + index * 5,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    >
+                      <div className={`px-4 py-2 bg-gradient-to-r ${tech.color} rounded-lg text-white text-sm font-medium shadow-lg backdrop-blur-sm`}>
+                        {tech.label}
+                      </div>
+                    </motion.div>
+                  ))}
+                  
+                  {/* Center Avatar/Logo */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <motion.div
+                      className="w-32 h-32 bg-gradient-to-br from-white/15 via-white/8 to-white/5 backdrop-blur-xl border border-white/30 rounded-full flex items-center justify-center"
+                      animate={{
+                        scale: [1, 1.05, 1],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <span className="text-4xl font-extralight text-white tracking-wider">HC</span>
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
 
         <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
+          onClick={() => scrollToSection(1)}
+          className="cursor-pointer"
         >
-          <ChevronDown className="w-8 h-8 text-white/50" />
+          <ChevronDown className="w-8 h-8 text-white/50 hover:text-white/80 transition-colors" />
         </motion.div>
       </section>
 
