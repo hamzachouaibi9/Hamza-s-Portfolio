@@ -436,27 +436,62 @@ export default function PremiumHome() {
               </motion.p>
               
               <motion.div 
-                className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start items-center"
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.7 }}
               >
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-8 py-4 text-base font-medium rounded-sm border-0 shadow-2xl shadow-blue-500/25"
+                <motion.button 
                   onClick={() => scrollToSection(4)}
+                  className="relative px-8 py-4 bg-white text-black font-medium text-base tracking-wide uppercase overflow-hidden group"
+                  style={{ borderRadius: '2px' }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ 
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 17
+                  }}
                 >
-                  Start a Project
-                  <ArrowRight className="w-5 h-5 ml-3" />
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-base font-medium rounded-sm"
+                  <span className="relative z-10 flex items-center">
+                    Start a Project
+                    <ArrowRight className="w-4 h-4 ml-3 transition-transform group-hover:translate-x-1" />
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-gray-100"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ 
+                      opacity: 1,
+                      transition: { duration: 0.2 }
+                    }}
+                  />
+                </motion.button>
+                
+                <motion.button 
                   onClick={() => scrollToSection(3)}
+                  className="relative px-8 py-4 bg-transparent border border-white/30 text-white font-medium text-base tracking-wide uppercase overflow-hidden group"
+                  style={{ borderRadius: '2px' }}
+                  whileHover={{ 
+                    scale: 1.02,
+                    borderColor: "rgba(255,255,255,0.6)"
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ 
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 17
+                  }}
                 >
-                  View Portfolio
-                </Button>
+                  <span className="relative z-10">View Portfolio</span>
+                  <motion.div
+                    className="absolute inset-0 bg-white/10"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ 
+                      opacity: 1,
+                      transition: { duration: 0.2 }
+                    }}
+                  />
+                </motion.button>
               </motion.div>
               
               {/* Stats */}
