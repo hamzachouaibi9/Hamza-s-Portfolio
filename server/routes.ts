@@ -8,6 +8,20 @@ const contactSchema = z.object({
   message: z.string().min(1, "Message is required"),
 });
 
+const projectInquirySchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Valid email is required"),
+  company: z.string().optional(),
+  phone: z.string().optional(),
+  projectType: z.string().min(1, "Project type is required"),
+  budget: z.string().min(1, "Budget range is required"),
+  timeline: z.string().min(1, "Timeline is required"),
+  description: z.string().min(1, "Project description is required"),
+  features: z.array(z.string()),
+  inspiration: z.string().optional(),
+  additionalInfo: z.string().optional(),
+});
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form endpoint
   app.post("/api/contact", async (req, res) => {
