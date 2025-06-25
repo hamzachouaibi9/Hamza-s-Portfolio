@@ -214,13 +214,12 @@ export default function PremiumHome() {
               </div>
             </motion.div>
             
-            {/* Luxury Navigation Menu */}
+            {/* Desktop Navigation Menu */}
             <div className="hidden lg:flex items-center space-x-8">
               {[
-                { label: 'Home', section: 0 },
                 { label: 'About', section: 1 },
                 { label: 'Expertise', section: 2 },
-                { label: 'Portfolio', section: 3 },
+                { label: 'Projects', section: 3 },
                 { label: 'Contact', section: 4 }
               ].map((item, index) => (
                 <motion.button
@@ -256,7 +255,7 @@ export default function PremiumHome() {
                     />
                   )}
                   
-                  {/* Hover glow effect - expanded area */}
+                  {/* Hover glow effect */}
                   <motion.div
                     className="absolute inset-0 bg-white/5 rounded-lg"
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -270,10 +269,10 @@ export default function PremiumHome() {
               ))}
             </div>
 
-            {/* Premium CTA */}
+            {/* Desktop CTA */}
             <motion.button 
               onClick={() => scrollToSection(4)}
-              className="relative px-8 py-4 bg-gradient-to-r from-white/8 via-white/5 to-white/8 backdrop-blur-xl border border-white/20 text-white font-light text-[11px] tracking-[0.25em] uppercase overflow-hidden"
+              className="hidden lg:flex relative px-8 py-4 bg-gradient-to-r from-white/8 via-white/5 to-white/8 backdrop-blur-xl border border-white/20 text-white font-light text-[11px] tracking-[0.25em] uppercase overflow-hidden"
               style={{ borderRadius: "1px" }}
               whileHover={{ 
                 scale: 1.02,
@@ -314,91 +313,99 @@ export default function PremiumHome() {
 
             {/* Mobile Menu Button */}
             <motion.button
-              className="md:hidden text-white p-2"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              className="lg:hidden relative p-3 text-white"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              whileTap={{ scale: 0.95 }}
             >
-              <div className="w-6 h-6 flex flex-col justify-center space-y-1">
-                <div className="w-full h-0.5 bg-white"></div>
-                <div className="w-full h-0.5 bg-white"></div>
-                <div className="w-full h-0.5 bg-white"></div>
-              </div>
+              <motion.div
+                animate={isMobileMenuOpen ? { rotate: 45 } : { rotate: 0 }}
+                transition={{ duration: 0.3 }}
+                className="w-6 h-6 flex flex-col justify-center space-y-1"
+              >
+                <motion.div 
+                  className="w-full h-0.5 bg-white origin-center"
+                  animate={isMobileMenuOpen ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <motion.div 
+                  className="w-full h-0.5 bg-white"
+                  animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <motion.div 
+                  className="w-full h-0.5 bg-white origin-center"
+                  animate={isMobileMenuOpen ? { rotate: -45, y: -4 } : { rotate: 0, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.div>
             </motion.button>
           </div>
         </div>
 
         {/* Mobile Menu Dropdown */}
-        <motion.div
-          className="lg:hidden overflow-hidden"
-          initial={false}
-          animate={{ 
-            height: isMobileMenuOpen ? 'auto' : 0,
-            opacity: isMobileMenuOpen ? 1 : 0
-          }}
-          transition={{ 
-            duration: 0.3,
-            ease: "easeInOut"
-          }}
-        >
-          <div className="bg-black/95 backdrop-blur-xl border-t border-white/10">
-            <div className="max-w-7xl mx-auto px-8 py-8">
-              <div className="space-y-6">
-                {[
-                  { name: "About", section: 1 },
-                  { name: "Expertise", section: 2 },
-                  { name: "Projects", section: 3 },
-                  { name: "Contact", section: 4 }
-                ].map((item, index) => (
-                  <motion.button
-                    key={item.name}
-                    onClick={() => {
-                      scrollToSection(item.section);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className={`block w-full text-left py-3 px-4 text-lg font-light tracking-wider uppercase transition-all duration-300 ${
-                      activeSection === item.section 
-                        ? 'text-white bg-white/5' 
-                        : 'text-white/60 hover:text-white hover:bg-white/5'
-                    }`}
-                    style={{ borderRadius: '2px' }}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ 
-                      opacity: isMobileMenuOpen ? 1 : 0,
-                      x: isMobileMenuOpen ? 0 : -20
-                    }}
-                    transition={{ 
-                      duration: 0.3,
-                      delay: isMobileMenuOpen ? index * 0.1 : 0
-                    }}
-                  >
-                    {item.name}
-                  </motion.button>
-                ))}
-                
-                {/* Mobile Work with me button */}
-                <motion.button
-                  onClick={() => {
-                    scrollToSection(4);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full mt-6 px-8 py-4 bg-white text-black font-medium text-sm tracking-widest uppercase transition-all duration-300 hover:bg-white/90"
-                  style={{ borderRadius: '2px' }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ 
-                    opacity: isMobileMenuOpen ? 1 : 0,
-                    y: isMobileMenuOpen ? 0 : 20
-                  }}
-                  transition={{ 
-                    duration: 0.3,
-                    delay: isMobileMenuOpen ? 0.4 : 0
-                  }}
-                >
-                  Work with me
-                </motion.button>
+        {isMobileMenuOpen && (
+          <motion.div
+            className="lg:hidden fixed inset-0 top-28 z-30"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="absolute inset-0 bg-black/98 backdrop-blur-xl">
+              <div className="h-full flex flex-col justify-center">
+                <div className="max-w-7xl mx-auto px-8 w-full">
+                  <div className="space-y-8">
+                    {[
+                      { name: "About", section: 1 },
+                      { name: "Expertise", section: 2 },
+                      { name: "Projects", section: 3 },
+                      { name: "Contact", section: 4 }
+                    ].map((item, index) => (
+                      <motion.button
+                        key={item.name}
+                        onClick={() => {
+                          scrollToSection(item.section);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`block w-full text-center py-4 text-2xl font-light tracking-[0.2em] uppercase transition-all duration-300 ${
+                          activeSection === item.section 
+                            ? 'text-white' 
+                            : 'text-white/60 hover:text-white'
+                        }`}
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ 
+                          duration: 0.4,
+                          delay: index * 0.1
+                        }}
+                      >
+                        {item.name}
+                      </motion.button>
+                    ))}
+                    
+                    {/* Mobile Work with me button */}
+                    <motion.button
+                      onClick={() => {
+                        scrollToSection(4);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="w-full mt-12 px-8 py-4 bg-gradient-to-r from-white/8 via-white/5 to-white/8 backdrop-blur-xl border border-white/20 text-white font-light text-sm tracking-[0.25em] uppercase transition-all duration-300 hover:bg-white/10"
+                      style={{ borderRadius: "1px" }}
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ 
+                        duration: 0.4,
+                        delay: 0.5
+                      }}
+                    >
+                      Work With Me
+                    </motion.button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        )}
       </motion.nav>
 
       {/* Hero Section */}
