@@ -205,7 +205,7 @@ export default function PremiumHome() {
             </motion.div>
             
             {/* Luxury Navigation Menu */}
-            <div className="hidden lg:flex items-center space-x-12">
+            <div className="hidden lg:flex items-center space-x-8">
               {[
                 { label: 'Home', section: 0 },
                 { label: 'About', section: 1 },
@@ -216,7 +216,7 @@ export default function PremiumHome() {
                 <motion.button
                   key={item.label}
                   onClick={() => scrollToSection(item.section)}
-                  className={`relative group font-light text-[13px] tracking-[0.2em] uppercase transition-colors duration-500 ${
+                  className={`relative group px-4 py-3 font-light text-[13px] tracking-[0.2em] uppercase transition-colors duration-500 ${
                     activeSection === item.section 
                       ? 'text-white' 
                       : 'text-white/50 hover:text-white/80'
@@ -234,7 +234,7 @@ export default function PremiumHome() {
                   {/* Active state indicator */}
                   {activeSection === item.section && (
                     <motion.div
-                      className="absolute -bottom-3 left-1/2 w-1 h-1 bg-white rounded-full"
+                      className="absolute -bottom-1 left-1/2 w-1 h-1 bg-white rounded-full"
                       style={{ x: '-50%' }}
                       layoutId="luxuryActiveIndicator"
                       transition={{ 
@@ -246,9 +246,9 @@ export default function PremiumHome() {
                     />
                   )}
                   
-                  {/* Hover glow effect */}
+                  {/* Hover glow effect - expanded area */}
                   <motion.div
-                    className="absolute inset-0 -m-2 bg-white/5 rounded-lg"
+                    className="absolute inset-0 bg-white/5 rounded-lg"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileHover={{ 
                       opacity: 1, 

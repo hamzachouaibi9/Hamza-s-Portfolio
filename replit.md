@@ -85,6 +85,7 @@ This is an ultra-premium, luxury one-page website built with a $50,000 budget in
 
 Preferred communication style: Simple, everyday language.
 Navigation preferences: Clean glassmorphism effects, minimal animations, no unnecessary elements.
+Logo preferences: Animated glass square with rotating border, floating particles, and perfectly centered HC text.
 
 ## Changelog
 
