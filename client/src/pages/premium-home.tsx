@@ -120,10 +120,75 @@ export default function PremiumHome() {
                 damping: 17
               }}
             >
-              <div className="relative w-14 h-14">
+              <div className="relative w-14 h-14 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/8 to-white/5 backdrop-blur-xl border border-white/30 rounded-[2px]" />
                 <div className="absolute inset-[1px] bg-gradient-to-br from-white/5 to-transparent rounded-[1px]" />
-                <div className="w-full h-full flex items-center justify-center">
+                
+                {/* Animated Background Pattern */}
+                <div className="absolute inset-0">
+                  {/* Floating Particles */}
+                  {[...Array(6)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-1 h-1 bg-white/30 rounded-full"
+                      initial={{ 
+                        x: Math.random() * 56, 
+                        y: Math.random() * 56,
+                        opacity: 0
+                      }}
+                      animate={{
+                        x: [
+                          Math.random() * 56, 
+                          Math.random() * 56, 
+                          Math.random() * 56
+                        ],
+                        y: [
+                          Math.random() * 56, 
+                          Math.random() * 56, 
+                          Math.random() * 56
+                        ],
+                        opacity: [0, 0.6, 0]
+                      }}
+                      transition={{
+                        duration: 4 + i,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: i * 0.5
+                      }}
+                    />
+                  ))}
+                  
+                  {/* Geometric Lines */}
+                  <motion.div
+                    className="absolute inset-2"
+                    animate={{
+                      rotate: [0, 360],
+                    }}
+                    transition={{
+                      duration: 20,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                  >
+                    <div className="w-full h-full border border-white/10 rounded-[1px]" />
+                  </motion.div>
+                  
+                  {/* Central Glow */}
+                  <motion.div
+                    className="absolute inset-4 bg-gradient-to-br from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-sm"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.3, 0.6, 0.3]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                </div>
+                
+                <div className="relative w-full h-full flex items-center justify-center z-10">
                   <span className="text-white font-extralight text-2xl tracking-[0.2em]">HC</span>
                 </div>
               </div>
