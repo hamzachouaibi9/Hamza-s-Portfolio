@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import profileImage from "@assets/image_1750813172668.jpg";
 import { 
   ArrowRight, 
   Sparkles, 
@@ -672,7 +673,7 @@ export default function PremiumHome() {
                   style={{ borderRadius: '2px' }}
                 >
                   <motion.img
-                    src="/attached_assets/image_1750813172668.jpg"
+                    src={profileImage}
                     alt="Hamza Chouaibi - Full Stack Developer"
                     className="w-full h-full object-cover"
                     initial={{ scale: 1.1, opacity: 0 }}
