@@ -668,22 +668,18 @@ export default function PremiumHome() {
             >
               <div className="relative w-full max-w-md mx-auto">
                 <div 
-                  className="aspect-square bg-white/5 border border-white/10 flex items-center justify-center"
+                  className="aspect-square bg-white/5 border border-white/10 overflow-hidden"
                   style={{ borderRadius: '2px' }}
                 >
-                  <motion.div 
-                    className="text-8xl text-white/20"
-                    animate={{ 
-                      rotate: [0, 5, -5, 0],
-                    }}
-                    transition={{
-                      duration: 6,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    👨‍💻
-                  </motion.div>
+                  <motion.img
+                    src="/attached_assets/image_1750813172668.jpg"
+                    alt="Hamza Chouaibi - Full Stack Developer"
+                    className="w-full h-full object-cover"
+                    initial={{ scale: 1.1, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    whileHover={{ scale: 1.05 }}
+                  />
                 </div>
                 
                 {/* Floating Code Elements */}
