@@ -188,8 +188,10 @@ export default function PremiumHome() {
                   />
                 </div>
                 
-                <div className="relative w-full h-full flex items-center justify-center z-10">
-                  <span className="text-white font-extralight text-2xl tracking-[0.2em]">HC</span>
+                <div className="relative w-full h-full z-10">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-white font-extralight text-xl leading-none" style={{ transform: 'translateX(-1px)' }}>HC</span>
+                  </div>
                 </div>
               </div>
               <div className="flex flex-col space-y-1">
