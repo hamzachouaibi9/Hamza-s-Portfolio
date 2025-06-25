@@ -21,13 +21,15 @@ import {
   Code,
   X,
   ExternalLink,
-  Github
+  Github,
+  Menu
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function PremiumHome() {
   const [activeSection, setActiveSection] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const cursor = document.getElementById('custom-cursor');
