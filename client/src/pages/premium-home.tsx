@@ -78,10 +78,10 @@ export default function PremiumHome() {
         }}
       />
 
-      {/* Smooth Cursor Trail */}
+      {/* Smooth Cursor Trail - Desktop Only */}
       <div
         id="cursor-trail"
-        className="fixed pointer-events-none mix-blend-screen"
+        className="fixed pointer-events-none mix-blend-screen hidden lg:block"
         style={{
           width: '40px',
           height: '40px',
@@ -326,6 +326,79 @@ export default function PremiumHome() {
             </motion.button>
           </div>
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        <motion.div
+          className="lg:hidden overflow-hidden"
+          initial={false}
+          animate={{ 
+            height: isMobileMenuOpen ? 'auto' : 0,
+            opacity: isMobileMenuOpen ? 1 : 0
+          }}
+          transition={{ 
+            duration: 0.3,
+            ease: "easeInOut"
+          }}
+        >
+          <div className="bg-black/95 backdrop-blur-xl border-t border-white/10">
+            <div className="max-w-7xl mx-auto px-8 py-8">
+              <div className="space-y-6">
+                {[
+                  { name: "About", section: 1 },
+                  { name: "Expertise", section: 2 },
+                  { name: "Projects", section: 3 },
+                  { name: "Contact", section: 4 }
+                ].map((item, index) => (
+                  <motion.button
+                    key={item.name}
+                    onClick={() => {
+                      scrollToSection(item.section);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`block w-full text-left py-3 px-4 text-lg font-light tracking-wider uppercase transition-all duration-300 ${
+                      activeSection === item.section 
+                        ? 'text-white bg-white/5' 
+                        : 'text-white/60 hover:text-white hover:bg-white/5'
+                    }`}
+                    style={{ borderRadius: '2px' }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ 
+                      opacity: isMobileMenuOpen ? 1 : 0,
+                      x: isMobileMenuOpen ? 0 : -20
+                    }}
+                    transition={{ 
+                      duration: 0.3,
+                      delay: isMobileMenuOpen ? index * 0.1 : 0
+                    }}
+                  >
+                    {item.name}
+                  </motion.button>
+                ))}
+                
+                {/* Mobile Work with me button */}
+                <motion.button
+                  onClick={() => {
+                    scrollToSection(4);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full mt-6 px-8 py-4 bg-white text-black font-medium text-sm tracking-widest uppercase transition-all duration-300 hover:bg-white/90"
+                  style={{ borderRadius: '2px' }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ 
+                    opacity: isMobileMenuOpen ? 1 : 0,
+                    y: isMobileMenuOpen ? 0 : 20
+                  }}
+                  transition={{ 
+                    duration: 0.3,
+                    delay: isMobileMenuOpen ? 0.4 : 0
+                  }}
+                >
+                  Work with me
+                </motion.button>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </motion.nav>
 
       {/* Hero Section */}
