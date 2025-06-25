@@ -16,7 +16,8 @@ import {
   Download,
   Mail,
   Phone,
-  MapPin
+  MapPin,
+  Code
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -540,53 +541,171 @@ export default function PremiumHome() {
       </section>
 
       {/* About Section */}
-      <section id="section-1" className="py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black" />
-        
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+      <section id="section-1" className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
+        {/* Starry Background - Same as Hero */}
+        <div className="absolute inset-0 bg-black">
+          {/* Stars */}
+          {[...Array(120)].map((_, i) => (
+            <motion.div
+              key={`about-star-${i}`}
+              className="absolute bg-white rounded-full"
+              style={{
+                width: `${Math.random() * 2 + 0.5}px`,
+                height: `${Math.random() * 2 + 0.5}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                opacity: [0.2, 1, 0.2],
+                scale: [1, 1.5, 1],
+              }}
+              transition={{
+                duration: Math.random() * 3 + 2,
+                repeat: Infinity,
+                delay: Math.random() * 4,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 container mx-auto px-6">
           <motion.div
             className="text-center mb-20"
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-6xl font-light mb-6 text-white tracking-tight">
               About Me
             </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Passionate developer with expertise in modern technologies and premium user experiences
-            </p>
+            <div className="w-16 h-0.5 bg-white/30 mx-auto"></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { icon: Zap, title: "React & TypeScript", desc: "Modern frontend development with type safety", color: "from-blue-400 to-cyan-500" },
-              { icon: Globe, title: "Full-Stack Expertise", desc: "End-to-end application development", color: "from-green-400 to-emerald-500" },
-              { icon: Shield, title: "Security First", desc: "Secure coding practices and best standards", color: "from-red-400 to-rose-500" },
-              { icon: Users, title: "Team Leadership", desc: "Agile development and team collaboration", color: "from-purple-400 to-pink-500" },
-              { icon: Award, title: "Quality Focus", desc: "Clean code and exceptional user experiences", color: "from-yellow-400 to-orange-500" },
-              { icon: Sparkles, title: "Innovation", desc: "Cutting-edge technologies and solutions", color: "from-indigo-400 to-purple-500" },
-            ].map((feature, index) => (
+          <div className="grid lg:grid-cols-2 gap-20 items-center max-w-6xl mx-auto">
+            <motion.div
+              className="space-y-8"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <div className="space-y-8 text-lg text-white/80 leading-relaxed font-light">
+                <p>
+                  I'm a passionate full-stack developer with 5+ years of experience building 
+                  scalable web applications and mobile solutions. My journey in tech began 
+                  with a curiosity for problem-solving and has evolved into a deep expertise 
+                  in modern development practices.
+                </p>
+                <p>
+                  Specializing in React, Node.js, and cloud technologies, I help businesses 
+                  transform their ideas into powerful digital experiences. From startups to 
+                  enterprise clients, I deliver solutions that drive growth and innovation.
+                </p>
+                <p>
+                  When I'm not coding, you'll find me exploring new technologies, contributing 
+                  to open-source projects, or sharing knowledge with the developer community.
+                </p>
+              </div>
+
               <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 50 }}
+                className="grid grid-cols-2 gap-8 pt-12"
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -10, scale: 1.02 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <Card className="bg-white/5 border-white/10 backdrop-blur-xl h-full hover:bg-white/10 transition-all duration-500">
-                  <CardContent className="p-8">
-                    <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${feature.color} flex items-center justify-center mb-6`}>
-                      <feature.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
-                    <p className="text-white/70 text-lg">{feature.desc}</p>
-                  </CardContent>
-                </Card>
+                <div className="text-center group">
+                  <motion.div 
+                    className="text-4xl font-light text-white mb-3"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    50+
+                  </motion.div>
+                  <div className="text-white/50 text-sm uppercase tracking-wider">Projects Delivered</div>
+                </div>
+                <div className="text-center group">
+                  <motion.div 
+                    className="text-4xl font-light text-white mb-3"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    5+
+                  </motion.div>
+                  <div className="text-white/50 text-sm uppercase tracking-wider">Years Experience</div>
+                </div>
+                <div className="text-center group">
+                  <motion.div 
+                    className="text-4xl font-light text-white mb-3"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    25+
+                  </motion.div>
+                  <div className="text-white/50 text-sm uppercase tracking-wider">Happy Clients</div>
+                </div>
+                <div className="text-center group">
+                  <motion.div 
+                    className="text-4xl font-light text-white mb-3"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    100%
+                  </motion.div>
+                  <div className="text-white/50 text-sm uppercase tracking-wider">Client Satisfaction</div>
+                </div>
               </motion.div>
-            ))}
+            </motion.div>
+
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <div className="relative w-full max-w-md mx-auto">
+                <div 
+                  className="aspect-square bg-white/5 border border-white/10 flex items-center justify-center"
+                  style={{ borderRadius: '2px' }}
+                >
+                  <motion.div 
+                    className="text-8xl text-white/20"
+                    animate={{ 
+                      rotate: [0, 5, -5, 0],
+                    }}
+                    transition={{
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    👨‍💻
+                  </motion.div>
+                </div>
+                
+                {/* Floating Code Elements */}
+                <motion.div
+                  className="absolute -top-6 -right-6 bg-white/5 border border-white/10 p-4"
+                  style={{ borderRadius: '2px' }}
+                  animate={{ y: [0, -15, 0] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                >
+                  <Code className="w-6 h-6 text-white/40" />
+                </motion.div>
+                
+                <motion.div
+                  className="absolute -bottom-6 -left-6 bg-white/5 border border-white/10 p-4"
+                  style={{ borderRadius: '2px' }}
+                  animate={{ y: [0, 15, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 2 }}
+                >
+                  <Zap className="w-6 h-6 text-white/40" />
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
