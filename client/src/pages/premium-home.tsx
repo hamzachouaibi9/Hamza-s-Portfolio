@@ -1209,14 +1209,14 @@ export default function PremiumHome() {
                 { 
                   icon: Mail, 
                   title: "Email", 
-                  info: "hamza.chouaibi@example.com",
-                  action: () => window.open('mailto:hamza.chouaibi@example.com', '_blank')
+                  info: "hamza.chouaibi9@hotmail.com",
+                  action: () => window.open('mailto:hamza.chouaibi9@hotmail.com', '_blank')
                 },
                 { 
                   icon: Phone, 
                   title: "Phone", 
-                  info: "+1 (555) 123-4567",
-                  action: () => window.open('tel:+15551234567', '_blank')
+                  info: "(813) 551-8853",
+                  action: () => window.open('tel:+18135518853', '_blank')
                 },
                 { 
                   icon: MapPin, 
@@ -1272,7 +1272,7 @@ export default function PremiumHome() {
                   stiffness: 400,
                   damping: 17
                 }}
-                onClick={() => window.open('mailto:hamza.chouaibi@example.com', '_blank')}
+                onClick={() => window.open('mailto:hamza.chouaibi9@hotmail.com', '_blank')}
               >
                 <span className="relative z-10 flex items-center">
                   Start a Project
