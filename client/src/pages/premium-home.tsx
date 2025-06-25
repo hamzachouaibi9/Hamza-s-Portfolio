@@ -110,67 +110,30 @@ export default function PremiumHome() {
         
         <div className="relative max-w-7xl mx-auto px-8 lg:px-12">
           <div className="flex justify-between items-center h-28">
-            {/* Luxury Brand Identity */}
+            {/* Premium Brand Identity */}
             <motion.div
               className="flex items-center space-x-5"
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.01 }}
               transition={{ 
                 type: "spring",
                 stiffness: 400,
                 damping: 17
               }}
             >
-              <motion.div 
-                className="relative w-14 h-14 cursor-pointer"
-                whileHover={{ 
-                  rotate: [0, 2, -1, 0],
-                  transition: { duration: 0.6 }
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/8 to-white/5 backdrop-blur-xl border border-white/30 rounded-[2px]"
-                  whileHover={{
-                    borderColor: "rgba(255,255,255,0.5)",
-                    transition: { duration: 0.3 }
-                  }}
-                />
+              <div className="relative w-14 h-14">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-white/8 to-white/5 backdrop-blur-xl border border-white/30 rounded-[2px]" />
                 <div className="absolute inset-[1px] bg-gradient-to-br from-white/5 to-transparent rounded-[1px]" />
                 <div className="w-full h-full flex items-center justify-center">
-                  <motion.span 
-                    className="text-white font-extralight text-2xl tracking-[0.2em]"
-                    whileHover={{
-                      textShadow: "0 0 8px rgba(255,255,255,0.5)",
-                      transition: { duration: 0.3 }
-                    }}
-                  >
-                    HC
-                  </motion.span>
+                  <span className="text-white font-extralight text-2xl tracking-[0.2em]">HC</span>
                 </div>
-              </motion.div>
+              </div>
               <div className="flex flex-col space-y-1">
-                <motion.span 
-                  className="text-2xl font-extralight tracking-[0.15em] text-white cursor-pointer"
-                  whileHover={{ 
-                    letterSpacing: "0.18em",
-                    transition: { duration: 0.3 }
-                  }}
-                >
+                <span className="text-2xl font-extralight tracking-[0.15em] text-white">
                   Hamza Chouaibi
-                </motion.span>
-                <motion.span 
-                  className="text-[10px] text-white/40 tracking-[0.3em] uppercase font-light"
-                  animate={{
-                    opacity: [0.4, 0.7, 0.4],
-                    transition: {
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }
-                  }}
-                >
-                  Digital Craftsman
-                </motion.span>
+                </span>
+                <span className="text-[10px] text-white/50 tracking-[0.3em] uppercase font-light">
+                  Full-Stack Developer
+                </span>
               </div>
             </motion.div>
             
@@ -230,65 +193,47 @@ export default function PremiumHome() {
               ))}
             </div>
 
-            {/* Luxury CTA */}
-            <div className="flex items-center space-x-8">
-              <motion.button
-                onClick={() => scrollToSection(4)}
-                className="hidden xl:block text-white/40 hover:text-white/70 transition-all duration-300 text-[11px] tracking-[0.3em] uppercase font-light"
-                whileHover={{ 
-                  y: -1,
-                  transition: { 
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 17
-                  }
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Let's Talk
-              </motion.button>
+            {/* Premium CTA */}
+            <motion.button 
+              onClick={() => scrollToSection(4)}
+              className="relative px-8 py-4 bg-gradient-to-r from-white/8 via-white/5 to-white/8 backdrop-blur-xl border border-white/20 text-white font-light text-[11px] tracking-[0.25em] uppercase overflow-hidden"
+              style={{ borderRadius: "1px" }}
+              whileHover={{ 
+                scale: 1.02,
+                borderColor: "rgba(255,255,255,0.4)",
+                transition: { 
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 17
+                }
+              }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <span className="relative z-10">Work With Me</span>
               
-              <motion.button 
-                onClick={() => scrollToSection(4)}
-                className="relative px-8 py-4 bg-gradient-to-r from-white/8 via-white/5 to-white/8 backdrop-blur-xl border border-white/20 text-white font-light text-[11px] tracking-[0.25em] uppercase overflow-hidden group"
-                style={{ borderRadius: "1px" }}
+              {/* Hover background */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10"
+                initial={{ opacity: 0 }}
                 whileHover={{ 
-                  scale: 1.02,
-                  borderColor: "rgba(255,255,255,0.4)",
-                  transition: { 
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 17
+                  opacity: 1,
+                  transition: { duration: 0.3 }
+                }}
+              />
+              
+              {/* Subtle glow */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/10 to-white/5"
+                animate={{
+                  opacity: [0.3, 0.6, 0.3],
+                  transition: {
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
                   }
                 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span className="relative z-10">Work With Me</span>
-                
-                {/* Animated background */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ 
-                    opacity: 1,
-                    transition: { duration: 0.3 }
-                  }}
-                />
-                
-                {/* Continuous subtle glow */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/10 to-white/5"
-                  animate={{
-                    opacity: [0.3, 0.6, 0.3],
-                    transition: {
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }
-                  }}
-                />
-              </motion.button>
-            </div>
+              />
+            </motion.button>
 
             {/* Mobile Menu Button */}
             <motion.button

@@ -84,6 +84,7 @@ This is an ultra-premium, luxury one-page website built with a $50,000 budget in
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Navigation preferences: Clean glassmorphism effects, minimal animations, no unnecessary elements.
 
 ## Changelog
 
