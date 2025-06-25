@@ -62,7 +62,7 @@ export default function PremiumHome() {
       {/* Ultra-Fast Interactive Cursor */}
       <div
         id="custom-cursor"
-        className="fixed pointer-events-none z-50 mix-blend-difference"
+        className="fixed pointer-events-none mix-blend-difference"
         style={{
           width: '24px',
           height: '24px',
@@ -71,14 +71,15 @@ export default function PremiumHome() {
           opacity: '0.9',
           boxShadow: '0 0 10px rgba(255,255,255,0.5)',
           transition: 'transform 0.05s ease-out',
-          willChange: 'transform'
+          willChange: 'transform',
+          zIndex: 99999
         }}
       />
 
       {/* Smooth Cursor Trail */}
       <div
         id="cursor-trail"
-        className="fixed pointer-events-none z-40 mix-blend-screen"
+        className="fixed pointer-events-none mix-blend-screen"
         style={{
           width: '40px',
           height: '40px',
@@ -86,7 +87,8 @@ export default function PremiumHome() {
           background: 'linear-gradient(45deg, rgba(59,130,246,0.3), rgba(139,92,246,0.3))',
           filter: 'blur(4px)',
           transition: 'transform 0.15s ease-out',
-          willChange: 'transform'
+          willChange: 'transform',
+          zIndex: 99998
         }}
       />
 
