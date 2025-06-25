@@ -356,18 +356,18 @@ export default function PremiumHome() {
         {/* Floating Tech Elements Background */}
         <div className="absolute inset-0 overflow-hidden">
           {[
-            { label: 'React', x: '10%', y: '20%', color: 'from-blue-400/40 to-cyan-400/40' },
-            { label: 'Node.js', x: '85%', y: '15%', color: 'from-green-400/40 to-emerald-400/40' },
-            { label: 'TypeScript', x: '15%', y: '70%', color: 'from-blue-600/40 to-blue-400/40' },
-            { label: 'Python', x: '90%', y: '60%', color: 'from-yellow-400/40 to-orange-400/40' },
-            { label: 'PostgreSQL', x: '5%', y: '45%', color: 'from-indigo-400/40 to-purple-400/40' },
-            { label: 'AWS', x: '80%', y: '85%', color: 'from-orange-400/40 to-red-400/40' },
-            { label: 'Docker', x: '20%', y: '90%', color: 'from-blue-500/40 to-indigo-500/40' },
-            { label: 'GraphQL', x: '95%', y: '40%', color: 'from-pink-400/40 to-purple-400/40' },
-            { label: 'Next.js', x: '12%', y: '5%', color: 'from-gray-400/40 to-slate-400/40' },
-            { label: 'MongoDB', x: '88%', y: '30%', color: 'from-green-600/40 to-green-400/40' },
-            { label: 'Redis', x: '25%', y: '25%', color: 'from-red-500/40 to-red-400/40' },
-            { label: 'Kubernetes', x: '75%', y: '75%', color: 'from-blue-600/40 to-purple-600/40' },
+            { label: 'React', x: '25%', y: '30%' },
+            { label: 'Node.js', x: '75%', y: '25%' },
+            { label: 'TypeScript', x: '30%', y: '70%' },
+            { label: 'Python', x: '70%', y: '65%' },
+            { label: 'PostgreSQL', x: '20%', y: '50%' },
+            { label: 'AWS', x: '65%', y: '80%' },
+            { label: 'Docker', x: '35%', y: '15%' },
+            { label: 'GraphQL', x: '80%', y: '45%' },
+            { label: 'Next.js', x: '40%', y: '35%' },
+            { label: 'MongoDB', x: '60%', y: '55%' },
+            { label: 'Redis', x: '45%', y: '20%' },
+            { label: 'Kubernetes', x: '55%', y: '75%' },
           ].map((tech, index) => (
             <motion.div
               key={tech.label}
@@ -383,23 +383,27 @@ export default function PremiumHome() {
                 rotate: Math.random() * 360
               }}
               animate={{ 
-                opacity: [0.3, 0.7, 0.3], 
-                scale: [0.8, 1.2, 0.8],
-                y: [0, -30, 0],
+                opacity: [0.2, 0.5, 0.2], 
+                scale: [0.8, 1.1, 0.8],
+                y: [0, -25, 0],
                 rotate: [0, 180, 360],
               }}
               transition={{
-                opacity: { duration: 4 + index * 0.3, repeat: Infinity, ease: "easeInOut" },
-                scale: { duration: 3 + index * 0.2, repeat: Infinity, ease: "easeInOut" },
-                y: { duration: 6 + index * 0.4, repeat: Infinity, ease: "easeInOut" },
-                rotate: { duration: 20 + index * 2, repeat: Infinity, ease: "linear" },
+                opacity: { duration: 5 + index * 0.4, repeat: Infinity, ease: "easeInOut" },
+                scale: { duration: 4 + index * 0.3, repeat: Infinity, ease: "easeInOut" },
+                y: { duration: 8 + index * 0.5, repeat: Infinity, ease: "easeInOut" },
+                rotate: { duration: 25 + index * 3, repeat: Infinity, ease: "linear" },
               }}
             >
-              <div className={`px-3 py-1.5 bg-gradient-to-r ${tech.color} backdrop-blur-xl rounded-lg text-white/60 text-xs font-light shadow-2xl border border-white/10`}
+              <div 
+                className="px-3 py-1.5 backdrop-blur-xl rounded-lg text-white/40 text-xs font-light shadow-2xl border border-white/5"
                 style={{
-                  background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))`,
-                  backdropFilter: 'blur(20px)',
-                  boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1)',
+                  background: `linear-gradient(135deg, 
+                    rgba(255,255,255,0.08) 0%, 
+                    rgba(255,255,255,0.03) 50%, 
+                    rgba(255,255,255,0.01) 100%)`,
+                  backdropFilter: 'blur(20px) saturate(180%)',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.05)',
                 }}
               >
                 {tech.label}
@@ -494,17 +498,7 @@ export default function PremiumHome() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
             >
-              <div className="relative w-full h-96 flex items-center justify-center">
-                <motion.div
-                  className="text-center"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1, delay: 1 }}
-                >
-                  <div className="text-6xl md:text-8xl font-extralight text-white/20 mb-4">{'</>'}</div>
-                  <p className="text-white/50 text-lg font-light">Code meets creativity</p>
-                </motion.div>
-              </div>
+              <div className="relative w-full h-96"></div>
             </motion.div>
           </div>
         </div>
