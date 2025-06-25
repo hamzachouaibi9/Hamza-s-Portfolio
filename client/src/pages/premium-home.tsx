@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import profileImage from "@assets/image_1750813172668.jpg";
+import Lottie from "lottie-react";
 import { 
   ArrowRight, 
   Sparkles, 
@@ -30,6 +31,150 @@ export default function PremiumHome() {
   const [activeSection, setActiveSection] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  // Lottie animation data for hamburger menu
+  const hamburgerAnimation = {
+    "v": "5.7.4",
+    "fr": 30,
+    "ip": 0,
+    "op": 30,
+    "w": 24,
+    "h": 24,
+    "nm": "Hamburger to X",
+    "ddd": 0,
+    "assets": [],
+    "layers": [
+      {
+        "ddd": 0,
+        "ind": 1,
+        "ty": 4,
+        "nm": "Line 1",
+        "sr": 1,
+        "ks": {
+          "o": {"a": 0, "k": 100},
+          "r": {
+            "a": 1,
+            "k": [
+              {"i": {"x": [0.667], "y": [1]}, "o": {"x": [0.333], "y": [0]}, "t": 0, "s": [0]},
+              {"t": 15, "s": [45]}
+            ]
+          },
+          "p": {"a": 0, "k": [12, 12, 0]},
+          "a": {"a": 0, "k": [0, 0, 0]},
+          "s": {"a": 0, "k": [100, 100, 100]}
+        },
+        "ao": 0,
+        "shapes": [
+          {
+            "ty": "gr",
+            "it": [
+              {
+                "ty": "rc",
+                "d": 1,
+                "s": {"a": 0, "k": [16, 2]},
+                "p": {"a": 0, "k": [0, 0]},
+                "r": {"a": 0, "k": 1}
+              },
+              {
+                "ty": "fl",
+                "c": {"a": 0, "k": [1, 1, 1, 1]},
+                "o": {"a": 0, "k": 100}
+              }
+            ]
+          }
+        ],
+        "ip": 0,
+        "op": 900,
+        "st": 0
+      },
+      {
+        "ddd": 0,
+        "ind": 2,
+        "ty": 4,
+        "nm": "Line 2",
+        "sr": 1,
+        "ks": {
+          "o": {
+            "a": 1,
+            "k": [
+              {"i": {"x": [0.667], "y": [1]}, "o": {"x": [0.333], "y": [0]}, "t": 0, "s": [100]},
+              {"t": 15, "s": [0]}
+            ]
+          },
+          "r": {"a": 0, "k": 0},
+          "p": {"a": 0, "k": [12, 12, 0]},
+          "a": {"a": 0, "k": [0, 0, 0]},
+          "s": {"a": 0, "k": [100, 100, 100]}
+        },
+        "ao": 0,
+        "shapes": [
+          {
+            "ty": "gr",
+            "it": [
+              {
+                "ty": "rc",
+                "d": 1,
+                "s": {"a": 0, "k": [16, 2]},
+                "p": {"a": 0, "k": [0, 0]},
+                "r": {"a": 0, "k": 1}
+              },
+              {
+                "ty": "fl",
+                "c": {"a": 0, "k": [1, 1, 1, 1]},
+                "o": {"a": 0, "k": 100}
+              }
+            ]
+          }
+        ],
+        "ip": 0,
+        "op": 900,
+        "st": 0
+      },
+      {
+        "ddd": 0,
+        "ind": 3,
+        "ty": 4,
+        "nm": "Line 3",
+        "sr": 1,
+        "ks": {
+          "o": {"a": 0, "k": 100},
+          "r": {
+            "a": 1,
+            "k": [
+              {"i": {"x": [0.667], "y": [1]}, "o": {"x": [0.333], "y": [0]}, "t": 0, "s": [0]},
+              {"t": 15, "s": [-45]}
+            ]
+          },
+          "p": {"a": 0, "k": [12, 12, 0]},
+          "a": {"a": 0, "k": [0, 0, 0]},
+          "s": {"a": 0, "k": [100, 100, 100]}
+        },
+        "ao": 0,
+        "shapes": [
+          {
+            "ty": "gr",
+            "it": [
+              {
+                "ty": "rc",
+                "d": 1,
+                "s": {"a": 0, "k": [16, 2]},
+                "p": {"a": 0, "k": [0, 0]},
+                "r": {"a": 0, "k": 1}
+              },
+              {
+                "ty": "fl",
+                "c": {"a": 0, "k": [1, 1, 1, 1]},
+                "o": {"a": 0, "k": 100}
+              }
+            ]
+          }
+        ],
+        "ip": 0,
+        "op": 900,
+        "st": 0
+      }
+    ]
+  };
 
   useEffect(() => {
     const cursor = document.getElementById('custom-cursor');
@@ -311,50 +456,58 @@ export default function PremiumHome() {
               />
             </motion.button>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button with Lottie */}
             <motion.button
               className="lg:hidden relative p-3 text-white"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               whileTap={{ scale: 0.95 }}
             >
-              <motion.div
-                animate={isMobileMenuOpen ? { rotate: 45 } : { rotate: 0 }}
-                transition={{ duration: 0.3 }}
-                className="w-6 h-6 flex flex-col justify-center space-y-1"
-              >
-                <motion.div 
-                  className="w-full h-0.5 bg-white origin-center"
-                  animate={isMobileMenuOpen ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.div 
-                  className="w-full h-0.5 bg-white"
-                  animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.div 
-                  className="w-full h-0.5 bg-white origin-center"
-                  animate={isMobileMenuOpen ? { rotate: -45, y: -4 } : { rotate: 0, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.div>
+              <div className="w-6 h-6 relative">
+                {isMobileMenuOpen ? (
+                  <motion.div
+                    initial={{ rotate: 0, scale: 0.8 }}
+                    animate={{ rotate: 180, scale: 1 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <X className="w-5 h-5 text-white" strokeWidth={1.5} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    initial={{ rotate: 180, scale: 0.8 }}
+                    animate={{ rotate: 0, scale: 1 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <Menu className="w-5 h-5 text-white" strokeWidth={1.5} />
+                  </motion.div>
+                )}
+              </div>
             </motion.button>
           </div>
         </div>
 
-        {/* Mobile Menu Dropdown */}
+        {/* Mobile Menu Dropdown - Faster & Smoother */}
         {isMobileMenuOpen && (
           <motion.div
             className="lg:hidden fixed inset-0 top-28 z-30"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ 
+              duration: 0.15, 
+              ease: [0.23, 1, 0.32, 1] // Custom cubic-bezier for smooth motion
+            }}
           >
-            <div className="absolute inset-0 bg-black/98 backdrop-blur-xl">
+            <motion.div 
+              className="absolute inset-0 bg-black/98 backdrop-blur-xl"
+              initial={{ backdropFilter: "blur(0px)" }}
+              animate={{ backdropFilter: "blur(20px)" }}
+              transition={{ duration: 0.15 }}
+            >
               <div className="h-full flex flex-col justify-center">
                 <div className="max-w-7xl mx-auto px-8 w-full">
-                  <div className="space-y-8">
+                  <div className="space-y-6">
                     {[
                       { name: "About", section: 1 },
                       { name: "Expertise", section: 2 },
@@ -367,17 +520,23 @@ export default function PremiumHome() {
                           scrollToSection(item.section);
                           setIsMobileMenuOpen(false);
                         }}
-                        className={`block w-full text-center py-4 text-2xl font-light tracking-[0.2em] uppercase transition-all duration-300 ${
+                        className={`block w-full text-center py-4 text-2xl font-light tracking-[0.2em] uppercase transition-all duration-200 ${
                           activeSection === item.section 
                             ? 'text-white' 
                             : 'text-white/60 hover:text-white'
                         }`}
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{ 
-                          duration: 0.4,
-                          delay: index * 0.1
+                          duration: 0.2,
+                          delay: index * 0.04, // Much faster stagger
+                          ease: [0.23, 1, 0.32, 1]
                         }}
+                        whileHover={{ 
+                          scale: 1.05,
+                          transition: { duration: 0.15 }
+                        }}
+                        whileTap={{ scale: 0.95 }}
                       >
                         {item.name}
                       </motion.button>
@@ -389,21 +548,27 @@ export default function PremiumHome() {
                         scrollToSection(4);
                         setIsMobileMenuOpen(false);
                       }}
-                      className="w-full mt-12 px-8 py-4 bg-gradient-to-r from-white/8 via-white/5 to-white/8 backdrop-blur-xl border border-white/20 text-white font-light text-sm tracking-[0.25em] uppercase transition-all duration-300 hover:bg-white/10"
+                      className="w-full mt-8 px-8 py-4 bg-gradient-to-r from-white/8 via-white/5 to-white/8 backdrop-blur-xl border border-white/20 text-white font-light text-sm tracking-[0.25em] uppercase transition-all duration-200 hover:bg-white/10 hover:border-white/30"
                       style={{ borderRadius: "1px" }}
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
                       transition={{ 
-                        duration: 0.4,
-                        delay: 0.5
+                        duration: 0.2,
+                        delay: 0.2, // Faster appearance
+                        ease: [0.23, 1, 0.32, 1]
                       }}
+                      whileHover={{ 
+                        scale: 1.02,
+                        transition: { duration: 0.15 }
+                      }}
+                      whileTap={{ scale: 0.98 }}
                     >
                       Work With Me
                     </motion.button>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </motion.nav>
