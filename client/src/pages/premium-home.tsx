@@ -944,7 +944,7 @@ export default function PremiumHome() {
       </section>
 
       {/* Expertise Section */}
-      <section className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
+      <section id="section-2" className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
         {/* Starry Background - Same as Hero */}
         <div className="absolute inset-0 bg-black">
           {/* Stars */}
