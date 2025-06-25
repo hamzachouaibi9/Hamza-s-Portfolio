@@ -18,12 +18,16 @@ import {
   Mail,
   Phone,
   MapPin,
-  Code
+  Code,
+  X,
+  ExternalLink,
+  Github
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function PremiumHome() {
   const [activeSection, setActiveSection] = useState(0);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     const cursor = document.getElementById('custom-cursor');
@@ -870,28 +874,70 @@ export default function PremiumHome() {
           <div className="max-w-5xl mx-auto space-y-16">
             {[
               {
+                id: 1,
                 title: "Enterprise E-Commerce Platform",
                 category: "Full-Stack Development",
                 description: "Comprehensive e-commerce solution with advanced inventory management, real-time analytics, and seamless payment processing. Built for scalability and performance.",
                 tech: ["Next.js", "TypeScript", "PostgreSQL", "Stripe", "Redis"],
                 highlights: ["99.9% Uptime", "1M+ Users", "Real-time Analytics", "Multi-vendor Support"],
-                link: "#"
+                image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+                longDescription: "This enterprise-grade e-commerce platform was built to handle millions of users and transactions. The system features advanced inventory management, real-time analytics, fraud detection, and seamless payment processing through multiple gateways. Built with modern technologies for maximum performance and scalability.",
+                features: [
+                  "Advanced inventory management system",
+                  "Real-time analytics and reporting dashboard",
+                  "Multi-vendor marketplace functionality", 
+                  "Integrated payment processing with Stripe",
+                  "Redis caching for optimal performance",
+                  "Automated fraud detection system"
+                ],
+                challenges: "The main challenge was building a system that could scale to handle millions of concurrent users while maintaining sub-second response times and ensuring payment security.",
+                outcome: "Successfully deployed with 99.9% uptime, processing over $10M in transactions monthly with zero security incidents.",
+                link: "#",
+                github: "#"
               },
               {
+                id: 2,
                 title: "Real-Time Collaboration Platform",
-                category: "WebSocket Application",
+                category: "WebSocket Application", 
                 description: "Professional collaboration tool featuring live document editing, video conferencing, and project management capabilities for distributed teams.",
                 tech: ["React", "Socket.io", "Node.js", "MongoDB", "WebRTC"],
                 highlights: ["Live Collaboration", "Video Integration", "Role Management", "API Documentation"],
-                link: "#"
+                image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+                longDescription: "A comprehensive collaboration platform designed for distributed teams. Features include real-time document editing, video conferencing, project management tools, and role-based access control. Built with WebSocket technology for instant synchronization.",
+                features: [
+                  "Real-time collaborative document editing",
+                  "Integrated video conferencing with WebRTC",
+                  "Advanced project management tools",
+                  "Role-based permission system",
+                  "File sharing and version control",
+                  "Mobile-responsive design"
+                ],
+                challenges: "Implementing real-time synchronization across multiple users while handling conflict resolution and maintaining data consistency was the primary technical challenge.",
+                outcome: "Adopted by 500+ companies with 50,000+ active users. Reduced team communication overhead by 40% and improved project delivery times by 25%.",
+                link: "#",
+                github: "#"
               },
               {
+                id: 3,
                 title: "AI-Powered Analytics Dashboard",
                 category: "Machine Learning",
                 description: "Advanced data visualization platform with predictive analytics, automated reporting, and machine learning insights for business intelligence.",
                 tech: ["Python", "React", "TensorFlow", "AWS", "D3.js"],
                 highlights: ["Predictive Models", "Real-time Data", "Custom Reports", "Cloud Infrastructure"],
-                link: "#"
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+                longDescription: "An intelligent analytics platform that combines traditional business intelligence with machine learning predictions. The system processes millions of data points in real-time and provides actionable insights through advanced visualizations.",
+                features: [
+                  "Machine learning prediction models",
+                  "Real-time data processing pipeline",
+                  "Interactive data visualizations with D3.js",
+                  "Automated report generation",
+                  "Custom dashboard builder",
+                  "API integration with 50+ data sources"
+                ],
+                challenges: "Processing and analyzing massive datasets in real-time while maintaining accuracy of ML predictions and ensuring scalable infrastructure on AWS.",
+                outcome: "Improved business decision-making speed by 60% and increased prediction accuracy to 94%. Used by Fortune 500 companies for strategic planning.",
+                link: "#",
+                github: "#"
               }
             ].map((project, index) => (
               <motion.div
@@ -906,7 +952,21 @@ export default function PremiumHome() {
                   className="bg-white/5 border border-white/10 p-8 md:p-12 transition-all duration-300 group-hover:bg-white/10"
                   style={{ borderRadius: '2px' }}
                 >
-                  <div className="grid md:grid-cols-3 gap-8 items-start">
+                  <div className="grid md:grid-cols-5 gap-8 items-start">
+                    {/* Project Image */}
+                    <div className="md:col-span-2">
+                      <div 
+                        className="aspect-video bg-white/5 border border-white/10 overflow-hidden"
+                        style={{ borderRadius: '2px' }}
+                      >
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                        />
+                      </div>
+                    </div>
+                    
                     {/* Project Info */}
                     <div className="md:col-span-2 space-y-6">
                       <div>
@@ -938,6 +998,7 @@ export default function PremiumHome() {
                         className="inline-flex items-center text-white/60 hover:text-white transition-colors font-light tracking-wide uppercase text-sm"
                         whileHover={{ x: 5 }}
                         transition={{ type: "spring", stiffness: 300 }}
+                        onClick={() => setSelectedProject(project)}
                       >
                         View Project
                         <ArrowRight className="w-4 h-4 ml-2" />
@@ -1001,6 +1062,131 @@ export default function PremiumHome() {
           </motion.div>
         </div>
       </section>
+
+      {/* Project Modal */}
+      {selectedProject && (
+        <motion.div
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setSelectedProject(null)}
+        >
+          <motion.div
+            className="bg-black border border-white/20 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+            style={{ borderRadius: '2px' }}
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="relative">
+              <img
+                src={selectedProject.image}
+                alt={selectedProject.title}
+                className="w-full h-64 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors bg-black/50 p-2"
+                style={{ borderRadius: '2px' }}
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <div className="absolute bottom-4 left-6">
+                <span className="text-white/60 text-sm uppercase tracking-wider font-light">
+                  {selectedProject.category}
+                </span>
+                <h2 className="text-3xl font-light text-white mt-1">
+                  {selectedProject.title}
+                </h2>
+              </div>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-8 space-y-8">
+              {/* Project Overview */}
+              <div>
+                <h3 className="text-xl font-light text-white mb-4">Project Overview</h3>
+                <p className="text-white/70 leading-relaxed font-light">
+                  {selectedProject.longDescription}
+                </p>
+              </div>
+
+              {/* Technology Stack */}
+              <div>
+                <h3 className="text-xl font-light text-white mb-4">Technology Stack</h3>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-white/10 border border-white/20 text-white/80 text-xs font-light tracking-wide uppercase"
+                      style={{ borderRadius: '2px' }}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Key Features */}
+              <div>
+                <h3 className="text-xl font-light text-white mb-4">Key Features</h3>
+                <div className="grid md:grid-cols-2 gap-3">
+                  {selectedProject.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-start">
+                      <div className="w-1 h-1 bg-white/40 rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                      <span className="text-white/70 text-sm font-light">
+                        {feature}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Challenges & Solutions */}
+              <div>
+                <h3 className="text-xl font-light text-white mb-4">Challenges & Solutions</h3>
+                <p className="text-white/70 leading-relaxed font-light">
+                  {selectedProject.challenges}
+                </p>
+              </div>
+
+              {/* Outcome */}
+              <div>
+                <h3 className="text-xl font-light text-white mb-4">Results & Impact</h3>
+                <p className="text-white/70 leading-relaxed font-light">
+                  {selectedProject.outcome}
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-4 pt-4">
+                <motion.button
+                  className="flex items-center px-6 py-3 bg-white text-black font-medium text-sm tracking-wide uppercase"
+                  style={{ borderRadius: '2px' }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Live Demo
+                </motion.button>
+                <motion.button
+                  className="flex items-center px-6 py-3 bg-transparent border border-white/30 text-white font-medium text-sm tracking-wide uppercase"
+                  style={{ borderRadius: '2px' }}
+                  whileHover={{ scale: 1.02, borderColor: "rgba(255,255,255,0.6)" }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Github className="w-4 h-4 mr-2" />
+                  View Code
+                </motion.button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
 
       {/* Contact Section */}
       <section id="section-4" className="py-32 relative">
