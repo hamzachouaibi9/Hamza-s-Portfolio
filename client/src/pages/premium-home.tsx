@@ -176,25 +176,7 @@ export default function PremiumHome() {
     ]
   };
 
-  useEffect(() => {
-    const cursor = document.getElementById('custom-cursor');
-    const cursorTrail = document.getElementById('cursor-trail');
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      if (cursor) {
-        cursor.style.transform = `translate3d(${e.clientX - 12}px, ${e.clientY - 12}px, 0)`;
-      }
-      if (cursorTrail) {
-        cursorTrail.style.transform = `translate3d(${e.clientX - 20}px, ${e.clientY - 20}px, 0)`;
-      }
-    };
 
-    document.addEventListener("mousemove", handleMouseMove, { passive: true });
-    
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
 
   const scrollToSection = (index: number) => {
     const section = document.getElementById(`section-${index}`);
@@ -206,38 +188,6 @@ export default function PremiumHome() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Ultra-Fast Interactive Cursor */}
-      <div
-        id="custom-cursor"
-        className="fixed pointer-events-none mix-blend-difference"
-        style={{
-          width: '24px',
-          height: '24px',
-          borderRadius: '50%',
-          backgroundColor: 'white',
-          opacity: '0.9',
-          boxShadow: '0 0 10px rgba(255,255,255,0.5)',
-          transition: 'transform 0.05s ease-out',
-          willChange: 'transform',
-          zIndex: 99999
-        }}
-      />
-
-      {/* Smooth Cursor Trail - Desktop Only */}
-      <div
-        id="cursor-trail"
-        className="fixed pointer-events-none mix-blend-screen hidden lg:block"
-        style={{
-          width: '40px',
-          height: '40px',
-          borderRadius: '50%',
-          background: 'linear-gradient(45deg, rgba(59,130,246,0.3), rgba(139,92,246,0.3))',
-          filter: 'blur(4px)',
-          transition: 'transform 0.15s ease-out',
-          willChange: 'transform',
-          zIndex: 99998
-        }}
-      />
 
       {/* Ultra-Premium Navigation */}
       <motion.nav
