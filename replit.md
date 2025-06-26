@@ -93,6 +93,16 @@ Process preferences: Step-by-step client journey showing consultation to website
 
 ## Changelog
 
+- June 26, 2025: Complete repositioning from full-stack developer to freelance web designer
+  - Updated hero section title from "Full-Stack Developer" to "Web Designer"
+  - Rewrote all content to focus on website design services for small businesses
+  - Project funnel completely updated for website design services:
+    - Budget ranges changed to freelance-appropriate: Under $200, $200-$350, $350-$500, $500+
+    - Website types: Business sites, portfolios, small stores, landing pages, redesigns
+    - Features focused on basic website needs: responsive design, contact forms, SEO, galleries
+    - Updated all messaging to reflect website design rather than full-stack development
+  - Professional positioning now targets small businesses needing affordable websites
+
 - June 26, 2025: Navigation updates and hero section refinement
   - Updated all "Start a Project" buttons to link to project funnel page
   - Removed bouncing arrow and stats sidebar from hero section
