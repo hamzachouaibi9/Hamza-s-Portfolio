@@ -230,7 +230,7 @@ export default function ProjectFunnel() {
         ))}
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 py-12">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Header */}
         <div className="text-center mb-12">
           <Link href="/">
@@ -244,7 +244,7 @@ export default function ProjectFunnel() {
           </Link>
 
           <motion.h1
-            className="text-4xl md:text-5xl font-light text-white mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-light text-white mb-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -252,7 +252,7 @@ export default function ProjectFunnel() {
           </motion.h1>
           
           <motion.p
-            className="text-white/70 text-lg max-w-2xl mx-auto"
+            className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto px-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -262,12 +262,12 @@ export default function ProjectFunnel() {
         </div>
 
         {/* Progress Bar */}
-        <div className="max-w-2xl mx-auto mb-12">
+        <div className="max-w-2xl mx-auto mb-8 sm:mb-12 px-4">
           <div className="flex items-center justify-between mb-4">
             {[...Array(totalSteps)].map((_, i) => (
               <div key={i} className="flex items-center">
                 <motion.div
-                  className={`w-10 h-10 rounded-full border-2 flex items-center justify-center text-sm font-light transition-all duration-300 ${
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center text-xs sm:text-sm font-light transition-all duration-300 ${
                     i + 1 <= currentStep 
                       ? 'bg-white/20 border-white/40 text-white' 
                       : 'border-white/20 text-white/40'
@@ -277,23 +277,23 @@ export default function ProjectFunnel() {
                     backgroundColor: i + 1 <= currentStep ? "rgba(255,255,255,0.2)" : "transparent"
                   }}
                 >
-                  {i + 1 < currentStep ? <Check className="w-5 h-5" /> : i + 1}
+                  {i + 1 < currentStep ? <Check className="w-4 h-4 sm:w-5 sm:h-5" /> : i + 1}
                 </motion.div>
                 {i < totalSteps - 1 && (
-                  <div className={`w-12 h-0.5 mx-2 transition-all duration-300 ${
+                  <div className={`w-6 sm:w-12 h-0.5 mx-1 sm:mx-2 transition-all duration-300 ${
                     i + 1 < currentStep ? 'bg-white/40' : 'bg-white/20'
                   }`} />
                 )}
               </div>
             ))}
           </div>
-          <div className="text-center text-white/60 text-sm">
+          <div className="text-center text-white/60 text-xs sm:text-sm">
             Step {currentStep} of {totalSteps}
           </div>
         </div>
 
         {/* Form Steps */}
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto px-4">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -301,13 +301,13 @@ export default function ProjectFunnel() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.3 }}
-              className="bg-white/5 border border-white/10 p-8 md:p-12"
+              className="bg-white/5 border border-white/10 p-4 sm:p-6 md:p-8 lg:p-12"
               style={{ borderRadius: '2px' }}
             >
               {/* Step 1: Contact Information */}
               {currentStep === 1 && (
                 <div className="space-y-6">
-                  <h2 className="text-2xl font-light text-white mb-8">Contact Information</h2>
+                  <h2 className="text-xl sm:text-2xl font-light text-white mb-6 sm:mb-8">Contact Information</h2>
                   
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
@@ -337,7 +337,7 @@ export default function ProjectFunnel() {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-white/70 text-sm mb-2">Company/Organization</label>
                       <input
@@ -368,27 +368,27 @@ export default function ProjectFunnel() {
               {/* Step 2: Project Type */}
               {currentStep === 2 && (
                 <div className="space-y-6">
-                  <h2 className="text-2xl font-light text-white mb-8">What type of project do you need?</h2>
+                  <h2 className="text-xl sm:text-2xl font-light text-white mb-6 sm:mb-8">What type of project do you need?</h2>
                   
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                     {projectTypes.map((type) => {
                       const Icon = type.icon;
                       return (
                         <motion.button
                           key={type.id}
                           onClick={() => updateFormData('projectType', type.id)}
-                          className={`p-6 text-left border transition-all duration-300 ${
+                          className={`p-4 sm:p-6 text-left border-2 transition-all duration-300 ${
                             formData.projectType === type.id
-                              ? 'bg-white/10 border-white/40'
-                              : 'bg-white/5 border-white/20 hover:bg-white/10'
+                              ? 'bg-white/10 border-white shadow-[0_0_20px_rgba(255,255,255,0.3)]'
+                              : 'bg-white/5 border-white/20 hover:bg-white/10 hover:border-white/30'
                           }`}
                           style={{ borderRadius: '2px' }}
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                         >
-                          <Icon className="w-8 h-8 text-white/60 mb-3" />
-                          <h3 className="text-white font-light mb-2">{type.title}</h3>
-                          <p className="text-white/60 text-sm">{type.desc}</p>
+                          <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white/60 mb-2 sm:mb-3" />
+                          <h3 className="text-white font-light mb-1 sm:mb-2 text-sm sm:text-base">{type.title}</h3>
+                          <p className="text-white/60 text-xs sm:text-sm">{type.desc}</p>
                         </motion.button>
                       );
                     })}
@@ -398,8 +398,8 @@ export default function ProjectFunnel() {
 
               {/* Step 3: Budget & Timeline */}
               {currentStep === 3 && (
-                <div className="space-y-8">
-                  <h2 className="text-2xl font-light text-white mb-8">Budget & Timeline</h2>
+                <div className="space-y-6 sm:space-y-8">
+                  <h2 className="text-xl sm:text-2xl font-light text-white mb-6 sm:mb-8">Budget & Timeline</h2>
                   
                   <div>
                     <label className="block text-white/70 text-sm mb-4">What's your budget range?</label>
@@ -408,17 +408,17 @@ export default function ProjectFunnel() {
                         <motion.button
                           key={range}
                           onClick={() => updateFormData('budget', range)}
-                          className={`w-full p-4 text-left border transition-all duration-300 ${
+                          className={`w-full p-3 sm:p-4 text-left border-2 transition-all duration-300 ${
                             formData.budget === range
-                              ? 'bg-white/10 border-white/40'
-                              : 'bg-white/5 border-white/20 hover:bg-white/10'
+                              ? 'bg-white/10 border-white shadow-[0_0_20px_rgba(255,255,255,0.3)]'
+                              : 'bg-white/5 border-white/20 hover:bg-white/10 hover:border-white/30'
                           }`}
                           style={{ borderRadius: '2px' }}
                           whileHover={{ x: 5 }}
                         >
                           <div className="flex items-center">
-                            <DollarSign className="w-5 h-5 text-white/60 mr-3" />
-                            <span className="text-white">{range}</span>
+                            <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-white/60 mr-2 sm:mr-3" />
+                            <span className="text-white text-sm sm:text-base">{range}</span>
                           </div>
                         </motion.button>
                       ))}
@@ -432,17 +432,17 @@ export default function ProjectFunnel() {
                         <motion.button
                           key={timeline}
                           onClick={() => updateFormData('timeline', timeline)}
-                          className={`w-full p-4 text-left border transition-all duration-300 ${
+                          className={`w-full p-3 sm:p-4 text-left border-2 transition-all duration-300 ${
                             formData.timeline === timeline
-                              ? 'bg-white/10 border-white/40'
-                              : 'bg-white/5 border-white/20 hover:bg-white/10'
+                              ? 'bg-white/10 border-white shadow-[0_0_20px_rgba(255,255,255,0.3)]'
+                              : 'bg-white/5 border-white/20 hover:bg-white/10 hover:border-white/30'
                           }`}
                           style={{ borderRadius: '2px' }}
                           whileHover={{ x: 5 }}
                         >
                           <div className="flex items-center">
-                            <Calendar className="w-5 h-5 text-white/60 mr-3" />
-                            <span className="text-white">{timeline}</span>
+                            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-white/60 mr-2 sm:mr-3" />
+                            <span className="text-white text-sm sm:text-base">{timeline}</span>
                           </div>
                         </motion.button>
                       ))}
