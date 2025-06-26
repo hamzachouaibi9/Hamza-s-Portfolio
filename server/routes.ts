@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { z } from "zod";
+import sgMail from "@sendgrid/mail";
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -22,6 +23,32 @@ const projectInquirySchema = z.object({
   additionalInfo: z.string().optional(),
 });
 
+// Initialize SendGrid
+if (process.env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+}
+
+async function sendEmail(to: string, subject: string, html: string, text: string) {
+  if (!process.env.SENDGRID_API_KEY) {
+    console.log("SendGrid not configured, email would contain:", { to, subject, text });
+    return false;
+  }
+
+  try {
+    await sgMail.send({
+      to,
+      from: "noreply@yourdomain.com", // You'll need to verify this domain in SendGrid
+      subject,
+      html,
+      text
+    });
+    return true;
+  } catch (error) {
+    console.error("Email sending failed:", error);
+    return false;
+  }
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form endpoint
   app.post("/api/contact", async (req, res) => {
@@ -36,10 +63,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
         timestamp: new Date().toISOString(),
       });
       
-      // In a real application, you would:
-      // 1. Send an email using a service like Nodemailer
-      // 2. Store the message in a database
-      // 3. Send a notification to the site owner
+      // Send email notification
+      const emailHtml = `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
+      `;
+      
+      const emailText = `
+        New Contact Form Submission
+        
+        Name: ${name}
+        Email: ${email}
+        Message: ${message}
+        Submitted: ${new Date().toLocaleString()}
+      `;
+
+      const emailSent = await sendEmail(
+        "hamza.chouaibi9@hotmail.com",
+        `New Contact Form Submission from ${name}`,
+        emailHtml,
+        emailText
+      );
+
+      if (emailSent) {
+        console.log("Contact form email sent successfully");
+      } else {
+        console.warn("Failed to send contact form email, but submission logged");
+      }
       
       res.json({
         success: true,
@@ -73,12 +127,86 @@ export async function registerRoutes(app: Express): Promise<Server> {
         timestamp: new Date().toISOString(),
       });
       
-      // In a real application, you would:
-      // 1. Send an email notification to your business email
-      // 2. Store the inquiry in a database for tracking
-      // 3. Send an automated response to the client
-      // 4. Add to your CRM system
-      // 5. Create a project tracking record
+      // Send detailed project inquiry email
+      const projectEmailHtml = `
+        <h2>🚀 New Project Inquiry</h2>
+        
+        <h3>Contact Information</h3>
+        <p><strong>Name:</strong> ${projectData.name}</p>
+        <p><strong>Email:</strong> ${projectData.email}</p>
+        ${projectData.phone ? `<p><strong>Phone:</strong> ${projectData.phone}</p>` : ''}
+        ${projectData.company ? `<p><strong>Company:</strong> ${projectData.company}</p>` : ''}
+        
+        <h3>Project Details</h3>
+        <p><strong>Project Type:</strong> ${projectData.projectType}</p>
+        <p><strong>Budget Range:</strong> ${projectData.budget}</p>
+        <p><strong>Timeline:</strong> ${projectData.timeline}</p>
+        
+        <h3>Description</h3>
+        <p>${projectData.description.replace(/\n/g, '<br>')}</p>
+        
+        ${projectData.features?.length ? `
+        <h3>Required Features</h3>
+        <ul>
+          ${projectData.features.map((feature: string) => `<li>${feature}</li>`).join('')}
+        </ul>
+        ` : ''}
+        
+        ${projectData.inspiration ? `
+        <h3>Inspiration</h3>
+        <p><a href="${projectData.inspiration}" target="_blank">${projectData.inspiration}</a></p>
+        ` : ''}
+        
+        ${projectData.additionalInfo ? `
+        <h3>Additional Information</h3>
+        <p>${projectData.additionalInfo.replace(/\n/g, '<br>')}</p>
+        ` : ''}
+        
+        <hr>
+        <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
+        <p><em>Reply directly to this email to respond to the client.</em></p>
+      `;
+      
+      const projectEmailText = `
+        NEW PROJECT INQUIRY
+        
+        Contact Information:
+        Name: ${projectData.name}
+        Email: ${projectData.email}
+        ${projectData.phone ? `Phone: ${projectData.phone}` : ''}
+        ${projectData.company ? `Company: ${projectData.company}` : ''}
+        
+        Project Details:
+        Type: ${projectData.projectType}
+        Budget: ${projectData.budget}
+        Timeline: ${projectData.timeline}
+        
+        Description:
+        ${projectData.description}
+        
+        ${projectData.features?.length ? `
+        Features:
+        ${projectData.features.map((feature: string) => `- ${feature}`).join('\n')}
+        ` : ''}
+        
+        ${projectData.inspiration ? `Inspiration: ${projectData.inspiration}` : ''}
+        ${projectData.additionalInfo ? `Additional Info: ${projectData.additionalInfo}` : ''}
+        
+        Submitted: ${new Date().toLocaleString()}
+      `;
+
+      const emailSent = await sendEmail(
+        "hamza.chouaibi9@hotmail.com",
+        `💼 New Project Inquiry: ${projectData.projectType} (${projectData.budget})`,
+        projectEmailHtml,
+        projectEmailText
+      );
+
+      if (emailSent) {
+        console.log("Project inquiry email sent successfully");
+      } else {
+        console.warn("Failed to send project inquiry email, but submission logged");
+      }
       
       res.json({
         success: true,
