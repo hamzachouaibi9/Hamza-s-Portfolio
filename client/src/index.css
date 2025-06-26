@@ -4,6 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Force normal cursor behavior */
+* {
+  cursor: auto !important;
+}
+
+button, a, [role="button"] {
+  cursor: pointer !important;
+}
+
+input, textarea, select {
+  cursor: text !important;
+}
+
 :root {
   --background: hsl(0, 0%, 0%); /* Pure Black */
   --foreground: hsl(0, 0%, 100%); /* Pure White */
