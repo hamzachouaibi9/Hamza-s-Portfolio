@@ -45,15 +45,60 @@ export default function ProjectFunnel() {
   const [formData, setFormData] = useState<ProjectData>(initialData);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
 
   const totalSteps = 5;
 
   const updateFormData = (field: keyof ProjectData, value: string | string[]) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
+    }
+  };
+
+  const validateStep = (step: number): boolean => {
+    const newErrors: {[key: string]: string} = {};
+
+    switch (step) {
+      case 1:
+        if (!formData.name.trim()) {
+          newErrors.name = 'Full name is required';
+        }
+        if (!formData.email.trim()) {
+          newErrors.email = 'Email address is required';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+          newErrors.email = 'Please enter a valid email address';
+        }
+        break;
+      case 2:
+        if (!formData.projectType) {
+          newErrors.projectType = 'Please select a project type';
+        }
+        break;
+      case 3:
+        if (!formData.budget) {
+          newErrors.budget = 'Please select a budget range';
+        }
+        if (!formData.timeline) {
+          newErrors.timeline = 'Please select a timeline';
+        }
+        break;
+      case 4:
+        if (!formData.description.trim()) {
+          newErrors.description = 'Project description is required';
+        } else if (formData.description.trim().length < 20) {
+          newErrors.description = 'Please provide at least 20 characters describing your project';
+        }
+        break;
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const nextStep = () => {
-    if (currentStep < totalSteps) {
+    if (validateStep(currentStep) && currentStep < totalSteps) {
       setCurrentStep(prev => prev + 1);
     }
   };
@@ -65,9 +110,12 @@ export default function ProjectFunnel() {
   };
 
   const handleSubmit = async () => {
+    if (!validateStep(currentStep)) {
+      return;
+    }
+
     setIsSubmitting(true);
     
-    // Simulate API call
     try {
       const response = await fetch('/api/project-inquiry', {
         method: 'POST',
@@ -316,11 +364,16 @@ export default function ProjectFunnel() {
                         type="text"
                         value={formData.name}
                         onChange={(e) => updateFormData('name', e.target.value)}
-                        className="w-full bg-white/5 border border-white/20 p-3 text-white placeholder-white/40 focus:border-white/40 focus:outline-none"
+                        className={`w-full bg-white/5 border p-3 text-white placeholder-white/40 focus:outline-none transition-colors ${
+                          errors.name ? 'border-red-400 focus:border-red-400' : 'border-white/20 focus:border-white/40'
+                        }`}
                         style={{ borderRadius: '2px' }}
                         placeholder="Your full name"
                         required
                       />
+                      {errors.name && (
+                        <p className="text-red-400 text-xs mt-1">{errors.name}</p>
+                      )}
                     </div>
                     
                     <div>
@@ -329,11 +382,16 @@ export default function ProjectFunnel() {
                         type="email"
                         value={formData.email}
                         onChange={(e) => updateFormData('email', e.target.value)}
-                        className="w-full bg-white/5 border border-white/20 p-3 text-white placeholder-white/40 focus:border-white/40 focus:outline-none"
+                        className={`w-full bg-white/5 border p-3 text-white placeholder-white/40 focus:outline-none transition-colors ${
+                          errors.email ? 'border-red-400 focus:border-red-400' : 'border-white/20 focus:border-white/40'
+                        }`}
                         style={{ borderRadius: '2px' }}
                         placeholder="your@email.com"
                         required
                       />
+                      {errors.email && (
+                        <p className="text-red-400 text-xs mt-1">{errors.email}</p>
+                      )}
                     </div>
                   </div>
 
@@ -370,6 +428,10 @@ export default function ProjectFunnel() {
                 <div className="space-y-6">
                   <h2 className="text-xl sm:text-2xl font-light text-white mb-6 sm:mb-8">What type of project do you need?</h2>
                   
+                  {errors.projectType && (
+                    <p className="text-red-400 text-sm">{errors.projectType}</p>
+                  )}
+                  
                   <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                     {projectTypes.map((type) => {
                       const Icon = type.icon;
@@ -403,6 +465,9 @@ export default function ProjectFunnel() {
                   
                   <div>
                     <label className="block text-white/70 text-sm mb-4">What's your budget range?</label>
+                    {errors.budget && (
+                      <p className="text-red-400 text-sm mb-3">{errors.budget}</p>
+                    )}
                     <div className="space-y-3">
                       {budgetRanges.map((range) => (
                         <motion.button
@@ -427,6 +492,9 @@ export default function ProjectFunnel() {
 
                   <div>
                     <label className="block text-white/70 text-sm mb-4">When do you need this completed?</label>
+                    {errors.timeline && (
+                      <p className="text-red-400 text-sm mb-3">{errors.timeline}</p>
+                    )}
                     <div className="space-y-3">
                       {timelineOptions.map((timeline) => (
                         <motion.button
@@ -462,11 +530,19 @@ export default function ProjectFunnel() {
                       value={formData.description}
                       onChange={(e) => updateFormData('description', e.target.value)}
                       rows={4}
-                      className="w-full bg-white/5 border border-white/20 p-3 text-white placeholder-white/40 focus:border-white/40 focus:outline-none resize-none"
+                      className={`w-full bg-white/5 border p-3 text-white placeholder-white/40 focus:outline-none resize-none transition-colors ${
+                        errors.description ? 'border-red-400 focus:border-red-400' : 'border-white/20 focus:border-white/40'
+                      }`}
                       style={{ borderRadius: '2px' }}
                       placeholder="Tell me about your project, goals, and any specific requirements..."
                       required
                     />
+                    {errors.description && (
+                      <p className="text-red-400 text-xs mt-1">{errors.description}</p>
+                    )}
+                    <p className="text-white/50 text-xs mt-1">
+                      {formData.description.length}/20 characters minimum
+                    </p>
                   </div>
 
                   <div>
@@ -572,20 +648,7 @@ export default function ProjectFunnel() {
                 {currentStep < totalSteps ? (
                   <motion.button
                     onClick={nextStep}
-                    disabled={
-                      (currentStep === 1 && (!formData.name || !formData.email)) ||
-                      (currentStep === 2 && !formData.projectType) ||
-                      (currentStep === 3 && (!formData.budget || !formData.timeline)) ||
-                      (currentStep === 4 && !formData.description)
-                    }
-                    className={`flex items-center px-4 sm:px-6 py-2 sm:py-3 border transition-all duration-300 ${
-                      (currentStep === 1 && (!formData.name || !formData.email)) ||
-                      (currentStep === 2 && !formData.projectType) ||
-                      (currentStep === 3 && (!formData.budget || !formData.timeline)) ||
-                      (currentStep === 4 && !formData.description)
-                        ? 'text-white/40 border-white/20 cursor-not-allowed'
-                        : 'text-white border-white/40 hover:bg-white/10'
-                    }`}
+                    className="flex items-center px-4 sm:px-6 py-2 sm:py-3 border transition-all duration-300 text-white border-white/40 hover:bg-white/10"
                     style={{ borderRadius: '2px' }}
                     whileHover={{ x: 5 }}
                   >
@@ -595,14 +658,14 @@ export default function ProjectFunnel() {
                 ) : (
                   <motion.button
                     onClick={handleSubmit}
-                    disabled={isSubmitting || !formData.description}
+                    disabled={isSubmitting}
                     className={`flex items-center px-6 sm:px-8 py-2 sm:py-3 border transition-all duration-300 ${
-                      isSubmitting || !formData.description
+                      isSubmitting
                         ? 'text-white/40 border-white/20 cursor-not-allowed'
                         : 'text-white border-white/40 hover:bg-white/10'
                     }`}
                     style={{ borderRadius: '2px' }}
-                    whileHover={!isSubmitting && formData.description ? { scale: 1.05 } : {}}
+                    whileHover={!isSubmitting ? { scale: 1.05 } : {}}
                   >
                     <span className="text-sm sm:text-base">{isSubmitting ? 'Submitting...' : 'Submit Project'}</span>
                   </motion.button>
