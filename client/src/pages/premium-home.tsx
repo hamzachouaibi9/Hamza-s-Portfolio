@@ -592,31 +592,32 @@ export default function PremiumHome() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.7 }}
               >
-                <motion.button 
-                  onClick={() => scrollToSection(4)}
-                  className="relative px-8 py-4 bg-white text-black font-medium text-base tracking-wide uppercase overflow-hidden group"
-                  style={{ borderRadius: '2px' }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ 
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 17
-                  }}
-                >
-                  <span className="relative z-10 flex items-center">
-                    Start a Project
-                    <ArrowRight className="w-4 h-4 ml-3 transition-transform group-hover:translate-x-1" />
-                  </span>
-                  <motion.div
-                    className="absolute inset-0 bg-gray-100"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ 
-                      opacity: 1,
-                      transition: { duration: 0.2 }
+                <a href="/start-project">
+                  <motion.button 
+                    className="relative px-8 py-4 bg-white text-black font-medium text-base tracking-wide uppercase overflow-hidden group"
+                    style={{ borderRadius: '2px' }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ 
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 17
                     }}
-                  />
-                </motion.button>
+                  >
+                    <span className="relative z-10 flex items-center">
+                      Start a Project
+                      <ArrowRight className="w-4 h-4 ml-3 transition-transform group-hover:translate-x-1" />
+                    </span>
+                    <motion.div
+                      className="absolute inset-0 bg-gray-100"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ 
+                        opacity: 1,
+                        transition: { duration: 0.2 }
+                      }}
+                    />
+                  </motion.button>
+                </a>
                 
                 <motion.button 
                   onClick={() => scrollToSection(3)}
@@ -1444,33 +1445,34 @@ export default function PremiumHome() {
               }}
               viewport={{ once: true }}
             >
-              <motion.button
-                className="relative px-10 py-4 bg-white text-black font-medium text-base tracking-wide uppercase overflow-hidden group"
-                style={{ borderRadius: '2px' }}
-                whileHover={{ 
-                  scale: 1.05,
-                  transition: { duration: 0.2, ease: "easeOut" }
-                }}
-                whileTap={{ 
-                  scale: 0.95,
-                  transition: { duration: 0.1 }
-                }}
-                onClick={() => window.open('mailto:hamza.chouaibi9@hotmail.com', '_blank')}
-              >
-                <span className="relative z-10 flex items-center justify-center">
-                  Start a Project
-                  <Mail className="w-4 h-4 ml-3" />
-                </span>
-                <motion.div
-                  className="absolute inset-0 bg-gray-100"
-                  initial={{ opacity: 0, scale: 0.8 }}
+              <a href="/start-project">
+                <motion.button
+                  className="relative px-10 py-4 bg-white text-black font-medium text-base tracking-wide uppercase overflow-hidden group"
+                  style={{ borderRadius: '2px' }}
                   whileHover={{ 
-                    opacity: 1,
-                    scale: 1,
-                    transition: { duration: 0.3, ease: "easeOut" }
+                    scale: 1.05,
+                    transition: { duration: 0.2, ease: "easeOut" }
                   }}
-                />
-              </motion.button>
+                  whileTap={{ 
+                    scale: 0.95,
+                    transition: { duration: 0.1 }
+                  }}
+                >
+                  <span className="relative z-10 flex items-center justify-center">
+                    Start a Project
+                    <ArrowRight className="w-4 h-4 ml-3" />
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-gray-100"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileHover={{ 
+                      opacity: 1,
+                      scale: 1,
+                      transition: { duration: 0.3, ease: "easeOut" }
+                    }}
+                  />
+                </motion.button>
+              </a>
               
               <motion.p 
                 className="mt-8 text-white/50 text-sm font-light"

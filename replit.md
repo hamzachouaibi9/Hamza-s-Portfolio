@@ -93,6 +93,13 @@ Process preferences: Step-by-step client journey showing consultation to website
 
 ## Changelog
 
+- June 26, 2025: Navigation updates and hero section refinement
+  - Updated all "Start a Project" buttons to link to project funnel page
+  - Removed bouncing arrow and stats sidebar from hero section
+  - Hero section now has clean starry background matching other sections
+  - Simplified hero layout focuses on essential elements only
+  - Improved user journey flow to project funnel for lead qualification
+
 - June 26, 2025: Email integration completed with Resend service
   - Resend email service integrated for reliable delivery
   - Contact form emails working perfectly
