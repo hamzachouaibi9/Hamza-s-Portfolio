@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { z } from "zod";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -23,43 +23,45 @@ const projectInquirySchema = z.object({
   additionalInfo: z.string().optional(),
 });
 
-// Create email transporter
-let transporter: nodemailer.Transporter | null = null;
+// Initialize Resend
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-console.log('Email config check:', {
-  host: !!process.env.EMAIL_HOST,
-  user: !!process.env.EMAIL_USER,
-  pass: !!process.env.EMAIL_PASS,
-  port: process.env.EMAIL_PORT,
-  secure: process.env.EMAIL_SECURE
-});
-
-// For now, let's use a working fallback approach
-// Microsoft has disabled basic authentication for Outlook/Hotmail SMTP
-// We'll log the emails and provide instructions for email forwarding
-
-async function logEmailForDelivery(to: string, subject: string, html: string, text: string) {
-  const emailData = {
-    to,
-    subject,
-    html,
-    text,
-    timestamp: new Date().toISOString()
-  };
-  
-  console.log('\n=== EMAIL TO DELIVER ===');
-  console.log(`To: ${to}`);
-  console.log(`Subject: ${subject}`);
-  console.log(`Content: ${text}`);
-  console.log('=== END EMAIL ===\n');
-  
-  return true;
+if (resend) {
+  console.log('Resend email service initialized');
+} else {
+  console.log('Resend API key not found');
 }
 
 async function sendEmail(to: string, subject: string, html: string, text: string) {
-  // Log the email content for manual delivery
-  await logEmailForDelivery(to, subject, html, text);
-  return true;
+  if (!resend) {
+    console.log('\n=== EMAIL WOULD BE SENT ===');
+    console.log(`To: ${to}`);
+    console.log(`Subject: ${subject}`);
+    console.log(`Content: ${text}`);
+    console.log('=== Resend not configured ===\n');
+    return false;
+  }
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: process.env.EMAIL_FROM || 'noreply@resend.dev',
+      to: [to],
+      subject,
+      html,
+      text
+    });
+
+    if (error) {
+      console.error('Resend email error:', error);
+      return false;
+    }
+
+    console.log(`Email sent successfully to ${to}`, data);
+    return true;
+  } catch (error) {
+    console.error('Resend email error:', error);
+    return false;
+  }
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
