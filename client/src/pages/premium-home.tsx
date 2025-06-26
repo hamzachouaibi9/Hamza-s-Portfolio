@@ -365,8 +365,8 @@ export default function PremiumHome() {
             </div>
 
             {/* Desktop CTA */}
-            <motion.button 
-              onClick={() => scrollToSection(4)}
+            <motion.a 
+              href="/start-project"
               className="hidden lg:flex relative px-8 py-4 bg-gradient-to-r from-white/8 via-white/5 to-white/8 backdrop-blur-xl border border-white/20 text-white font-light text-[11px] tracking-[0.25em] uppercase overflow-hidden"
               style={{ borderRadius: "1px" }}
               whileHover={{ 
@@ -404,7 +404,7 @@ export default function PremiumHome() {
                   }
                 }}
               />
-            </motion.button>
+            </motion.a>
 
             {/* Mobile Menu Button with Lottie */}
             <motion.button
@@ -493,12 +493,10 @@ export default function PremiumHome() {
                     ))}
                     
                     {/* Mobile Work with me button */}
-                    <motion.button
-                      onClick={() => {
-                        scrollToSection(4);
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className="w-full mt-8 px-8 py-4 bg-gradient-to-r from-white/8 via-white/5 to-white/8 backdrop-blur-xl border border-white/20 text-white font-light text-sm tracking-[0.25em] uppercase transition-all duration-200 hover:bg-white/10 hover:border-white/30"
+                    <motion.a
+                      href="/start-project"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block w-full mt-8 px-8 py-4 bg-gradient-to-r from-white/8 via-white/5 to-white/8 backdrop-blur-xl border border-white/20 text-white font-light text-sm tracking-[0.25em] uppercase transition-all duration-200 hover:bg-white/10 hover:border-white/30 text-center"
                       style={{ borderRadius: "1px" }}
                       initial={{ opacity: 0, y: 30, scale: 0.9 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -514,7 +512,7 @@ export default function PremiumHome() {
                       whileTap={{ scale: 0.98 }}
                     >
                       Work With Me
-                    </motion.button>
+                    </motion.a>
                   </div>
                 </div>
               </div>
