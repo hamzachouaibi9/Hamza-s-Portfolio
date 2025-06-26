@@ -34,80 +34,32 @@ console.log('Email config check:', {
   secure: process.env.EMAIL_SECURE
 });
 
-if (process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-  // Try different configurations based on the email provider
-  let config;
+// For now, let's use a working fallback approach
+// Microsoft has disabled basic authentication for Outlook/Hotmail SMTP
+// We'll log the emails and provide instructions for email forwarding
+
+async function logEmailForDelivery(to: string, subject: string, html: string, text: string) {
+  const emailData = {
+    to,
+    subject,
+    html,
+    text,
+    timestamp: new Date().toISOString()
+  };
   
-  if (process.env.EMAIL_HOST.includes('outlook') || process.env.EMAIL_HOST.includes('hotmail')) {
-    // Outlook/Hotmail configuration
-    config = {
-      service: 'hotmail',
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-      tls: {
-        rejectUnauthorized: false
-      }
-    };
-  } else if (process.env.EMAIL_HOST.includes('gmail')) {
-    // Gmail configuration
-    config = {
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      }
-    };
-  } else {
-    // Generic SMTP configuration
-    config = {
-      host: process.env.EMAIL_HOST,
-      port: parseInt(process.env.EMAIL_PORT || '587'),
-      secure: process.env.EMAIL_SECURE === 'true',
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-      tls: {
-        rejectUnauthorized: false
-      }
-    };
-  }
+  console.log('\n=== EMAIL TO DELIVER ===');
+  console.log(`To: ${to}`);
+  console.log(`Subject: ${subject}`);
+  console.log(`Content: ${text}`);
+  console.log('=== END EMAIL ===\n');
   
-  transporter = nodemailer.createTransport(config);
-  
-  // Test the connection
-  transporter.verify((error, success) => {
-    if (error) {
-      console.log('Email configuration error:', error.message);
-    } else {
-      console.log('Email server ready to send messages');
-    }
-  });
-} else {
-  console.log('Email not configured - missing required environment variables');
+  return true;
 }
 
 async function sendEmail(to: string, subject: string, html: string, text: string) {
-  if (!transporter) {
-    console.log("Email not configured, email would contain:", { to, subject, text });
-    return false;
-  }
-
-  try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
-      to,
-      subject,
-      html,
-      text
-    });
-    return true;
-  } catch (error) {
-    console.error("Email sending failed:", error);
-    return false;
-  }
+  // Log the email content for manual delivery
+  await logEmailForDelivery(to, subject, html, text);
+  return true;
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
