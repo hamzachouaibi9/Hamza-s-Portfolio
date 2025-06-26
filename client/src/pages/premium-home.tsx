@@ -646,66 +646,7 @@ export default function PremiumHome() {
               </motion.div>
             </motion.div>
 
-            {/* Right Side - Professional Stats */}
-            <motion.div
-              className="relative lg:ml-auto space-y-8"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-            >
-              <div className="grid grid-cols-2 gap-8">
-                <motion.div 
-                  className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10"
-                  whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.2)" }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="text-3xl font-light text-white mb-2">5+</div>
-                  <div className="text-white/50 text-sm uppercase tracking-wider">Years</div>
-                </motion.div>
-                <motion.div 
-                  className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10"
-                  whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.2)" }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="text-3xl font-light text-white mb-2">50+</div>
-                  <div className="text-white/50 text-sm uppercase tracking-wider">Projects</div>
-                </motion.div>
-                <motion.div 
-                  className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10"
-                  whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.2)" }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="text-3xl font-light text-white mb-2">25+</div>
-                  <div className="text-white/50 text-sm uppercase tracking-wider">Clients</div>
-                </motion.div>
-                <motion.div 
-                  className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10"
-                  whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.2)" }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="text-3xl font-light text-white mb-2">100%</div>
-                  <div className="text-white/50 text-sm uppercase tracking-wider">Success</div>
-                </motion.div>
-              </div>
-              
-              {/* Contact Info */}
-              <motion.div 
-                className="p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-              >
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center text-white/70">
-                    <span className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></span>
-                    Available for new projects
-                  </div>
-                  <div className="text-white/50">
-                    Tampa, FL • Remote Worldwide
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
+
           </div>
         </div>
 
