@@ -454,7 +454,7 @@ export default function ProjectFunnel() {
               {/* Step 4: Project Details */}
               {currentStep === 4 && (
                 <div className="space-y-6">
-                  <h2 className="text-2xl font-light text-white mb-8">Project Details</h2>
+                  <h2 className="text-xl sm:text-2xl font-light text-white mb-6 sm:mb-8">Project Details</h2>
                   
                   <div>
                     <label className="block text-white/70 text-sm mb-2">Describe your project *</label>
@@ -471,7 +471,7 @@ export default function ProjectFunnel() {
 
                   <div>
                     <label className="block text-white/70 text-sm mb-4">What features do you need? (Select all that apply)</label>
-                    <div className="grid md:grid-cols-2 gap-3">
+                    <div className="grid sm:grid-cols-2 gap-2 sm:gap-3">
                       {availableFeatures.map((feature) => (
                         <motion.button
                           key={feature}
@@ -482,10 +482,10 @@ export default function ProjectFunnel() {
                               : [...currentFeatures, feature];
                             updateFormData('features', newFeatures);
                           }}
-                          className={`p-3 text-left border transition-all duration-300 ${
+                          className={`p-2 sm:p-3 text-left border-2 transition-all duration-300 ${
                             formData.features.includes(feature)
-                              ? 'bg-white/10 border-white/40'
-                              : 'bg-white/5 border-white/20 hover:bg-white/10'
+                              ? 'bg-white/10 border-white shadow-[0_0_20px_rgba(255,255,255,0.3)]'
+                              : 'bg-white/5 border-white/20 hover:bg-white/10 hover:border-white/30'
                           }`}
                           style={{ borderRadius: '2px' }}
                           whileHover={{ scale: 1.02 }}
@@ -493,9 +493,9 @@ export default function ProjectFunnel() {
                         >
                           <div className="flex items-center">
                             {formData.features.includes(feature) && (
-                              <Check className="w-4 h-4 text-white/60 mr-3" />
+                              <Check className="w-3 h-3 sm:w-4 sm:h-4 text-white/60 mr-2 sm:mr-3" />
                             )}
-                            <span className="text-white text-sm">{feature}</span>
+                            <span className="text-white text-xs sm:text-sm">{feature}</span>
                           </div>
                         </motion.button>
                       ))}
@@ -507,7 +507,7 @@ export default function ProjectFunnel() {
               {/* Step 5: Additional Information */}
               {currentStep === 5 && (
                 <div className="space-y-6">
-                  <h2 className="text-2xl font-light text-white mb-8">Additional Information</h2>
+                  <h2 className="text-xl sm:text-2xl font-light text-white mb-6 sm:mb-8">Additional Information</h2>
                   
                   <div>
                     <label className="block text-white/70 text-sm mb-2">Any websites or designs that inspire you?</label>
@@ -533,7 +533,7 @@ export default function ProjectFunnel() {
                     />
                   </div>
 
-                  <div className="bg-white/5 border border-white/20 p-6" style={{ borderRadius: '2px' }}>
+                  <div className="bg-white/5 border border-white/20 p-4 sm:p-6" style={{ borderRadius: '2px' }}>
                     <h3 className="text-white font-light mb-4">What happens next?</h3>
                     <div className="space-y-3 text-white/70 text-sm">
                       <div className="flex items-start">
@@ -554,21 +554,20 @@ export default function ProjectFunnel() {
               )}
 
               {/* Navigation Buttons */}
-              <div className="flex justify-between mt-12">
-                <motion.button
-                  onClick={prevStep}
-                  disabled={currentStep === 1}
-                  className={`flex items-center px-6 py-3 border transition-all duration-300 ${
-                    currentStep === 1
-                      ? 'text-white/40 border-white/20 cursor-not-allowed'
-                      : 'text-white border-white/40 hover:bg-white/10'
-                  }`}
-                  style={{ borderRadius: '2px' }}
-                  whileHover={currentStep > 1 ? { x: -5 } : {}}
-                >
-                  <ChevronLeft className="w-5 h-5 mr-2" />
-                  Previous
-                </motion.button>
+              <div className="flex justify-between mt-8 sm:mt-12">
+                {currentStep > 1 ? (
+                  <motion.button
+                    onClick={prevStep}
+                    className="flex items-center px-4 sm:px-6 py-2 sm:py-3 border transition-all duration-300 text-white border-white/40 hover:bg-white/10"
+                    style={{ borderRadius: '2px' }}
+                    whileHover={{ x: -5 }}
+                  >
+                    <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                    <span className="text-sm sm:text-base">Previous</span>
+                  </motion.button>
+                ) : (
+                  <div></div>
+                )}
 
                 {currentStep < totalSteps ? (
                   <motion.button
@@ -579,7 +578,7 @@ export default function ProjectFunnel() {
                       (currentStep === 3 && (!formData.budget || !formData.timeline)) ||
                       (currentStep === 4 && !formData.description)
                     }
-                    className={`flex items-center px-6 py-3 border transition-all duration-300 ${
+                    className={`flex items-center px-4 sm:px-6 py-2 sm:py-3 border transition-all duration-300 ${
                       (currentStep === 1 && (!formData.name || !formData.email)) ||
                       (currentStep === 2 && !formData.projectType) ||
                       (currentStep === 3 && (!formData.budget || !formData.timeline)) ||
@@ -590,14 +589,14 @@ export default function ProjectFunnel() {
                     style={{ borderRadius: '2px' }}
                     whileHover={{ x: 5 }}
                   >
-                    Next
-                    <ChevronRight className="w-5 h-5 ml-2" />
+                    <span className="text-sm sm:text-base">Next</span>
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 ml-1 sm:ml-2" />
                   </motion.button>
                 ) : (
                   <motion.button
                     onClick={handleSubmit}
                     disabled={isSubmitting || !formData.description}
-                    className={`flex items-center px-8 py-3 border transition-all duration-300 ${
+                    className={`flex items-center px-6 sm:px-8 py-2 sm:py-3 border transition-all duration-300 ${
                       isSubmitting || !formData.description
                         ? 'text-white/40 border-white/20 cursor-not-allowed'
                         : 'text-white border-white/40 hover:bg-white/10'
@@ -605,7 +604,7 @@ export default function ProjectFunnel() {
                     style={{ borderRadius: '2px' }}
                     whileHover={!isSubmitting && formData.description ? { scale: 1.05 } : {}}
                   >
-                    {isSubmitting ? 'Submitting...' : 'Submit Project'}
+                    <span className="text-sm sm:text-base">{isSubmitting ? 'Submitting...' : 'Submit Project'}</span>
                   </motion.button>
                 )}
               </div>
