@@ -579,9 +579,9 @@ export default function PremiumHome() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
-                Building exceptional digital experiences with modern technologies. 
-                Specializing in scalable web applications that drive business growth 
-                and deliver measurable results.
+                Freelance web designer crafting beautiful, functional websites that help 
+                businesses stand out online. From concept to launch, I create digital 
+                experiences that convert visitors into customers.
               </motion.p>
               
               <motion.div 
@@ -705,19 +705,21 @@ export default function PremiumHome() {
             >
               <div className="space-y-8 text-lg text-white/80 leading-relaxed font-light">
                 <p>
-                  I'm a passionate full-stack developer with 5+ years of experience building 
-                  scalable web applications and mobile solutions. My journey in tech began 
-                  with a curiosity for problem-solving and has evolved into a deep expertise 
-                  in modern development practices.
+                  I'm Hamza Chouaibi, a freelance web designer with 5+ years of experience 
+                  creating stunning websites that help businesses grow. What started as a 
+                  passion for design has evolved into a full-service web design practice 
+                  focused on delivering results for my clients.
                 </p>
                 <p>
-                  Specializing in React, Node.js, and cloud technologies, I help businesses 
-                  transform their ideas into powerful digital experiences. From startups to 
-                  enterprise clients, I deliver solutions that drive growth and innovation.
+                  I specialize in modern web design, user experience, and converting visitors 
+                  into customers. Whether you're a startup needing your first website or an 
+                  established business looking to refresh your online presence, I bring your 
+                  vision to life with clean code and beautiful design.
                 </p>
                 <p>
-                  When I'm not coding, you'll find me exploring new technologies, contributing 
-                  to open-source projects, or sharing knowledge with the developer community.
+                  When I'm not designing websites, I'm staying up-to-date with the latest 
+                  design trends, optimizing for better performance, and helping fellow 
+                  entrepreneurs succeed online.
                 </p>
               </div>
 
@@ -736,7 +738,7 @@ export default function PremiumHome() {
                   >
                     50+
                   </motion.div>
-                  <div className="text-white/50 text-sm uppercase tracking-wider">Projects Delivered</div>
+                  <div className="text-white/50 text-sm uppercase tracking-wider">Websites Created</div>
                 </div>
                 <div className="text-center group">
                   <motion.div 
@@ -746,7 +748,7 @@ export default function PremiumHome() {
                   >
                     5+
                   </motion.div>
-                  <div className="text-white/50 text-sm uppercase tracking-wider">Years Experience</div>
+                  <div className="text-white/50 text-sm uppercase tracking-wider">Years in Design</div>
                 </div>
                 <div className="text-center group">
                   <motion.div 
@@ -860,11 +862,11 @@ export default function PremiumHome() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-5xl md:text-6xl font-light mb-6 text-white tracking-tight">
-              How We Work Together
+              My Design Process
             </h2>
             <div className="w-16 h-0.5 bg-white/30 mx-auto mb-6"></div>
             <p className="text-white/70 text-lg max-w-2xl mx-auto font-light leading-relaxed">
-              From initial consultation to final launch, here's the proven process that transforms your vision into reality
+              From our first conversation to your website launch, here's how I bring your vision to life
             </p>
           </motion.div>
 
@@ -872,42 +874,42 @@ export default function PremiumHome() {
             {[
               {
                 step: "01",
-                title: "Initial Consultation",
+                title: "Discovery Call",
                 duration: "30-60 minutes",
-                description: "We discuss your vision, goals, and requirements. I'll analyze your business needs and provide expert recommendations on the best technical approach.",
-                details: ["Project scope & timeline", "Technical requirements", "Budget discussion", "Success metrics"],
+                description: "We'll discuss your business, target audience, and design goals. I'll learn about your brand and what success looks like for your new website.",
+                details: ["Business objectives", "Target audience analysis", "Design preferences", "Project timeline"],
                 icon: "💬"
               },
               {
                 step: "02", 
-                title: "Strategy & Planning",
+                title: "Design Strategy",
                 duration: "1-2 days",
-                description: "I create a detailed project roadmap with wireframes, technical architecture, and development phases. You'll see exactly how your website will look and function.",
-                details: ["Wireframes & mockups", "Technical architecture", "Development timeline", "Feature prioritization"],
+                description: "I'll create wireframes and design concepts that align with your brand. You'll see the visual direction and user experience before we move to development.",
+                details: ["Wireframes & layouts", "Visual design concepts", "Content strategy", "User experience planning"],
                 icon: "📋"
               },
               {
                 step: "03",
-                title: "Design & Development",
+                title: "Design & Build",
                 duration: "1-4 weeks",
-                description: "Your website comes to life with modern design and cutting-edge technology. I provide regular updates and gather your feedback throughout the process.",
-                details: ["Responsive design", "Modern development", "Regular check-ins", "Quality assurance"],
+                description: "I'll bring your website to life with clean code and beautiful design. You'll receive regular updates and have opportunities to provide feedback along the way.",
+                details: ["Custom design implementation", "Mobile-responsive development", "Progress updates", "Feedback integration"],
                 icon: "⚡"
               },
               {
                 step: "04",
-                title: "Testing & Optimization",
+                title: "Polish & Optimize",
                 duration: "3-5 days",
-                description: "Comprehensive testing across all devices and browsers. Performance optimization ensures your site loads fast and ranks well on search engines.",
-                details: ["Cross-browser testing", "Mobile optimization", "Performance tuning", "SEO optimization"],
+                description: "I'll test your website across all devices and browsers, optimize for speed, and ensure everything works perfectly before launch.",
+                details: ["Device & browser testing", "Speed optimization", "SEO setup", "Final quality check"],
                 icon: "🔍"
               },
               {
                 step: "05",
-                title: "Launch & Support",
+                title: "Launch & Handover",
                 duration: "1 day + ongoing",
-                description: "Your website goes live with professional deployment. I provide training and ongoing support to ensure your continued success.",
-                details: ["Professional deployment", "Training session", "Documentation", "30-day support"],
+                description: "Your website goes live! I'll handle the technical launch and provide you with everything you need to manage your new site confidently.",
+                details: ["Website launch", "Admin training", "Documentation", "30-day support included"],
                 icon: "🚀"
               }
             ].map((process, index) => (
@@ -1036,7 +1038,7 @@ export default function PremiumHome() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-5xl md:text-6xl font-light mb-6 text-white tracking-tight">
-              Featured Projects
+              Recent Work
             </h2>
             <div className="w-16 h-0.5 bg-white/30 mx-auto"></div>
           </motion.div>
@@ -1045,67 +1047,67 @@ export default function PremiumHome() {
             {[
               {
                 id: 1,
-                title: "Enterprise E-Commerce Platform",
-                category: "Full-Stack Development",
-                description: "Comprehensive e-commerce solution with advanced inventory management, real-time analytics, and seamless payment processing. Built for scalability and performance.",
-                tech: ["Next.js", "TypeScript", "PostgreSQL", "Stripe", "Redis"],
-                highlights: ["99.9% Uptime", "1M+ Users", "Real-time Analytics", "Multi-vendor Support"],
+                title: "E-Commerce Website Design",
+                category: "Web Design & Development",
+                description: "Complete e-commerce website with modern design, intuitive shopping experience, and seamless checkout process. Designed to convert visitors into customers.",
+                tech: ["Shopify", "Custom Design", "Responsive", "SEO", "Analytics"],
+                highlights: ["Mobile-First Design", "Fast Loading", "SEO Optimized", "Payment Integration"],
                 image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-                longDescription: "This enterprise-grade e-commerce platform was built to handle millions of users and transactions. The system features advanced inventory management, real-time analytics, fraud detection, and seamless payment processing through multiple gateways. Built with modern technologies for maximum performance and scalability.",
+                longDescription: "A complete e-commerce website redesign focused on user experience and conversion optimization. The new design features a clean, modern aesthetic with intuitive navigation and a streamlined checkout process that reduces cart abandonment.",
                 features: [
-                  "Advanced inventory management system",
-                  "Real-time analytics and reporting dashboard",
-                  "Multi-vendor marketplace functionality", 
-                  "Integrated payment processing with Stripe",
-                  "Redis caching for optimal performance",
-                  "Automated fraud detection system"
+                  "Custom responsive web design",
+                  "Product catalog with filtering",
+                  "Shopping cart and checkout optimization", 
+                  "Payment gateway integration",
+                  "Mobile-first approach",
+                  "Search engine optimization"
                 ],
-                challenges: "The main challenge was building a system that could scale to handle millions of concurrent users while maintaining sub-second response times and ensuring payment security.",
-                outcome: "Successfully deployed with 99.9% uptime, processing over $10M in transactions monthly with zero security incidents.",
+                challenges: "The main challenge was creating a design that would appeal to their diverse customer base while maintaining a professional appearance and ensuring fast loading times.",
+                outcome: "The new website increased online sales by 40% within the first three months and reduced bounce rate by 35%.",
                 link: "#",
                 github: "#"
               },
               {
                 id: 2,
-                title: "Real-Time Collaboration Platform",
-                category: "WebSocket Application", 
-                description: "Professional collaboration tool featuring live document editing, video conferencing, and project management capabilities for distributed teams.",
-                tech: ["React", "Socket.io", "Node.js", "MongoDB", "WebRTC"],
-                highlights: ["Live Collaboration", "Video Integration", "Role Management", "API Documentation"],
+                title: "Professional Services Website",
+                category: "Business Website Design", 
+                description: "Clean, professional website for a consulting firm featuring service pages, team profiles, and client testimonials. Designed to build trust and generate leads.",
+                tech: ["WordPress", "Custom Theme", "Contact Forms", "SEO", "Analytics"],
+                highlights: ["Professional Design", "Lead Generation", "Mobile Responsive", "Fast Loading"],
                 image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-                longDescription: "A comprehensive collaboration platform designed for distributed teams. Features include real-time document editing, video conferencing, project management tools, and role-based access control. Built with WebSocket technology for instant synchronization.",
+                longDescription: "A complete website redesign for a professional consulting firm that needed to establish credibility and generate more qualified leads. The design emphasizes trust, expertise, and clear calls-to-action throughout the user journey.",
                 features: [
-                  "Real-time collaborative document editing",
-                  "Integrated video conferencing with WebRTC",
-                  "Advanced project management tools",
-                  "Role-based permission system",
-                  "File sharing and version control",
-                  "Mobile-responsive design"
+                  "Professional brand-aligned design",
+                  "Service pages with clear descriptions",
+                  "Team member profiles and bios",
+                  "Client testimonials and case studies",
+                  "Contact forms and lead capture",
+                  "Blog section for thought leadership"
                 ],
-                challenges: "Implementing real-time synchronization across multiple users while handling conflict resolution and maintaining data consistency was the primary technical challenge.",
-                outcome: "Adopted by 500+ companies with 50,000+ active users. Reduced team communication overhead by 40% and improved project delivery times by 25%.",
+                challenges: "Creating a design that would convey professionalism and expertise while remaining approachable and easy to navigate for potential clients.",
+                outcome: "The new website generated 60% more qualified leads in the first quarter and improved the firm's professional image significantly.",
                 link: "#",
                 github: "#"
               },
               {
                 id: 3,
-                title: "AI-Powered Analytics Dashboard",
-                category: "Machine Learning",
-                description: "Advanced data visualization platform with predictive analytics, automated reporting, and machine learning insights for business intelligence.",
-                tech: ["Python", "React", "TensorFlow", "AWS", "D3.js"],
-                highlights: ["Predictive Models", "Real-time Data", "Custom Reports", "Cloud Infrastructure"],
+                title: "Restaurant Website & Online Ordering",
+                category: "Food & Hospitality",
+                description: "Complete website redesign with online menu, reservation system, and ordering capabilities. Designed to increase bookings and online orders.",
+                tech: ["Custom Design", "Online Ordering", "Reservations", "Mobile Optimized", "Local SEO"],
+                highlights: ["Online Ordering", "Mobile Friendly", "Local SEO", "Social Integration"],
                 image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-                longDescription: "An intelligent analytics platform that combines traditional business intelligence with machine learning predictions. The system processes millions of data points in real-time and provides actionable insights through advanced visualizations.",
+                longDescription: "A complete digital transformation for a local restaurant that needed to compete in the post-pandemic market. The website features online ordering, table reservations, and showcases their menu in an appetizing way that drives orders.",
                 features: [
-                  "Machine learning prediction models",
-                  "Real-time data processing pipeline",
-                  "Interactive data visualizations with D3.js",
-                  "Automated report generation",
-                  "Custom dashboard builder",
-                  "API integration with 50+ data sources"
+                  "Appetizing food photography integration",
+                  "Online menu with ordering system",
+                  "Table reservation functionality",
+                  "Location and hours information",
+                  "Social media integration",
+                  "Local search optimization"
                 ],
-                challenges: "Processing and analyzing massive datasets in real-time while maintaining accuracy of ML predictions and ensuring scalable infrastructure on AWS.",
-                outcome: "Improved business decision-making speed by 60% and increased prediction accuracy to 94%. Used by Fortune 500 companies for strategic planning.",
+                challenges: "Creating an online presence that would capture the restaurant's atmosphere while providing practical functionality for ordering and reservations.",
+                outcome: "Online orders increased by 150% and table reservations doubled within two months of launch. The restaurant now has a strong digital presence.",
                 link: "#",
                 github: "#"
               }
