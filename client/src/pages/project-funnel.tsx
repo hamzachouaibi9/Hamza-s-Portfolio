@@ -134,20 +134,20 @@ export default function ProjectFunnel() {
   };
 
   const projectTypes = [
-    { id: 'website', title: 'Business Website', icon: Globe, desc: 'Professional website for your business' },
-    { id: 'ecommerce', title: 'E-Commerce Store', icon: Star, desc: 'Online store with payment processing' },
-    { id: 'webapp', title: 'Web Application', icon: Database, desc: 'Custom web application with complex features' },
-    { id: 'mobile', title: 'Mobile App', icon: Smartphone, desc: 'Native or cross-platform mobile application' },
-    { id: 'saas', title: 'SaaS Platform', icon: Cloud, desc: 'Software as a Service platform' },
-    { id: 'other', title: 'Other', icon: Star, desc: 'Tell us about your unique project' }
+    { id: 'business', title: 'Business Website', icon: Globe, desc: 'Professional website to showcase your business' },
+    { id: 'portfolio', title: 'Portfolio Website', icon: Star, desc: 'Showcase your work and attract clients' },
+    { id: 'ecommerce', title: 'Small Online Store', icon: Smartphone, desc: 'Simple e-commerce site with product catalog' },
+    { id: 'landing', title: 'Landing Page', icon: Database, desc: 'Single page to promote a service or product' },
+    { id: 'redesign', title: 'Website Redesign', icon: Cloud, desc: 'Update and modernize your existing website' },
+    { id: 'other', title: 'Something Else', icon: Star, desc: 'Tell me about your specific needs' }
   ];
 
   const budgetRanges = [
-    '$5,000 - $10,000',
-    '$10,000 - $25,000', 
-    '$25,000 - $50,000',
-    '$50,000 - $100,000',
-    '$100,000+'
+    'Under $200',
+    '$200 - $350',
+    '$350 - $500',
+    '$500+',
+    'Not sure yet'
   ];
 
   const timelineOptions = [
@@ -159,18 +159,18 @@ export default function ProjectFunnel() {
   ];
 
   const availableFeatures = [
-    'User Authentication',
-    'Payment Processing',
-    'Admin Dashboard',
-    'API Integration',
-    'Mobile Responsive',
-    'SEO Optimization',
-    'Analytics',
-    'Email Marketing',
-    'Social Media Integration',
-    'Multi-language Support',
-    'Database Management',
-    'Cloud Hosting'
+    'Mobile Responsive Design',
+    'Contact Form',
+    'Google Maps Integration',
+    'Photo Gallery',
+    'Social Media Links',
+    'Basic SEO Setup',
+    'Simple Online Store',
+    'Blog Section',
+    'Email Newsletter Signup',
+    'Customer Testimonials',
+    'Service/Product Pages',
+    'About Page & Team'
   ];
 
   if (isSubmitted) {
@@ -227,7 +227,7 @@ export default function ProjectFunnel() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            Your project inquiry has been submitted successfully. I'll review your requirements and get back to you within 24 hours with a personalized proposal.
+            Your website request has been submitted successfully. I'll review your requirements and get back to you within 24 hours with a personalized proposal and timeline.
           </motion.p>
 
           <motion.div
@@ -296,7 +296,7 @@ export default function ProjectFunnel() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            Let's Build Something Amazing
+            Let's Create Your Website
           </motion.h1>
           
           <motion.p
@@ -305,7 +305,7 @@ export default function ProjectFunnel() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Tell me about your project and I'll create a custom solution that exceeds your expectations.
+            Tell me about your website needs and I'll design something that helps your business grow.
           </motion.p>
         </div>
 
@@ -423,10 +423,10 @@ export default function ProjectFunnel() {
                 </div>
               )}
 
-              {/* Step 2: Project Type */}
+              {/* Step 2: Website Type */}
               {currentStep === 2 && (
                 <div className="space-y-6">
-                  <h2 className="text-xl sm:text-2xl font-light text-white mb-6 sm:mb-8">What type of project do you need?</h2>
+                  <h2 className="text-xl sm:text-2xl font-light text-white mb-6 sm:mb-8">What type of website do you need?</h2>
                   
                   {errors.projectType && (
                     <p className="text-red-400 text-sm">{errors.projectType}</p>
@@ -519,13 +519,13 @@ export default function ProjectFunnel() {
                 </div>
               )}
 
-              {/* Step 4: Project Details */}
+              {/* Step 4: Website Details */}
               {currentStep === 4 && (
                 <div className="space-y-6">
-                  <h2 className="text-xl sm:text-2xl font-light text-white mb-6 sm:mb-8">Project Details</h2>
+                  <h2 className="text-xl sm:text-2xl font-light text-white mb-6 sm:mb-8">Website Details</h2>
                   
                   <div>
-                    <label className="block text-white/70 text-sm mb-2">Describe your project *</label>
+                    <label className="block text-white/70 text-sm mb-2">Describe your website needs *</label>
                     <textarea
                       value={formData.description}
                       onChange={(e) => updateFormData('description', e.target.value)}
@@ -534,7 +534,7 @@ export default function ProjectFunnel() {
                         errors.description ? 'border-red-400 focus:border-red-400' : 'border-white/20 focus:border-white/40'
                       }`}
                       style={{ borderRadius: '2px' }}
-                      placeholder="Tell me about your project, goals, and any specific requirements..."
+                      placeholder="Tell me about your business, website goals, and any specific design preferences..."
                       required
                     />
                     {errors.description && (
@@ -667,7 +667,7 @@ export default function ProjectFunnel() {
                     style={{ borderRadius: '2px' }}
                     whileHover={!isSubmitting ? { scale: 1.05 } : {}}
                   >
-                    <span className="text-sm sm:text-base">{isSubmitting ? 'Submitting...' : 'Submit Project'}</span>
+                    <span className="text-sm sm:text-base">{isSubmitting ? 'Submitting...' : 'Submit Website Request'}</span>
                   </motion.button>
                 )}
               </div>
