@@ -569,7 +569,7 @@ export default function PremiumHome() {
               >
                 <span className="text-white block mb-3 font-extralight">Hamza Chouaibi</span>
                 <span className="text-white/70 text-2xl md:text-3xl lg:text-4xl block font-light tracking-wide">
-                  Full-Stack Developer
+                  Web Designer
                 </span>
               </motion.h1>
               
@@ -787,7 +787,7 @@ export default function PremiumHome() {
                 >
                   <motion.img
                     src={profileImage}
-                    alt="Hamza Chouaibi - Full Stack Developer"
+                    alt="Hamza Chouaibi - Web Designer"
                     className="w-full h-full object-cover"
                     initial={{ scale: 1.1, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -1492,7 +1492,7 @@ export default function PremiumHome() {
       <footer className="py-12 bg-black border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <p className="text-white/50 text-lg">
-            © 2024 Hamza Chouaibi. Crafted with precision and passion.
+            © 2024 Hamza Chouaibi. Designed with passion, built with purpose.
           </p>
         </div>
       </footer>
