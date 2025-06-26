@@ -525,7 +525,7 @@ export default function PremiumHome() {
 
       {/* Hero Section */}
       <section id="section-0" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28">
-        {/* Deep Space Background */}
+        {/* Starry Background - Same as About Section */}
         <div className="absolute inset-0 bg-black">
           {/* Stars */}
           {[...Array(200)].map((_, i) => (
@@ -552,61 +552,6 @@ export default function PremiumHome() {
           ))}
         </div>
 
-        {/* Floating Tech Elements Background */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[
-            { label: 'React', x: '25%', y: '30%' },
-            { label: 'Node.js', x: '75%', y: '25%' },
-            { label: 'TypeScript', x: '30%', y: '70%' },
-            { label: 'Python', x: '70%', y: '65%' },
-            { label: 'PostgreSQL', x: '20%', y: '50%' },
-            { label: 'AWS', x: '65%', y: '80%' },
-            { label: 'Docker', x: '35%', y: '15%' },
-            { label: 'GraphQL', x: '80%', y: '45%' },
-            { label: 'Next.js', x: '40%', y: '35%' },
-            { label: 'MongoDB', x: '60%', y: '55%' },
-            { label: 'Redis', x: '45%', y: '20%' },
-            { label: 'Kubernetes', x: '55%', y: '75%' },
-          ].map((tech, index) => (
-            <motion.div
-              key={tech.label}
-              className="absolute"
-              style={{
-                left: tech.x,
-                top: tech.y,
-                transform: 'translate(-50%, -50%)'
-              }}
-              initial={{ 
-                opacity: 0, 
-                scale: 0.3,
-                rotate: Math.random() * 360
-              }}
-              animate={{ 
-                opacity: [0.2, 0.5, 0.2], 
-                scale: [0.8, 1.1, 0.8],
-                y: [0, -25, 0],
-                rotate: [0, 180, 360],
-              }}
-              transition={{
-                opacity: { duration: 5 + index * 0.4, repeat: Infinity, ease: "easeInOut" },
-                scale: { duration: 4 + index * 0.3, repeat: Infinity, ease: "easeInOut" },
-                y: { duration: 8 + index * 0.5, repeat: Infinity, ease: "easeInOut" },
-                rotate: { duration: 25 + index * 3, repeat: Infinity, ease: "linear" },
-              }}
-            >
-              <div 
-                className="px-3 py-1.5 rounded-lg text-white/40 text-xs font-light shadow-2xl border border-white/10"
-                style={{
-                  background: `rgba(255,255,255,0.05)`,
-                  boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.08)',
-                }}
-              >
-                {tech.label}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
         <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-[80vh]">
             {/* Left Content */}
@@ -619,25 +564,26 @@ export default function PremiumHome() {
 
               
               <motion.h1 
-                className="text-5xl md:text-6xl lg:text-7xl font-extralight mb-8 leading-tight"
+                className="text-4xl md:text-5xl lg:text-6xl font-light mb-8 leading-tight tracking-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3 }}
               >
-                <span className="text-white/90 block mb-2">Building</span>
-                <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent font-light">
-                  Digital Excellence
+                <span className="text-white block mb-3 font-extralight">Hamza Chouaibi</span>
+                <span className="text-white/70 text-2xl md:text-3xl lg:text-4xl block font-light tracking-wide">
+                  Full-Stack Developer
                 </span>
               </motion.h1>
               
               <motion.p 
-                className="text-xl md:text-2xl text-white/70 mb-10 leading-relaxed max-w-2xl"
+                className="text-lg md:text-xl text-white/60 mb-12 leading-relaxed max-w-2xl font-light"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
-                Full-Stack Developer with 5+ years crafting scalable web applications, 
-                mobile solutions, and digital experiences that drive business growth.
+                Building exceptional digital experiences with modern technologies. 
+                Specializing in scalable web applications that drive business growth 
+                and deliver measurable results.
               </motion.p>
               
               <motion.div 
@@ -700,26 +646,76 @@ export default function PremiumHome() {
               </motion.div>
             </motion.div>
 
-            {/* Right Visual */}
+            {/* Right Side - Professional Stats */}
             <motion.div
-              className="relative lg:ml-auto"
+              className="relative lg:ml-auto space-y-8"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
             >
-              <div className="relative w-full h-96"></div>
+              <div className="grid grid-cols-2 gap-8">
+                <motion.div 
+                  className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10"
+                  whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.2)" }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="text-3xl font-light text-white mb-2">5+</div>
+                  <div className="text-white/50 text-sm uppercase tracking-wider">Years</div>
+                </motion.div>
+                <motion.div 
+                  className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10"
+                  whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.2)" }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="text-3xl font-light text-white mb-2">50+</div>
+                  <div className="text-white/50 text-sm uppercase tracking-wider">Projects</div>
+                </motion.div>
+                <motion.div 
+                  className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10"
+                  whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.2)" }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="text-3xl font-light text-white mb-2">25+</div>
+                  <div className="text-white/50 text-sm uppercase tracking-wider">Clients</div>
+                </motion.div>
+                <motion.div 
+                  className="text-center p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10"
+                  whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.2)" }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="text-3xl font-light text-white mb-2">100%</div>
+                  <div className="text-white/50 text-sm uppercase tracking-wider">Success</div>
+                </motion.div>
+              </div>
+              
+              {/* Contact Info */}
+              <motion.div 
+                className="p-6 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+              >
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center text-white/70">
+                    <span className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></span>
+                    Available for new projects
+                  </div>
+                  <div className="text-white/50">
+                    Tampa, FL • Remote Worldwide
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
 
         <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           onClick={() => scrollToSection(1)}
-          className="cursor-pointer"
         >
-          <ChevronDown className="w-8 h-8 text-white/50 hover:text-white/80 transition-colors" />
+          <ChevronDown className="w-6 h-6 text-white/40 hover:text-white/70 transition-colors" />
         </motion.div>
       </section>
 
