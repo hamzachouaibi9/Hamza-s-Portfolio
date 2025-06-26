@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { z } from "zod";
-import sgMail from "@sendgrid/mail";
+import nodemailer from "nodemailer";
 
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -23,21 +23,31 @@ const projectInquirySchema = z.object({
   additionalInfo: z.string().optional(),
 });
 
-// Initialize SendGrid
-if (process.env.SENDGRID_API_KEY) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// Create email transporter
+let transporter: nodemailer.Transporter | null = null;
+
+if (process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+  transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: parseInt(process.env.EMAIL_PORT || '587'),
+    secure: process.env.EMAIL_SECURE === 'true', // true for 465, false for other ports
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
 }
 
 async function sendEmail(to: string, subject: string, html: string, text: string) {
-  if (!process.env.SENDGRID_API_KEY) {
-    console.log("SendGrid not configured, email would contain:", { to, subject, text });
+  if (!transporter) {
+    console.log("Email not configured, email would contain:", { to, subject, text });
     return false;
   }
 
   try {
-    await sgMail.send({
+    await transporter.sendMail({
+      from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
       to,
-      from: "noreply@yourdomain.com", // You'll need to verify this domain in SendGrid
       subject,
       html,
       text
