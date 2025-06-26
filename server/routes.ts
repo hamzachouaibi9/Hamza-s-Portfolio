@@ -30,11 +30,23 @@ if (process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS) 
   transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: parseInt(process.env.EMAIL_PORT || '587'),
-    secure: process.env.EMAIL_SECURE === 'true', // true for 465, false for other ports
+    secure: process.env.EMAIL_SECURE === 'true',
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    tls: {
+      ciphers: 'SSLv3'
+    }
+  });
+  
+  // Test the connection
+  transporter.verify((error, success) => {
+    if (error) {
+      console.log('Email configuration error:', error.message);
+    } else {
+      console.log('Email server ready to send messages');
+    }
   });
 }
 
