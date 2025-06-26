@@ -26,19 +26,56 @@ const projectInquirySchema = z.object({
 // Create email transporter
 let transporter: nodemailer.Transporter | null = null;
 
+console.log('Email config check:', {
+  host: !!process.env.EMAIL_HOST,
+  user: !!process.env.EMAIL_USER,
+  pass: !!process.env.EMAIL_PASS,
+  port: process.env.EMAIL_PORT,
+  secure: process.env.EMAIL_SECURE
+});
+
 if (process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-  transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: parseInt(process.env.EMAIL_PORT || '587'),
-    secure: process.env.EMAIL_SECURE === 'true',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-    tls: {
-      ciphers: 'SSLv3'
-    }
-  });
+  // Try different configurations based on the email provider
+  let config;
+  
+  if (process.env.EMAIL_HOST.includes('outlook') || process.env.EMAIL_HOST.includes('hotmail')) {
+    // Outlook/Hotmail configuration
+    config = {
+      service: 'hotmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    };
+  } else if (process.env.EMAIL_HOST.includes('gmail')) {
+    // Gmail configuration
+    config = {
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      }
+    };
+  } else {
+    // Generic SMTP configuration
+    config = {
+      host: process.env.EMAIL_HOST,
+      port: parseInt(process.env.EMAIL_PORT || '587'),
+      secure: process.env.EMAIL_SECURE === 'true',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    };
+  }
+  
+  transporter = nodemailer.createTransport(config);
   
   // Test the connection
   transporter.verify((error, success) => {
@@ -48,6 +85,8 @@ if (process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS) 
       console.log('Email server ready to send messages');
     }
   });
+} else {
+  console.log('Email not configured - missing required environment variables');
 }
 
 async function sendEmail(to: string, subject: string, html: string, text: string) {
