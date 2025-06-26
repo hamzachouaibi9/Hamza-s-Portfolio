@@ -62,6 +62,45 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Project inquiry endpoint
+  app.post("/api/project-inquiry", async (req, res) => {
+    try {
+      const projectData = projectInquirySchema.parse(req.body);
+      
+      // Log the project inquiry submission
+      console.log("Project inquiry submission:", {
+        ...projectData,
+        timestamp: new Date().toISOString(),
+      });
+      
+      // In a real application, you would:
+      // 1. Send an email notification to your business email
+      // 2. Store the inquiry in a database for tracking
+      // 3. Send an automated response to the client
+      // 4. Add to your CRM system
+      // 5. Create a project tracking record
+      
+      res.json({
+        success: true,
+        message: "Thank you for your detailed project information! I will review it and get back to you within 24 hours.",
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({
+          success: false,
+          message: "Validation error",
+          errors: error.errors,
+        });
+      } else {
+        console.error("Project inquiry error:", error);
+        res.status(500).json({
+          success: false,
+          message: "Internal server error",
+        });
+      }
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
